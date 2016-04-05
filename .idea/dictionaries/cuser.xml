@@ -2,6 +2,7 @@
   <dictionary name="cuser">
     <words>
       <w>filelist</w>
+      <w>pdflatex</w>
       <w>tilemetrics</w>
       <w>trimmomatic</w>
     </words>

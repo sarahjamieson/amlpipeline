@@ -2,16 +2,26 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
-\usepackage[tmargin=1cm,lmargin=10cm]{geometry}
-
+\usepackage[tmargin=0.75in,lmargin=0.75in,rmargin=0.75in]{geometry}
+\usepackage[ddmmyyyy]{datetime}
+\newdateformat{mydate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+\title{Quality Assessment}
+\date{\mydate\today}
 
 \begin{document}
-\section{Simple stuff}
-Identification of some kind
-\subsection{Summary statistics}
-\begin{tabular}{l|l}
+\maketitle
+\begin{flushright}
+\Large{\textbf{<Run name>}}
+\end{flushright}
+\section{Quality data}
+\begin{tabular}{l|l|l}
+Data&Value&Pass/Fail\\
 \hline
-1650.96&1012.20\\
+Mean Cluster Density (k/mm2)&1650.96&\\
+Clusters passed filter (\%)&61.17\%&\\
+Average >= Q30&81.01\%&\\
+1st full read >= Q30&&\\
+2nd full read >= Q30&&\\
 \end{tabular}
 
 

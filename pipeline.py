@@ -3,15 +3,14 @@ import os
 import glob
 from illuminate import InteropTileMetrics, InteropControlMetrics, InteropErrorMetrics, InteropExtractionMetrics, \
     InteropIndexMetrics, InteropQualityMetrics, InteropCorrectedIntensityMetrics
-from pylatex import Document, Section, Tabular, Package, Subsection
-from latex import build_pdf
+from create_pdf import CreatePDF
+import pandas as pd
 
 Trimmomatic = '/home/cuser/programs/Trimmomatic-0.36/trimmomatic-0.36.jar'
 
 
 def assess_quality():
     tilemetrics = InteropTileMetrics('/media/sf_sarah_share/AML_data/InterOp/TileMetricsOut.bin')
-    '''
     controlmetrics = InteropControlMetrics('/media/sf_sarah_share/AML_data/InterOp/ControlMetricsOut.bin')
     errormetrics = InteropErrorMetrics('/media/sf_sarah_share/AML_data/InterOp/ErrorMetricsOut.bin')
     extractionmetrics = InteropExtractionMetrics('/media/sf_sarah_share/AML_data/InterOp/ExtractionMetricsOut.bin')
@@ -19,39 +18,10 @@ def assess_quality():
     qualitymetrics = InteropQualityMetrics('/media/sf_sarah_share/AML_data/InterOp/QMetricsOut.bin')
     corintmetrics = InteropCorrectedIntensityMetrics(
         '/media/sf_sarah_share/AML_data/InterOp/CorrectedIntMetricsOut.bin')
-    '''
 
-    doc = Document()
-    doc.packages.append(Package('geometry', options=['tmargin=1cm', 'lmargin=10cm']))
-
-    with doc.create(Section('Simple stuff')):
-        doc.append('Identification of some kind')
-
-        with doc.create(Subsection('Summary statistics')):
-            with doc.create(Tabular('l|l')) as table:
-                table.add_hline()
-                table.add_row(('Mean Cluster Density', format(tilemetrics.mean_cluster_density/1000, '.2f')))
-                table.add_row(('Mean Cluster Density PF', format(tilemetrics.mean_cluster_density_pf/1000, '.2f')))
-                table.add_row(('Percentage of Clusters PF', '%s%%' % (format(tilemetrics.percent_pf_clusters, '.2f'))))
-
-    doc.generate_pdf('output')
-
-    # document = doc.generate_tex('output')
-    # build_pdf(document)
-    '''
-    # making PDF file using ReportLab
-    doc = SimpleDocTemplate("quality_output.pdf", pagesize=letter)
-    elements = []
-    data = [['Mean Cluster Density', format(tilemetrics.mean_cluster_density/1000, '.2f')],
-            ['Mean PF Cluster Density', format(tilemetrics.mean_cluster_density_pf/1000, '.2f')],
-            ['Percentage of Clusters PF', '%s%%' % (format(tilemetrics.percent_pf_clusters, '.2f'))]]
-    summary_table = Table(data)
-    summary_table.hAlign = "LEFT"  # aligns table to left of page
-    elements.append(summary_table)
-    doc.build(elements)
-    '''
-
-    # os.system("mv /home/cuser/PycharmProjects/AMLpipeline/quality_output.pdf /media/sf_sarah_share/")
+    pdf = CreatePDF(tilemetrics, controlmetrics, errormetrics, extractionmetrics, indexmetrics, qualitymetrics,
+                    corintmetrics)
+    pdf.create_pdf()
 
     # Could then have something like:
     # if tilemetrics.mean_cluster_density in range(1100, 1300) or tilemetrics.percent_pf_clusters > 90:
@@ -59,8 +29,8 @@ def assess_quality():
     # else:
     #       stop pipeline and return error message
 
-
 assess_quality()
+
 
 '''
 # Input: all files ending in fastq.gz; formatter collates files with same name either R1 or R2; outputs into file with
