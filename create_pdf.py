@@ -1,4 +1,4 @@
-from pylatex import Document, Section, Tabular, Package, Command
+from pylatex import Document, Section, Tabular, Package, Command, Figure
 from pylatex.utils import NoEscape, bold
 import os
 
@@ -30,6 +30,7 @@ class CreatePDF(object):
         doc.append(Command('end', 'flushright'))
 
         avg_qual = self.get_avg_qual(self.quality)
+        self.get_qual_graph(self.quality)
 
         with doc.create(Section('Quality data')):
             with doc.create(Tabular('l|l|l')) as table:
@@ -41,6 +42,7 @@ class CreatePDF(object):
                 table.add_row(('Average >= Q30', '%s%%' % (format(avg_qual, '.2f')), ''))
                 table.add_row(('1st full read >= Q30', '', ''))
                 table.add_row(('2nd full read >= Q30', '', ''))
+        Figure.add_plot()
 
         '''
         with doc.create(Section('Tile Metrics')):
