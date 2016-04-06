@@ -73,3 +73,7 @@ class CreatePDF(object):
         avg_qual = (float(sum(a)) / float(total_clusters))*100
 
         return avg_qual
+
+    def get_qual_graph(self, qualitymetrics):
+        cols_1_5 = range(0, 4)
+        print qualitymetrics.df[cols_1_5]
