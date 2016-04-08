@@ -18,10 +18,11 @@ def assess_quality():
     qualitymetrics = InteropQualityMetrics('/media/sf_sarah_share/AML_data/InterOp/QMetricsOut.bin')
     corintmetrics = InteropCorrectedIntensityMetrics(
         '/media/sf_sarah_share/AML_data/InterOp/CorrectedIntMetricsOut.bin')
-
     pdf = CreatePDF(tilemetrics, controlmetrics, errormetrics, extractionmetrics, indexmetrics, qualitymetrics,
                     corintmetrics)
     pdf.create_pdf()
+
+    os.system('mv /home/cuser/PycharmProjects/AMLpipeline/output.pdf /media/sf_sarah_share/')
 
     # Could then have something like:
     # if tilemetrics.mean_cluster_density in range(1100, 1300) or tilemetrics.percent_pf_clusters > 90:

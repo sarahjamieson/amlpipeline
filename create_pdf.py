@@ -1,10 +1,11 @@
-from pylatex import Document, Section, Tabular, Package, Command, Figure
+from pylatex import Document, Section, Tabular, Package, Command, Figure, SubFigure
 from pylatex.utils import NoEscape, bold
 import os
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 class CreatePDF(object):
-
     def __init__(self, tilemetrics, controlmetrics, errormetrics, extractionmetrics, indexmetrics, qualitymetrics,
                  corintmetrics):
         self.tile = tilemetrics
@@ -22,7 +23,7 @@ class CreatePDF(object):
         doc.packages.append(Package('datetime', options=['ddmmyyyy']))
         doc.preamble.append(Command('newdateformat',
                                     NoEscape(r'mydate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR')))
-        doc.preamble.append(Command('title', 'Quality Assessment'))
+        doc.preamble.append(Command('title', 'MiSeq quality checks'))
         doc.preamble.append(Command('date', NoEscape(r'\mydate\today')))
         doc.append(NoEscape(r'\maketitle'))
         doc.append(Command('begin', 'flushright'))
@@ -30,70 +31,111 @@ class CreatePDF(object):
         doc.append(Command('end', 'flushright'))
 
         avg_qual = self.get_avg_qual(self.quality)
-        self.get_qual_graph(self.quality)
+        self.get_qual_graph(self.quality, avg_qual)
 
         with doc.create(Section('Quality data')):
-            with doc.create(Tabular('l|l|l')) as table:
+            with doc.create(Tabular(NoEscape(r'p{5cm}|c|c'))) as table:
                 table.add_row(('Data', 'Value', 'Pass/Fail'))
                 table.add_hline()
-                table.add_row(('Mean Cluster Density (k/mm2)', format(self.tile.mean_cluster_density/1000, '.2f'), ''))
+                table.add_row(
+                    ('Mean Cluster Density (k/mm2)', format(self.tile.mean_cluster_density / 1000, '.2f'), ''))
                 table.add_row(('Clusters passed filter (%)', '%s%%' % (format(self.tile.percent_pf_clusters, '.2f')),
                                ''))
                 table.add_row(('Average >= Q30', '%s%%' % (format(avg_qual, '.2f')), ''))
                 table.add_row(('1st full read >= Q30', '', ''))
                 table.add_row(('2nd full read >= Q30', '', ''))
-        Figure.add_plot()
 
-        '''
-        with doc.create(Section('Tile Metrics')):
-            doc.append(self.tile)
-        with doc.create(Section('Control Metrics')):
-            doc.append(self.control)
-        with doc.create(Section('Error Metrics')):
-            doc.append(self.error)
-        with doc.create(Section('Extraction Metrics')):
-            doc.append(self.control)
-        with doc.create(Section('Index Metrics')):
-            doc.append(self.index)
-        with doc.create(Section('Quality Metrics')):
-            doc.append(self.quality)
-        '''
+            with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
+                doc.append(Command('centering'))
+                with doc.create(SubFigure()) as plot:
+                    plot.add_plot()
+                    plot.add_caption('Q-score distribution plot (all reads all cycles)')
+                self.get_qual_heatmap(self.quality)
+                with doc.create(SubFigure()) as plot:
+                    plot.add_plot()
+                    plot.add_caption('Q-score heat map')
+        with doc.create(Section('Phas/Prephas data')):
+            with doc.create(Tabular(NoEscape(r'p{5cm}|c|c'))) as table:
+                table.add_row(('Data', 'Value', 'Pass/Fail'))
+                table.add_hline()
+                table.add_row(('1st full read', '', ''))
+                table.add_row(('2nd full read', '', ''))
+        with doc.create(Section('Indexing')):
+            with doc.create(Tabular(NoEscape(r'p{5cm}|c|c'))) as table:
+                table.add_row(('Data', 'Value', 'Pass/Fail'))
+                table.add_hline()
+                table.add_row(('Total reads (M)', '', ''))
+                table.add_row(('Read passed reads (M)', '', ''))
+                table.add_row(('% reads ID', '', ''))
 
         doc.generate_pdf('output', clean_tex=False, compiler=pdflatex)
-        os.system("xdg-open /home/cuser/PycharmProjects/AMLpipeline/output.pdf")
+        # os.system("xdg-open /home/cuser/PycharmProjects/AMLpipeline/output.pdf")
 
     def get_avg_qual(self, qualitymetrics):
-        col_list = list(qualitymetrics.df)
+        quality_df = qualitymetrics.df
+        col_list = list(quality_df)
         col_list.remove('cycle')
         col_list.remove('lane')
         col_list.remove('tile')
-        qualitymetrics.df['total'] = qualitymetrics.df.sum(axis=1)
-        total_clusters = qualitymetrics.df['total'].sum(axis=0)
+        quality_df['total'] = quality_df.sum(axis=1)
+        total_clusters = quality_df['total'].sum(axis=0)
 
         col_list = range(29, 50)
-        a = qualitymetrics.df[col_list].sum(axis=1)
-        avg_qual = (float(sum(a)) / float(total_clusters))*100
-
+        a = quality_df[col_list].sum(axis=1)
+        avg_qual = (float(sum(a)) / float(total_clusters)) * 100
         return avg_qual
 
-    def get_qual_graph(self, qualitymetrics):
+    def get_qual_graph(self, qualitymetrics, avg_qual):
         quality_df = qualitymetrics.df
 
-        cols_to_drop = ['cycle', 'lane', 'tile']
+        cols_to_drop = ['cycle', 'lane', 'tile', 'total']
         quality_df = quality_df.drop(cols_to_drop, axis=1)
         qual_scores = quality_df.sum(axis=0).values
         qual_list = map(int, qual_scores.tolist())
-        less_than_q30 = qual_list[0: 28]
-        more_than_q30 = qual_list[29: 50]
+        less_than_q30 = qual_list[0: 29]
+        more_than_q30 = qual_list[30: 50]
 
         myint = 1000000
         y1 = [x / myint for x in less_than_q30]
         y2 = [x / myint for x in more_than_q30]
-        x1 = range(1, 29)
-        x2 = range(29, 50)
+        x1 = range(1, 30)
+        x2 = range(30, 50)
+        y_max = max(y1 + y2)
 
-        plt.bar(x1, y1, color='b')
-        plt.bar(x2, y2, color='g')
-        plt.ylabel('Clusters (millions)')
-        plt.xlabel('Q score')
-        plt.show()
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.bar(x1, y1, color='b', width=1.0)
+        ax.bar(x2, y2, color='g', width=1.0)
+        ax.set_ylabel('Total (millions)')
+        ax.set_xlabel('Q score')
+        ax.plot([30, 30], [0, y_max], color='g', linewidth=1, zorder=5)
+        percent = '%s%%' % format(avg_qual, '.2f')
+        ax.text(23, y_max-100, percent, fontsize=16, color='g')
+
+    def get_qual_heatmap(self, qualitymetrics):
+        quality_df = qualitymetrics.df
+        cols_to_drop = ['lane', 'tile', 'total']
+        quality_df = quality_df.drop(cols_to_drop, axis=1)
+        quality_df.columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+                              26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
+                              48, 49, 50, 'cycle']
+        max_cycle = quality_df['cycle'].max()
+        grouped_by_cycle = quality_df.groupby(['cycle'])
+        x = grouped_by_cycle.aggregate(np.sum)
+        x = x.transpose()
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        my_cmap = plt.cm.get_cmap('GnBu')
+        my_cmap.set_under(color='white')
+        ax.pcolor(x, cmap=my_cmap, vmin=0.0001)
+
+        major_xticks = np.arange(0, max_cycle+20, 20)
+        major_yticks = np.arange(0, 50, 10)
+        ax.set_xticks(major_xticks)
+        ax.set_yticks(major_yticks)
+        ax.grid(b=True, which='both', color='0.85', linestyle='-')
+        ax.spines['right'].set_color('0.85')
+        ax.spines['top'].set_color('0.85')
+        ax.spines['bottom'].set_color('0.85')
+        ax.set_xlabel('Cycle')
+        ax.set_ylabel('Q Score')

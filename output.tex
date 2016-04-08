@@ -4,8 +4,10 @@
 \usepackage{lmodern}
 \usepackage[tmargin=0.75in,lmargin=0.75in,rmargin=0.75in]{geometry}
 \usepackage[ddmmyyyy]{datetime}
+\usepackage{graphicx}
+\usepackage{subcaption}
 \newdateformat{mydate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
-\title{Quality Assessment}
+\title{MiSeq quality checks}
 \date{\mydate\today}
 
 \begin{document}
@@ -14,14 +16,46 @@
 \Large{\textbf{<Run name>}}
 \end{flushright}
 \section{Quality data}
-\begin{tabular}{l|l|l}
+\begin{tabular}{p{5cm}|c|c}
 Data&Value&Pass/Fail\\
 \hline
-Mean Cluster Density (k/mm2)&1650.96&\\
+Mean Cluster Density (k/mm)&1650.96&\\
 Clusters passed filter (\%)&61.17\%&\\
 Average >= Q30&81.01\%&\\
 1st full read >= Q30&&\\
 2nd full read >= Q30&&\\
+\end{tabular}
+
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[width=\linewidth]{/tmp/pylatex/9661696e-7452-4130-a729-fe485d0171fa.pdf}
+\caption{Q{-}score distribution plot (all reads all cycles)}
+\end{subfigure}
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[width=\linewidth]{/tmp/pylatex/7d6d65ff-e4e4-49d2-9463-7a84a43164b9.pdf}
+\caption{Q{-}score heat map}
+\end{subfigure}
+\end{figure}
+
+
+\section{Phas/Prephas data}
+\begin{tabular}{p{5cm}|c|c}
+Data&Value&Pass/Fail\\
+\hline
+1st full read&&\\
+2nd full read&&\\
+\end{tabular}
+
+
+\section{Indexing}
+\begin{tabular}{p{5cm}|c|c}
+Data&Value&Pass/Fail\\
+\hline
+Total reads (M)&&\\
+Read passed reads (M)&&\\
+\% reads ID&&\\
 \end{tabular}
 
 
