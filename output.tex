@@ -4,6 +4,7 @@
 \usepackage{lmodern}
 \usepackage[tmargin=0.75in,lmargin=0.75in,rmargin=0.75in]{geometry}
 \usepackage[ddmmyyyy]{datetime}
+\usepackage{needspace}
 \usepackage{graphicx}
 \usepackage{subcaption}
 \newdateformat{mydate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
@@ -19,7 +20,7 @@
 \begin{tabular}{p{5cm}|c|c}
 Data&Value&Pass/Fail\\
 \hline
-Mean Cluster Density (k/mm)&1650.96&\\
+Mean Cluster Density (k/mm2)&1650.96&\\
 Clusters passed filter (\%)&61.17\%&\\
 Average >= Q30&81.01\%&\\
 1st full read >= Q30&&\\
@@ -30,11 +31,11 @@ Average >= Q30&81.01\%&\\
 \begin{figure}[htbp]
 \centering
 \begin{subfigure}{0.45\linewidth}
-\includegraphics[width=\linewidth]{/tmp/pylatex/9661696e-7452-4130-a729-fe485d0171fa.pdf}
+\includegraphics[width=\linewidth]{/tmp/pylatex/e86ba9b5-a3ca-4114-b1ec-d5a3f9ef61dc.pdf}
 \caption{Q{-}score distribution plot (all reads all cycles)}
 \end{subfigure}
 \begin{subfigure}{0.45\linewidth}
-\includegraphics[width=\linewidth]{/tmp/pylatex/7d6d65ff-e4e4-49d2-9463-7a84a43164b9.pdf}
+\includegraphics[width=\linewidth]{/tmp/pylatex/51469586-bb70-4ce3-8757-20799721b90b.pdf}
 \caption{Q{-}score heat map}
 \end{subfigure}
 \end{figure}
@@ -49,14 +50,36 @@ Data&Value&Pass/Fail\\
 \end{tabular}
 
 
+\needspace{10em}
 \section{Indexing}
-\begin{tabular}{p{5cm}|c|c}
-Data&Value&Pass/Fail\\
+
+
+\begin{figure}[htbp]
+\begin{tabular}{c|c|c|c}
+Sample\_ID&Index&Index2&\% Reads\\
 \hline
-Total reads (M)&&\\
-Read passed reads (M)&&\\
-\% reads ID&&\\
+1&TAAGGCGA&CTCTCTAT&0.0072\\
+2&CGTACTAG&CTCTCTAT&1.2754\\
+3&AGGCAGAA&CTCTCTAT&0.9894\\
+4&TCCTGAGC&CTCTCTAT&1.2915\\
+5&GGACTCCT&CTCTCTAT&1.4038\\
+6&TAGGCATG&CTCTCTAT&1.3918\\
+7&CTCTCTAC&CTCTCTAT&1.1546\\
+8&CAGAGAGG&CTCTCTAT&0.8984\\
+9&GCTACGCT&CTCTCTAT&1.1103\\
+10&CGAGGCTG&CTCTCTAT&1.1841\\
+11&AAGAGGCA&CTCTCTAT&1.4789\\
+12&GTAGAGGA&CTCTCTAT&1.4990\\
+13&TAAGGCGA&GTAAGGAG&1.3086\\
+14&CGTACTAG&GTAAGGAG&0.8549\\
+15&AGGCAGAA&GTAAGGAG&1.0376\\
+16&TCCTGAGC&GTAAGGAG&0.5674\\
+17&GGACTCCT&GTAAGGAG&1.0590\\
 \end{tabular}
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[width=\linewidth]{/tmp/pylatex/ad6d41cd-fe76-4a19-9511-1a7ec839127b.pdf}
+\end{subfigure}
+\end{figure}
 
 
 \end{document}

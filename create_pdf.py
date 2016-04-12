@@ -3,6 +3,7 @@ from pylatex.utils import NoEscape, bold
 import os
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 
 class CreatePDF(object):
@@ -21,6 +22,7 @@ class CreatePDF(object):
         doc = Document()
         doc.packages.append(Package('geometry', options=['tmargin=0.75in', 'lmargin=0.75in', 'rmargin=0.75in']))
         doc.packages.append(Package('datetime', options=['ddmmyyyy']))
+        doc.packages.append(Package('needspace'))
         doc.preamble.append(Command('newdateformat',
                                     NoEscape(r'mydate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR')))
         doc.preamble.append(Command('title', 'MiSeq quality checks'))
@@ -60,14 +62,21 @@ class CreatePDF(object):
                 table.add_hline()
                 table.add_row(('1st full read', '', ''))
                 table.add_row(('2nd full read', '', ''))
+        sample_id, index1, index2, percent_clusters = self.get_clusters_per_sample(self.index, self.tile)
+        total_samples = len(sample_id)
+        doc.append(Command('needspace', '10em'))
         with doc.create(Section('Indexing')):
-            with doc.create(Tabular(NoEscape(r'p{5cm}|c|c'))) as table:
-                table.add_row(('Data', 'Value', 'Pass/Fail'))
-                table.add_hline()
-                table.add_row(('Total reads (M)', '', ''))
-                table.add_row(('Read passed reads (M)', '', ''))
-                table.add_row(('% reads ID', '', ''))
-
+            with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
+                with doc.create(Tabular(NoEscape(r'c|c|c|c'))) as table:
+                    table.add_row(('Sample_ID', 'Index', 'Index2', '% Reads'))
+                    table.add_hline()
+                    item = 0
+                    while item < total_samples:
+                        table.add_row(('%s' % sample_id[item], '%s' % index1[item], '%s' % index2[item], '%s'
+                                       % percent_clusters[item]))
+                        item += 1
+                with doc.create(SubFigure()) as plot:
+                    plot.add_plot()
         doc.generate_pdf('output', clean_tex=False, compiler=pdflatex)
         # os.system("xdg-open /home/cuser/PycharmProjects/AMLpipeline/output.pdf")
 
@@ -110,7 +119,7 @@ class CreatePDF(object):
         ax.set_xlabel('Q score')
         ax.plot([30, 30], [0, y_max], color='g', linewidth=1, zorder=5)
         percent = '%s%%' % format(avg_qual, '.2f')
-        ax.text(23, y_max-100, percent, fontsize=16, color='g')
+        ax.text(23, y_max - 100, percent, fontsize=16, color='g')
 
     def get_qual_heatmap(self, qualitymetrics):
         quality_df = qualitymetrics.df
@@ -129,7 +138,7 @@ class CreatePDF(object):
         my_cmap.set_under(color='white')
         ax.pcolor(x, cmap=my_cmap, vmin=0.0001)
 
-        major_xticks = np.arange(0, max_cycle+20, 20)
+        major_xticks = np.arange(0, max_cycle + 20, 20)
         major_yticks = np.arange(0, 50, 10)
         ax.set_xticks(major_xticks)
         ax.set_yticks(major_yticks)
@@ -139,3 +148,33 @@ class CreatePDF(object):
         ax.spines['bottom'].set_color('0.85')
         ax.set_xlabel('Cycle')
         ax.set_ylabel('Q Score')
+
+    def get_clusters_per_sample(self, indexmetrics, tilemetrics):
+        new_df = tilemetrics.df[tilemetrics.df['code'] == 103]
+        total_clusters = float(sum(new_df['value']))
+
+        group_by_index = indexmetrics.df.groupby(['name_str', 'index_str'], sort=False, as_index=False)
+        grouped_df = group_by_index.aggregate(np.sum)
+        cols_to_drop = ['lane', 'read', 'tile']
+        grouped_df = grouped_df.drop(cols_to_drop, axis=1)
+        sample_id = grouped_df['name_str'].tolist()
+        clusters = grouped_df['clusters'].tolist()
+        s = grouped_df['index_str'].str.split('-', expand=True)
+        index1 = s[0]
+        index2 = s[1]
+        '''
+        index_df = pd.DataFrame([])
+        index_df.insert(0, 'Sample_Id', sample_id)
+        index_df.insert(1, 'Index1', index1)
+        index_df.insert(2, 'Index2', index2)
+        '''
+        percent_clusters = [format((float(x) / total_clusters) * 100, '.4f') for x in clusters]
+        # index_df.insert(3, '% Reads', percent_clusters)
+
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.scatter(sample_id, percent_clusters)
+        ax.set_ylabel('% Reads')
+        ax.set_xlabel('Sample_Id')
+
+        return sample_id, index1, index2, percent_clusters

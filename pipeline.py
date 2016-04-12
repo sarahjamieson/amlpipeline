@@ -8,6 +8,8 @@ import pandas as pd
 
 Trimmomatic = '/home/cuser/programs/Trimmomatic-0.36/trimmomatic-0.36.jar'
 
+# http://rpackages.ianhowson.com/bioc/savR/ - for details on column meanings in InterOp files
+
 
 def assess_quality():
     tilemetrics = InteropTileMetrics('/media/sf_sarah_share/AML_data/InterOp/TileMetricsOut.bin')
