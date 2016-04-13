@@ -51,6 +51,7 @@ while y <= (num_tiles/2):
     else:
         y_labels.append(str(y))
     y_ticks.append(float(y))
+    y += 1
 
 y_ticks_cen = [x - 0.5 for x in y_ticks]
 x_ticks_cen = [x - 0.5 for x in x_ticks]
