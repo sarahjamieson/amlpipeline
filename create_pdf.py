@@ -25,16 +25,19 @@ class CreatePDF(object):
         doc.packages.append(Package('needspace'))
         doc.preamble.append(Command('newdateformat',
                                     NoEscape(r'mydate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR')))
-        doc.preamble.append(Command('title', 'MiSeq quality checks'))
-        doc.preamble.append(Command('date', NoEscape(r'\mydate\today')))
-        doc.append(NoEscape(r'\maketitle'))
+        doc.append(Command('begin', 'center'))
+        doc.append(Command('Large', 'MiSeq Quality Checks'))
+        doc.append(Command('end', 'center'))
         doc.append(Command('begin', 'flushright'))
         doc.append(Command('Large', bold('<Run name>')))
+        doc.append(Command('end', 'flushright'))
+        doc.append(Command('begin', 'flushright'))
+        doc.append(Command('Large', NoEscape(r'\mydate\today')))
         doc.append(Command('end', 'flushright'))
 
         avg_qual = self.get_avg_qual(self.quality)
         self.get_qual_graph(self.quality, avg_qual)
-
+        doc.append(Command('needspace', '20em'))
         with doc.create(Section('Quality data')):
             with doc.create(Tabular(NoEscape(r'p{5cm}|c|c'))) as table:
                 table.add_row(('Data', 'Value', 'Pass/Fail'))
@@ -56,6 +59,11 @@ class CreatePDF(object):
                 with doc.create(SubFigure()) as plot:
                     plot.add_plot()
                     plot.add_caption('Q-score heat map')
+                self.get_clusters_heatmap(self.tile)
+                with doc.create(SubFigure()) as plot:
+                    plot.add_plot()
+                    plot.add_caption('Cluster density per tile')
+
         with doc.create(Section('Phas/Prephas data')):
             with doc.create(Tabular(NoEscape(r'p{5cm}|c|c'))) as table:
                 table.add_row(('Data', 'Value', 'Pass/Fail'))
@@ -63,29 +71,30 @@ class CreatePDF(object):
                 table.add_row(('1st full read', '', ''))
                 table.add_row(('2nd full read', '', ''))
         sample_id, index1, index2, percent_clusters, percent_pf, total_aligned_clusters, pf_aligned_clusters = \
-            self.get_clusters_per_sample(self.index, self.tile)
+            self.get_indexing(self.index, self.tile)
         total_samples = len(sample_id)
+
         doc.append(Command('needspace', '10em'))
         with doc.create(Section('Indexing')):
-            with doc.create(Subsection('Reads mapped to Index')):
-                with doc.create(Tabular(NoEscape(r'c|c|c|c|c'))) as table:
-                    table.add_row(('Total Reads', 'PF Reads', '% Reads Identified (PF)', 'Min', 'Max'))
+            doc.append(Command('begin', 'center'))
+            with doc.create(Tabular(NoEscape(r'c|c|c|c|c'))) as table:
+                table.add_row(('Total Reads', 'PF Reads', '% Reads Identified (PF)', 'Min', 'Max'))
+                table.add_hline()
+                table.add_row(
+                    ('%s' % int(total_aligned_clusters), '%s' % int(pf_aligned_clusters), '%s' % percent_pf,
+                     '%s' % min(percent_clusters), '%s' % max(percent_clusters)))
+            doc.append(Command('end', 'center'))
+            with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
+                with doc.create(Tabular(NoEscape(r'c|c|c|c'))) as table:
+                    table.add_row(('Sample_ID', 'Index', 'Index2', '% Reads  Identified (PF)'))
                     table.add_hline()
-                    table.add_row(
-                        ('%s' % int(total_aligned_clusters), '%s' % int(pf_aligned_clusters), '%s' % percent_pf,
-                         '%s' % min(percent_clusters), '%s' % max(percent_clusters)))
-            with doc.create(Subsection('Reads per sample')):
-                with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
-                    with doc.create(Tabular(NoEscape(r'c|c|c|c'))) as table:
-                        table.add_row(('Sample_ID', 'Index', 'Index2', '% Reads  Identified (PF)'))
-                        table.add_hline()
-                        item = 0
-                        while item < total_samples:
-                            table.add_row(('%s' % sample_id[item], '%s' % index1[item], '%s' % index2[item], '%s'
-                                           % percent_clusters[item]))
-                            item += 1
-                    with doc.create(SubFigure()) as plot:
-                        plot.add_plot()
+                    item = 0
+                    while item < total_samples:
+                        table.add_row(('%s' % sample_id[item], '%s' % index1[item], '%s' % index2[item], '%s'
+                                       % percent_clusters[item]))
+                        item += 1
+                with doc.create(SubFigure()) as plot:
+                    plot.add_plot()
 
         doc.generate_pdf('output', clean_tex=False, compiler=pdflatex)
         # os.system("xdg-open /home/cuser/PycharmProjects/AMLpipeline/output.pdf")
@@ -146,7 +155,7 @@ class CreatePDF(object):
         ax = fig.add_subplot(111)
         my_cmap = plt.cm.get_cmap('GnBu')
         my_cmap.set_under(color='white')
-        ax.pcolor(x, cmap=my_cmap, vmin=0.0001)
+        heatmap = ax.pcolor(x, cmap=my_cmap, vmin=0.0001)
 
         major_xticks = np.arange(0, max_cycle + 20, 20)
         major_yticks = np.arange(0, 50, 10)
@@ -158,8 +167,9 @@ class CreatePDF(object):
         ax.spines['bottom'].set_color('0.85')
         ax.set_xlabel('Cycle')
         ax.set_ylabel('Q Score')
+        plt.colorbar(heatmap)
 
-    def get_clusters_per_sample(self, indexmetrics, tilemetrics):
+    def get_indexing(self, indexmetrics, tilemetrics):
         total_aligned_clusters = float(tilemetrics.num_clusters * tilemetrics.aligned)
         pf_aligned_clusters = float(indexmetrics.df['clusters'].sum())
         percent_pf = format(float(pf_aligned_clusters / total_aligned_clusters) * 100, '.4f')
@@ -183,3 +193,41 @@ class CreatePDF(object):
         ax.set_xlabel('Sample_Id')
 
         return sample_id, index1, index2, percent_clusters, percent_pf, total_aligned_clusters, pf_aligned_clusters
+
+    def get_clusters_heatmap(self, tilemetrics):
+        tile_df = tilemetrics.df[tilemetrics.df['code'] == 100]
+        cols_to_drop = ['code', 'lane']
+        tile_df = tile_df.drop(cols_to_drop, axis=1)
+        tile_df = tile_df.sort_values('tile')
+
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        my_cmap = plt.cm.get_cmap('RdYlGn')
+
+        first1 = tile_df['value'][0:14].tolist()
+        second1 = tile_df['value'][14:28].tolist()
+        myint = 1000
+        first = [x / myint for x in first1]
+        second = [x / myint for x in second1]
+        max_clusters = max(tile_df['value']) / 1000
+        min_clusters = min(tile_df['value']) / 1000
+
+        c = [[first[0], second[0]], [first[1], second[1]], [first[2], second[2]], [first[3], second[3]],
+             [first[4], second[4]], [first[5], second[5]], [first[6], second[6]], [first[7], second[7]],
+             [first[8], second[8]], [first[9], second[9]], [first[10], second[10]], [first[11], second[11]],
+             [first[12], second[12]], [first[13], second[13]]]
+
+        heatmap = ax.pcolor(c, cmap=my_cmap, vmin=min_clusters, vmax=max_clusters)
+        plt.locator_params(axis='x', nbins=4)
+        plt.locator_params(axis='y', nbins=28)
+        x_labels = ['11', '21']
+        xs = [1, 2]
+        y_labels = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14']
+        ys = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0]
+        ys2 = [x - 0.5 for x in ys]
+        xs2 = [x - 0.5 for x in xs]
+        ax.set_xticks(xs2, minor=False)
+        ax.set_xticklabels(x_labels, ha='center')
+        ax.set_yticks(ys2, minor=False)
+        ax.set_yticklabels(y_labels, minor=False)
+        plt.colorbar(heatmap)

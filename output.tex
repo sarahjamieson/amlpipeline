@@ -8,14 +8,18 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 \newdateformat{mydate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
-\title{MiSeq quality checks}
-\date{\mydate\today}
 
 \begin{document}
-\maketitle
+\begin{center}
+\Large{MiSeq Quality Checks}
+\end{center}
 \begin{flushright}
 \Large{\textbf{<Run name>}}
 \end{flushright}
+\begin{flushright}
+\Large{\mydate\today}
+\end{flushright}
+\needspace{20em}
 \section{Quality data}
 \begin{tabular}{p{5cm}|c|c}
 Data&Value&Pass/Fail\\
@@ -31,12 +35,16 @@ Average >= Q30&81.01\%&\\
 \begin{figure}[htbp]
 \centering
 \begin{subfigure}{0.45\linewidth}
-\includegraphics[width=\linewidth]{/tmp/pylatex/59442fd9-396a-4e52-ae4d-8133fc0c0a5e.pdf}
+\includegraphics[width=\linewidth]{/tmp/pylatex/e46f2dab-0a17-4222-bb73-823e1feb132d.pdf}
 \caption{Q{-}score distribution plot (all reads all cycles)}
 \end{subfigure}
 \begin{subfigure}{0.45\linewidth}
-\includegraphics[width=\linewidth]{/tmp/pylatex/9222eef6-6204-4821-8170-eeb1b73df6b2.pdf}
+\includegraphics[width=\linewidth]{/tmp/pylatex/7bc83144-e02b-48cf-85dd-159a4d4ea516.pdf}
 \caption{Q{-}score heat map}
+\end{subfigure}
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[width=\linewidth]{/tmp/pylatex/67169b2d-ae5c-449e-9c65-304fff6ac61b.pdf}
+\caption{Cluster density per tile}
 \end{subfigure}
 \end{figure}
 
@@ -52,15 +60,13 @@ Data&Value&Pass/Fail\\
 
 \needspace{10em}
 \section{Indexing}
-\subsection{Reads mapped to Index}
+\begin{center}
 \begin{tabular}{c|c|c|c|c}
 Total Reads&PF Reads&\% Reads Identified (PF)&Min&Max\\
 \hline
 6824732&3382992&49.5696&0.0192&4.0140\\
 \end{tabular}
-
-
-\subsection{Reads per sample}
+\end{center}
 
 
 \begin{figure}[htbp]
@@ -86,7 +92,7 @@ Sample\_ID&Index&Index2&\% Reads  Identified (PF)\\
 17&GGACTCCT&GTAAGGAG&2.8356\\
 \end{tabular}
 \begin{subfigure}{0.45\linewidth}
-\includegraphics[width=\linewidth]{/tmp/pylatex/f445c855-ac09-4b3e-a6c8-957d0d87f7af.pdf}
+\includegraphics[width=\linewidth]{/tmp/pylatex/c1a5fc07-af00-4d3a-9ee3-df8f9d6239ca.pdf}
 \end{subfigure}
 \end{figure}
 
