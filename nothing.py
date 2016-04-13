@@ -9,62 +9,47 @@ import plotly.plotly as py
 import plotly.tools as tls
 import os
 
-tilemetrics = InteropTileMetrics('/media/sf_sarah_share/AML_data/InterOp/TileMetricsOut.bin')
 
-tile_df = tilemetrics.df[tilemetrics.df['code'] == 100]
-cols_to_drop = ['code', 'lane']
-tile_df = tile_df.drop(cols_to_drop, axis=1)
-tile_df = tile_df.sort_values('tile')
+def calculate_percentage(value):
+    tilemetrics = InteropTileMetrics('/media/sf_sarah_share/AML_data/InterOp/TileMetricsOut.bin')
 
-fig = plt.figure()
-ax = fig.add_subplot(111)
-my_cmap = plt.cm.get_cmap('RdYlGn')
-
-num_tiles = tilemetrics.num_tiles
-tiles_11 = tile_df['value'][0:num_tiles/2].tolist()
-tiles_21 = tile_df['value'][num_tiles/2:num_tiles].tolist()
-myint = 1000
-tiles_11_div = [x / myint for x in tiles_11]
-tiles_21_div = [x / myint for x in tiles_21]
-max_clusters = max(tile_df['value']) / 1000
-min_clusters = min(tile_df['value']) / 1000
-
-data = []
-item = 0
-while item < (num_tiles/2):
-    data.append([tiles_11_div[item], tiles_21_div[item]])
-    item += 1
-
-heatmap = ax.pcolor(data, cmap=my_cmap, vmin=min_clusters, vmax=max_clusters)
-
-plt.locator_params(axis='x', nbins=4)  # check these
-plt.locator_params(axis='y', nbins=28)
-
-x_ticks = [1, 2]
-x_labels = ['11', '21']
-y_labels = []
-y_ticks = []
-y = 1
-while y <= (num_tiles/2):
-    if y < 10:
-        y_labels.append('0%s' % str(y))
-    else:
-        y_labels.append(str(y))
-    y_ticks.append(float(y))
-    y += 1
-
-y_ticks_cen = [x - 0.5 for x in y_ticks]
-x_ticks_cen = [x - 0.5 for x in x_ticks]
-
-ax.set_xticks(x_ticks_cen, minor=False)
-ax.set_xticklabels(x_labels, ha='center')
-
-ax.set_yticks(y_ticks_cen, minor=False)
-ax.set_yticklabels(y_labels, minor=False)
-
-plt.colorbar(heatmap)
-plt.show()
+    return (value / tilemetrics.num_clusters_pf) * 100
 
 
+def new_function():
+    qualitymetrics = InteropQualityMetrics('/media/sf_sarah_share/AML_data/InterOp/QMetricsOut.bin')
 
+    quality_df = qualitymetrics.df
+    cols_to_drop = ['lane', 'tile']
+    quality_df = quality_df.drop(cols_to_drop, axis=1)
+    quality_df.columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+                          26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
+                          48, 49, 50, 'cycle']
+    max_cycle = quality_df['cycle'].max()
+    grouped_by_cycle = quality_df.groupby(['cycle'])
+    x = grouped_by_cycle.aggregate(np.sum)
+    x = x.transpose()
+    x = x.apply(calculate_percentage)
+    print x
+    os.system('mv /home/cuser/PycharmProjects/AMLpipeline/quality.csv /media/sf_sarah_share/')
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    my_cmap = plt.cm.get_cmap('GnBu')
+    my_cmap.set_under(color='white')
+    heatmap = ax.pcolor(x, cmap=my_cmap)
 
+    major_xticks = np.arange(0, max_cycle + 20, 20)
+    major_yticks = np.arange(0, 50, 10)
+    ax.set_xticks(major_xticks)
+    ax.set_yticks(major_yticks)
+    ax.grid(b=True, which='both', color='0.85', linestyle='-')
+    ax.spines['right'].set_color('0.85')
+    ax.spines['top'].set_color('0.85')
+    ax.spines['bottom'].set_color('0.85')
+    ax.set_xlabel('Cycle')
+    ax.set_ylabel('Q Score')
+    plt.colorbar(heatmap)
+    heatmap.set_clim(vmin=0, vmax=100)
+    plt.show()
+
+new_function()

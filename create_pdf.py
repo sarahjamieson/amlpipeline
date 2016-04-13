@@ -202,32 +202,43 @@ class CreatePDF(object):
 
         fig = plt.figure()
         ax = fig.add_subplot(111)
-        my_cmap = plt.cm.get_cmap('RdYlGn')
+        my_cmap = plt.cm.get_cmap('jet')
 
-        first1 = tile_df['value'][0:14].tolist()
-        second1 = tile_df['value'][14:28].tolist()
+        num_tiles = tilemetrics.num_tiles
+        tiles_11 = tile_df['value'][0:num_tiles/2].tolist()
+        tiles_21 = tile_df['value'][num_tiles/2:num_tiles].tolist()
         myint = 1000
-        first = [x / myint for x in first1]
-        second = [x / myint for x in second1]
-        max_clusters = max(tile_df['value']) / 1000
-        min_clusters = min(tile_df['value']) / 1000
+        tiles_11_div = [x / myint for x in tiles_11]
+        tiles_21_div = [x / myint for x in tiles_21]
 
-        c = [[first[0], second[0]], [first[1], second[1]], [first[2], second[2]], [first[3], second[3]],
-             [first[4], second[4]], [first[5], second[5]], [first[6], second[6]], [first[7], second[7]],
-             [first[8], second[8]], [first[9], second[9]], [first[10], second[10]], [first[11], second[11]],
-             [first[12], second[12]], [first[13], second[13]]]
+        data = []
+        item = 0
+        while item < (num_tiles/2):
+            data.append([tiles_11_div[item], tiles_21_div[item]])
+            item += 1
 
-        heatmap = ax.pcolor(c, cmap=my_cmap, vmin=min_clusters, vmax=max_clusters)
-        plt.locator_params(axis='x', nbins=4)
-        plt.locator_params(axis='y', nbins=28)
+        heatmap = ax.pcolor(data, cmap=my_cmap, vmin=0, vmax=2400)
+
+        x_ticks = [1, 2]
         x_labels = ['11', '21']
-        xs = [1, 2]
-        y_labels = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14']
-        ys = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0]
-        ys2 = [x - 0.5 for x in ys]
-        xs2 = [x - 0.5 for x in xs]
-        ax.set_xticks(xs2, minor=False)
+        y_labels = []
+        y_ticks = []
+        y = 1
+        while y <= (num_tiles/2):
+            if y < 10:
+                y_labels.append('0%s' % str(y))
+            else:
+                y_labels.append(str(y))
+            y_ticks.append(float(y))
+            y += 1
+
+        y_ticks_cen = [x - 0.5 for x in y_ticks]
+        x_ticks_cen = [x - 0.5 for x in x_ticks]
+
+        ax.set_xticks(x_ticks_cen, minor=False)
         ax.set_xticklabels(x_labels, ha='center')
-        ax.set_yticks(ys2, minor=False)
+
+        ax.set_yticks(y_ticks_cen, minor=False)
         ax.set_yticklabels(y_labels, minor=False)
+
         plt.colorbar(heatmap)
