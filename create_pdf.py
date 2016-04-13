@@ -1,4 +1,4 @@
-from pylatex import Document, Section, Tabular, Package, Command, Figure, SubFigure
+from pylatex import Document, Section, Tabular, Package, Command, Figure, SubFigure, Subsection
 from pylatex.utils import NoEscape, bold
 import os
 import matplotlib.pyplot as plt
@@ -62,21 +62,31 @@ class CreatePDF(object):
                 table.add_hline()
                 table.add_row(('1st full read', '', ''))
                 table.add_row(('2nd full read', '', ''))
-        sample_id, index1, index2, percent_clusters = self.get_clusters_per_sample(self.index, self.tile)
+        sample_id, index1, index2, percent_clusters, percent_pf, total_aligned_clusters, pf_aligned_clusters = \
+            self.get_clusters_per_sample(self.index, self.tile)
         total_samples = len(sample_id)
         doc.append(Command('needspace', '10em'))
         with doc.create(Section('Indexing')):
-            with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
-                with doc.create(Tabular(NoEscape(r'c|c|c|c'))) as table:
-                    table.add_row(('Sample_ID', 'Index', 'Index2', '% Reads'))
+            with doc.create(Subsection('Reads mapped to Index')):
+                with doc.create(Tabular(NoEscape(r'c|c|c|c|c'))) as table:
+                    table.add_row(('Total Reads', 'PF Reads', '% Reads Identified (PF)', 'Min', 'Max'))
                     table.add_hline()
-                    item = 0
-                    while item < total_samples:
-                        table.add_row(('%s' % sample_id[item], '%s' % index1[item], '%s' % index2[item], '%s'
-                                       % percent_clusters[item]))
-                        item += 1
-                with doc.create(SubFigure()) as plot:
-                    plot.add_plot()
+                    table.add_row(
+                        ('%s' % int(total_aligned_clusters), '%s' % int(pf_aligned_clusters), '%s' % percent_pf,
+                         '%s' % min(percent_clusters), '%s' % max(percent_clusters)))
+            with doc.create(Subsection('Reads per sample')):
+                with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
+                    with doc.create(Tabular(NoEscape(r'c|c|c|c'))) as table:
+                        table.add_row(('Sample_ID', 'Index', 'Index2', '% Reads  Identified (PF)'))
+                        table.add_hline()
+                        item = 0
+                        while item < total_samples:
+                            table.add_row(('%s' % sample_id[item], '%s' % index1[item], '%s' % index2[item], '%s'
+                                           % percent_clusters[item]))
+                            item += 1
+                    with doc.create(SubFigure()) as plot:
+                        plot.add_plot()
+
         doc.generate_pdf('output', clean_tex=False, compiler=pdflatex)
         # os.system("xdg-open /home/cuser/PycharmProjects/AMLpipeline/output.pdf")
 
@@ -150,8 +160,9 @@ class CreatePDF(object):
         ax.set_ylabel('Q Score')
 
     def get_clusters_per_sample(self, indexmetrics, tilemetrics):
-        new_df = tilemetrics.df[tilemetrics.df['code'] == 103]
-        total_clusters = float(sum(new_df['value']))
+        total_aligned_clusters = float(tilemetrics.num_clusters * tilemetrics.aligned)
+        pf_aligned_clusters = float(indexmetrics.df['clusters'].sum())
+        percent_pf = format(float(pf_aligned_clusters / total_aligned_clusters) * 100, '.4f')
 
         group_by_index = indexmetrics.df.groupby(['name_str', 'index_str'], sort=False, as_index=False)
         grouped_df = group_by_index.aggregate(np.sum)
@@ -162,14 +173,8 @@ class CreatePDF(object):
         s = grouped_df['index_str'].str.split('-', expand=True)
         index1 = s[0]
         index2 = s[1]
-        '''
-        index_df = pd.DataFrame([])
-        index_df.insert(0, 'Sample_Id', sample_id)
-        index_df.insert(1, 'Index1', index1)
-        index_df.insert(2, 'Index2', index2)
-        '''
-        percent_clusters = [format((float(x) / total_clusters) * 100, '.4f') for x in clusters]
-        # index_df.insert(3, '% Reads', percent_clusters)
+
+        percent_clusters = [format((float(x) / total_aligned_clusters) * 100, '.4f') for x in clusters]
 
         fig = plt.figure()
         ax = fig.add_subplot(111)
@@ -177,4 +182,4 @@ class CreatePDF(object):
         ax.set_ylabel('% Reads')
         ax.set_xlabel('Sample_Id')
 
-        return sample_id, index1, index2, percent_clusters
+        return sample_id, index1, index2, percent_clusters, percent_pf, total_aligned_clusters, pf_aligned_clusters
