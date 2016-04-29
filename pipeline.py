@@ -4,10 +4,19 @@ import glob
 from illuminate import InteropTileMetrics, InteropControlMetrics, InteropErrorMetrics, InteropExtractionMetrics, \
     InteropIndexMetrics, InteropQualityMetrics, InteropCorrectedIntensityMetrics
 from create_pdf import CreatePDF
+import datetime
 
 # paths to relevant tools
 Trimmomatic = '/home/cuser/programs/Trimmomatic-0.36/trimmomatic-0.36.jar'
+trim_adapters = '/home/cuser/programs/Trimmomatic-0.36/adapters/NexteraPE-PE.fa'
 InterOp = '/media/sf_sarah_share/AML_data/InterOp/'
+genome = '/media/genomicdata/ucsc_hg19/ucsc.hg19.fasta'
+bwa = '/home/cuser/programs/bwa/bwa'
+samblaster = '/home/cuser/programs/samblaster'
+samtools = '/home/cuser/programs/samtools/bin/samtools'
+plot_bamstats = '/home/cuser/programs/samtools/bin/plot-bamstats'
+
+curr_datetime = datetime.datetime.now().isoformat()
 
 
 def assess_quality():
@@ -55,9 +64,11 @@ def quality_trim(infile, outfile):
               "%s.qfilter.fastq.gz %s.unpaired.fastq.gz "  # paired and unpaired output R1
               "%s.qfilter.fastq.gz %s.unpaired.fastq.gz "  # paired and unpaired output R2
               "CROP:150 "  # crop reads to max 150 from end
+              "ILLUMINACLIP:%s:2:30:10 "  # adaptor trimming, seed matches (16bp), allow 2 mismatches,
+              # PE reads Q30, SE reads Q10
               "SLIDINGWINDOW:4:25 "  # perform trim on every 4 bases for min quality of 25
               "MINLEN:50"  # all reads should be min 50
-              % (Trimmomatic, fastq1, fastq2, fastq1[:-6], fastq1, fastq2[:-6], fastq2))  # [:-6] removes file extension
+              % (Trimmomatic, fastq1, fastq2, fastq1[:-6], fastq1, fastq2[:-6], fastq2, trim_adapters))  # [:-6] removes file extension
 
     # glob module: finds path names matching specified pattern (https://docs.python.org/2/library/glob.html).
     filelist = glob.glob("*unpaired*")
@@ -65,4 +76,64 @@ def quality_trim(infile, outfile):
         os.remove(f)
 
 
-pipeline_run(verbose=3)  # verbose = 3 gives medium level of information about run
+@follows(quality_trim)
+@collate("*qfilter.fastq.gz", formatter("([^/]+)R[12].qfilter.fastq.gz$"), "{1[0]}.fastq.gz")
+def align_bwa(infile, outfile):
+    fastq1 = infile[0]
+    fastq2 = infile[1]
+    sample = fastq1[:-20]
+    id = 'bwa'
+    rg_header = '@RG\tID:%s\tCN:WMRGL\tDS:TruSight_Myeloid_Nextera_v1.1\tDT:%s' % (sample, curr_datetime)
+
+    os.system("%s mem -M -a "  # mark shorter split hits as secondary, output alignments for SE and unpaired PE
+              "-t 2 "  # number of threads
+              "-k 18 "  # min seed length
+              "-R \'%s\' "  # read group header
+              "%s "  # genome (bwa indexed hg19)
+              "%s %s"  # input R1, input R2
+              "| sed \'s/@PG\tID:%s/@PG\tID:%s/\' - "  # "-" requests standard output, useful when combining tools
+              "| %s -M -r -u "
+              "> %s.samblaster.log - "
+              "| %s view -Sb - > %s"  # -Sb puts output through samtools sort
+              % (bwa, rg_header, genome, fastq1, fastq2, id, sample, samblaster, sample, samtools, outfile))
+
+
+@follows(align_bwa)
+@transform(["*.bwa.drm.bam"], suffix("bwa.drm.bam"), ".bwa.drm.sorted.bam")
+def sort_bam(infile, outfile):
+    os.system("%s sort "
+              "-@ 2 "  # number of threads = 2
+              "-m 2G "  # memory per thread = 2G
+              "-O bam "  # output file format = .bam
+              "-T %s "  # temporary file name
+              "-o %s "  # output file
+              "%s"  # input file
+              % (samtools, infile, outfile, infile))
+    os.system("rm *bwa.drm.bam")
+
+
+@follows(sort_bam)
+@transform(["*.bwa.drm.sorted.bam"], suffix("bwa.drm.sorted.bam"), ".bwa.drm.sorted.bam.bai")
+def index_bam(infile, outfile):
+    os.system("%s index %s" % (samtools, infile))
+
+
+@follows(index_bam)
+@transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".bwa.drm.sorted.bam.stats")
+def run_samtools_stats(infile, outfile):
+    os.system("%s stats %s > %s" % (samtools, infile, outfile))
+    os.system("%s -p %s %s" % (plot_bamstats, outfile, outfile))
+
+
+# create breakdancer config
+# run breakdancer
+# create pindel config
+# run pindel with breakdancer option
+# pindel to vcf
+# pindel to bam
+# platypus
+# look into CNV tools
+
+
+# verbose = 3 gives medium level of information about run
+pipeline_run(verbose=6, forcedtorun_tasks=[quality_trim, align_bwa, sort_bam, index_bam])
