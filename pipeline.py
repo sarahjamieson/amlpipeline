@@ -15,6 +15,8 @@ bwa = '/home/cuser/programs/bwa/bwa'
 samblaster = '/home/cuser/programs/samblaster'
 samtools = '/home/cuser/programs/samtools/bin/samtools'
 plot_bamstats = '/home/cuser/programs/samtools/bin/plot-bamstats'
+bam2cfg = ''
+breakdancer = ''
 
 curr_datetime = datetime.datetime.now().isoformat()
 
@@ -123,6 +125,23 @@ def index_bam(infile, outfile):
 def run_samtools_stats(infile, outfile):
     os.system("%s stats %s > %s" % (samtools, infile, outfile))
     os.system("%s -p %s %s" % (plot_bamstats, outfile, outfile))
+
+
+@transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".breakdancer_config")
+def create_breakdancer_config(infile, outfile):
+    os.system("perl %s %s > %s" % (bam2cfg, infile, outfile))  # infile = sorted, indexed bam, outfile = config_file
+
+
+@follows(create_breakdancer_config)
+def run_breakdancer(infile, outfile):
+    os.system("%s -q 10 %s > %s" % (breakdancer, infile, outfile))  # infile = config file
+
+
+def create_pindel_config(infile, outfile):
+    config_file = open("%s" % outfile, "w")  # write into output file
+    config_file.write("%s\t240\t%s\n" % (infile, infile[:-19]))  # name of BAM; insert size; sample_label
+    config_file.close()
+
 
 
 # create breakdancer config
