@@ -1,10 +1,8 @@
-from pylatex import Document, Section, Tabular, Package, Command, Figure, SubFigure, Subsection
+from pylatex import Document, Section, Tabular, Package, Command, Figure, SubFigure
 from pylatex.utils import NoEscape, bold
-import os
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import numpy as np
-import pandas as pd
 
 
 class CreatePDF(object):
@@ -19,6 +17,12 @@ class CreatePDF(object):
         self.corint = corintmetrics
 
     def create_pdf(self):
+        """Creates a LaTeX PDF using the Python module PyLatex (https://jeltef.github.io/PyLaTeX/latest/).
+
+            Note: LaTeX must be installed in /usr/local/. Development employed TexLive 2015.
+
+
+        """
         pdflatex = '/usr/local/texlive/2015/bin/x86_64-linux/pdflatex'
         doc = Document()
         doc.packages.append(Package('geometry', options=['tmargin=0.75in', 'lmargin=0.75in', 'rmargin=0.75in']))
@@ -36,8 +40,9 @@ class CreatePDF(object):
         doc.append(Command('Large', NoEscape(r'\mydate\today')))
         doc.append(Command('end', 'flushright'))
 
-        avg_qual = self.get_avg_qual(self.quality)
-        self.get_qual_graph(self.quality, avg_qual)
+        avg_qual = self.get_avg_qual()
+        self.get_qual_graph(avg_qual)
+        first_read, second_read = self.get_avg_qual_per_read()
         doc.append(Command('needspace', '20em'))
         with doc.create(Section('Quality data')):
             with doc.create(Tabular(NoEscape(r'p{5cm}|c|c'))) as table:
@@ -45,34 +50,36 @@ class CreatePDF(object):
                 table.add_hline()
                 table.add_row(
                     ('Mean Cluster Density (k/mm2)', format(self.tile.mean_cluster_density / 1000, '.2f'), ''))
-                table.add_row(('Clusters passed filter (%)', '%s%%' % (format(self.tile.percent_pf_clusters, '.2f')),
+                table.add_row(('Clusters passed filter (%)', '%s' % (format(self.tile.percent_pf_clusters, '.2f')),
                                ''))
-                table.add_row(('Average >= Q30', '%s%%' % (format(avg_qual, '.2f')), ''))
-                table.add_row(('1st full read >= Q30', '', ''))
-                table.add_row(('2nd full read >= Q30', '', ''))
+                table.add_row(('Average >= Q30', '%s' % (format(avg_qual, '.2f')), ''))
+                table.add_row(('1st full read >= Q30', '%s' % (format(first_read, '.2f')), ''))
+                table.add_row(('2nd full read >= Q30', '%s' % (format(second_read, '.2f')), ''))
 
             with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
                 doc.append(Command('centering'))
                 with doc.create(SubFigure()) as plot:
                     plot.add_plot()
                     plot.add_caption('Q-score distribution plot (all reads all cycles)')
-                self.get_qual_heatmap(self.quality)
+                self.get_qual_heatmap()
                 with doc.create(SubFigure()) as plot:
                     plot.add_plot()
                     plot.add_caption('Q-score heat map')
-                self.get_clusters_heatmap(self.tile)
+                self.get_clusters_heatmap()
                 with doc.create(SubFigure()) as plot:
                     plot.add_plot()
                     plot.add_caption('Cluster density per tile')
-
+        read_1_phas, read_1_prephas, read_2_phas, read_2_prephas = self.get_phas_prephas()
         with doc.create(Section('Phas/Prephas data')):
             with doc.create(Tabular(NoEscape(r'p{5cm}|c|c'))) as table:
                 table.add_row(('Data', 'Value', 'Pass/Fail'))
                 table.add_hline()
-                table.add_row(('1st full read', '', ''))
-                table.add_row(('2nd full read', '', ''))
+                table.add_row(
+                    ('1st full read', '%s / %s' % (format(read_1_phas, '.3f'), format(read_1_prephas, '.3f')), ''))
+                table.add_row(
+                    ('2nd full read', '%s / %s' % (format(read_2_phas, '.3f'), format(read_2_prephas, '.3f')), ''))
         sample_id, index1, index2, percent_clusters, percent_pf, total_aligned_clusters, pf_aligned_clusters = \
-            self.get_indexing(self.index, self.tile)
+            self.get_indexing()
         total_samples = len(sample_id)
 
         doc.append(Command('needspace', '10em'))
@@ -98,27 +105,79 @@ class CreatePDF(object):
                     plot.add_plot()
 
         doc.generate_pdf('output', clean_tex=False, compiler=pdflatex)
-        # os.system("xdg-open /home/cuser/PycharmProjects/AMLpipeline/output.pdf")
+        # os.system("xdg-open /home/cuser/PycharmProjects/amlpipeline/output.pdf")
 
-    def get_avg_qual(self, qualitymetrics):
-        quality_df = qualitymetrics.df
-        col_list = list(quality_df)
-        col_list.remove('cycle')
-        col_list.remove('lane')
-        col_list.remove('tile')
-        quality_df['total'] = quality_df.sum(axis=1)
+    def get_avg_qual(self):
+        """Calculates the percentage of clusters with an average quality score of >=30 using InterOp qualitymetrics.
+
+        :return: avg_qual: percentage of clusters.
+        """
+        # 1) Extract data into pandas data frame
+        quality_df = self.quality.df
+
+        # 2) Calculate number of clusters in each row, add to new column named "Total" and sum to give overall total.
+        col_list = range(0, 50)
+        qual_data = quality_df[col_list].sum(axis=1)
+        quality_df['total'] = qual_data.tolist()
         total_clusters = quality_df['total'].sum(axis=0)
 
+        # 3) Calculate number of clusters with q>=30 and divide by total clusters to generate %.
         col_list = range(29, 50)
-        a = quality_df[col_list].sum(axis=1)
-        avg_qual = (float(sum(a)) / float(total_clusters)) * 100
+        qual_over_30 = quality_df[col_list].sum(axis=1)
+        avg_qual = (float(sum(qual_over_30)) / float(total_clusters)) * 100
+
         return avg_qual
 
+    def get_avg_qual_per_read(self):
+        """Calculates percentage of clusters with average quality score of >=30 per read using InterOp qualitymetrics.
+
+        :return: first_read_avg: percentage for first full read (~9-159 cycles)
+        :return: second_read_avg: percentage for second full read (~168-318 cycles)
+        """
+        # 1) Extract data into pandas data frame
+        quality_df = self.quality.df
+
+        # 2) Group quality data by cycle
+        grouped_by_cycle = quality_df.groupby(['cycle'])
+        quality_by_cycle_df = grouped_by_cycle.aggregate(np.sum)
+
+        # 3) Calculate number of cycles
+        max_cycle = quality_df['cycle'].max()
+
+        # 4) Calculate number of clusters per cycle and then per read
+        total_clusters_per_cycle = quality_by_cycle_df.iloc[0]['total']
+        clusters_per_read = total_clusters_per_cycle * (max_cycle - 8)
+
+        # 5) Calculate number of clusters with q score >= 30
+        col_list = range(29, 50)
+        q_over_30 = quality_by_cycle_df[col_list].sum(axis=1)
+        q_over_30_list = q_over_30.tolist()
+
+        # 6) Split list to separate cycles in first read and second read.
+        first_read_list = q_over_30_list[8:max_cycle / 2]
+        second_read_list = q_over_30_list[(max_cycle / 2) + 8:max_cycle + 1]
+
+        # 7) Sum of all clusters in each read and divide by total to generate %.
+        first_read_avg = (float(sum(first_read_list)) / float(clusters_per_read)) * 100
+        second_read_avg = (float(sum(second_read_list)) / float(clusters_per_read)) * 100
+
+        return first_read_avg, second_read_avg
+
     def calculate_percentage(self, value):
+        """Takes a value and divides it by the total number of clusters passing filter (PF) to generate %.
+
+        :param value
+        :return: percentage
+        """
         return (value / self.tile.num_clusters_pf) * 100
 
-    def get_qual_graph(self, qualitymetrics, avg_qual):
-        quality_df = qualitymetrics.df
+    def get_qual_graph(self, avg_qual):
+        """Takes
+
+        :param avg_qual:
+        :return:
+        """
+        quality_df = self.quality.df
 
         cols_to_drop = ['cycle', 'lane', 'tile', 'total']
         quality_df = quality_df.drop(cols_to_drop, axis=1)
@@ -144,8 +203,8 @@ class CreatePDF(object):
         percent = '%s%%' % format(avg_qual, '.2f')
         ax.text(23, y_max - 100, percent, fontsize=16, color='g')
 
-    def get_qual_heatmap(self, qualitymetrics):
-        quality_df = qualitymetrics.df
+    def get_qual_heatmap(self):
+        quality_df = self.quality.df
         cols_to_drop = ['lane', 'tile', 'total']
         quality_df = quality_df.drop(cols_to_drop, axis=1)
         quality_df.columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
@@ -217,12 +276,20 @@ class CreatePDF(object):
         ax.set_ylabel('Q Score')
         plt.colorbar(heatmap)
 
-    def get_indexing(self, indexmetrics, tilemetrics):
-        total_aligned_clusters = float(tilemetrics.num_clusters * tilemetrics.aligned)
-        pf_aligned_clusters = float(indexmetrics.df['clusters'].sum())
+    def get_phas_prephas(self):
+        read_1_phas = self.tile.mean_phasing[0] * 100
+        read_2_phas = self.tile.mean_phasing[1] * 100
+        read_1_prephas = self.tile.mean_prephasing[0] * 100
+        read_2_prephas = self.tile.mean_prephasing[1] * 100
+
+        return read_1_phas, read_1_prephas, read_2_phas, read_2_prephas
+
+    def get_indexing(self):
+        total_aligned_clusters = float(self.tile.num_clusters * self.tile.aligned)
+        pf_aligned_clusters = float(self.index.df['clusters'].sum())
         percent_pf = format(float(pf_aligned_clusters / total_aligned_clusters) * 100, '.4f')
 
-        group_by_index = indexmetrics.df.groupby(['name_str', 'index_str'], sort=False, as_index=False)
+        group_by_index = self.index.df.groupby(['name_str', 'index_str'], sort=False, as_index=False)
         grouped_df = group_by_index.aggregate(np.sum)
         cols_to_drop = ['lane', 'read', 'tile']
         grouped_df = grouped_df.drop(cols_to_drop, axis=1)
@@ -242,8 +309,8 @@ class CreatePDF(object):
 
         return sample_id, index1, index2, percent_clusters, percent_pf, total_aligned_clusters, pf_aligned_clusters
 
-    def get_clusters_heatmap(self, tilemetrics):
-        tile_df = tilemetrics.df[tilemetrics.df['code'] == 100]
+    def get_clusters_heatmap(self):
+        tile_df = self.tile.df[self.tile.df['code'] == 100]
         cols_to_drop = ['code', 'lane']
         tile_df = tile_df.drop(cols_to_drop, axis=1)
         tile_df = tile_df.sort_values('tile')
@@ -252,7 +319,7 @@ class CreatePDF(object):
         ax = fig.add_subplot(111)
         my_cmap = plt.cm.get_cmap('jet')
 
-        num_tiles = tilemetrics.num_tiles
+        num_tiles = self.tile.num_tiles
         tiles_11 = tile_df['value'][0:num_tiles / 2].tolist()
         tiles_21 = tile_df['value'][num_tiles / 2:num_tiles].tolist()
         myint = 1000
