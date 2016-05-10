@@ -88,7 +88,7 @@ def quality_trim(infile, outfile):
 
 
 @follows(quality_trim)
-@collate("*qfilter.fastq.gz", formatter("([^/]+)R[12].qfilter.fastq.gz$"), "{1[0]}.fastq.gz")
+@collate("*qfilter.fastq.gz", formatter("([^/]+)R[12].qfilter.fastq.gz$"), "{1[0]}.bwa.drm.bam")
 def align_bwa(infile, outfile):
     fastq1 = infile[0]
     fastq2 = infile[1]
@@ -110,7 +110,7 @@ def align_bwa(infile, outfile):
 
 
 @follows(align_bwa)
-@transform(["*.bwa.drm.bam"], suffix("bwa.drm.bam"), ".bwa.drm.sorted.bam")
+@transform(["*.bwa.drm.bam"], suffix(".bwa.drm.bam"), ".bwa.drm.sorted.bam")
 def sort_bam(infile, outfile):
     os.system("%s sort "
               "-@ 2 "  # number of threads = 2
@@ -124,7 +124,7 @@ def sort_bam(infile, outfile):
 
 
 @follows(sort_bam)
-@transform(["*.bwa.drm.sorted.bam"], suffix("bwa.drm.sorted.bam"), ".bwa.drm.sorted.bam.bai")
+@transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".bwa.drm.sorted.bam.bai")
 def index_bam(infile, outfile):
     params = {'samtools': samtools,
               'input': infile}
@@ -216,4 +216,4 @@ def run_platypus(infile, outfile):
 
 
 # verbose = 3 gives medium level of information about run
-pipeline_run(verbose=6)
+pipeline_run(verbose=6, target_tasks=sort_bam)
