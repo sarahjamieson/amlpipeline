@@ -12,9 +12,10 @@ plot_bamstats = '/home/cuser/programs/samtools/samtools/bin/plot-bamstats'
 bam2cfg = '/home/cuser/programs/breakdancer/breakdancer-max1.4.5/bam2cfg.pl'
 breakdancer = '/home/cuser/programs/breakdancer/breakdancer-max'
 pindel = '/home/cuser/programs/pindel/pindel'
-genome = '/home/cuser/genomedata/ucsc_hg19/ucsc.hg19.fasta'
+genome = '/media/sf_sarah_share/ucsc_hg19/ucsc.hg19.fasta'
 platypus = '/home/cuser/programs/Platypus/bin/Platypus.py'
 pindel2vcf = '/home/cuser/programs/pindel/pindel2vcf'
+annovar = '/home/cuser/programs/ANNOVAR/annovar/table_annovar.pl'
 
 
 @transform(["*.bwa.drm.bam"], suffix(".bwa.drm.bam"), ".bwa.drm.sorted.bam")
@@ -45,8 +46,7 @@ def run_samtools_stats(infile, outfile):
 @follows(run_samtools_stats)
 @transform(sort_bam, suffix(".bwa.drm.sorted.bam"), ".breakdancer_config.txt")
 def create_breakdancer_config(infile, outfile):
-    params = {'output': outfile}
-    config_file = open("%(output)s" % params, "w")  # write into output file
+    config_file = open("%s" % outfile, "w")  # write into output file
     config_file.write("map:%s\tmean:240\tstd:40\treadlen:36.00\tsample:%s\texe:bwa-0.7.12\n" % (infile, infile[:-19]))
     config_file.close()
 
@@ -89,15 +89,15 @@ def run_pindel(infile, outfile):
 
 
 @follows(run_pindel)
-@transform(run_pindel, formatter(), "{path[0]}/{basename[0]}.pindel.merged.vcf")
-def pindel_to_vcf(infile, outfile):
+@transform(run_pindel, formatter(), "{path[0]}/{basename[0]}.pindel.merged.vcf", "{path[0]}/{basename[0]}.")
+def pindel_to_vcf(infile, outfile, pindel_prefix):
     os.system("%s "  # pindel2vcf program
-              "-p %s "  # input file
+              "-P %s "  # input file
               "-r %s "  # reference genome on computer
               "-R hg19 "  # reference genome
               "-d hg19 "  # ??
               "-v %s"  # output file
-              % (pindel2vcf, infile, genome, outfile))
+              % (pindel2vcf, pindel_prefix, genome, outfile))
 
 
 @follows(run_pindel)
@@ -120,4 +120,29 @@ def run_platypus(infile, outfile):
               % (platypus, infile, genome, outfile))
 
 
-pipeline_run(verbose=6)
+# the number of arguments for "-protocol", "-arg" and "operation" should all be equal and match in order.
+@follows(run_platypus)
+@transform(run_platypus, suffix(".platypus_output.unsorted.vcf"), ".annovar.vcf")
+def annotate_vcf(infile, outfile):
+    os.system("%s "  # table_annovar.pl
+              "%s "  # infile
+              "/home/cuser/programs/ANNOVAR/annovar/humandb/ "  # directory database files are stored in
+              "-buildver hg19 "  # genome build
+              "-out %s "  # outfile
+              "-remove "  # removes all temporary files
+              "-protocol refGene,snp138,ljb26_all "  # databases
+              "-arg '-exonicsplicing -hgvs -splicing 30',, "  # optional arguments, splicing threshold 30bp
+              "-operation g,f,f "  # gene-based or filter-based for protocols
+              "-nastring . "  # if variant doesn't have a score from tools (e.g. intronic variant & SIFT), position="."
+              "-vcfinput"  # required if input is vcf file
+              % (annovar, infile, outfile))
+
+    # rename vcf file to match expected
+    os.rename("%s.hg19.multianno.vcf" % outfile, '%s' % outfile)
+
+
+pipeline_run(verbose=6, forcedtorun_tasks=pindel_to_vcf)
+
+# use these databases for actually running:
+# refGene,knownGene,ensgene,esp6500_all,1000g2014oct_all,1000g2014oct_afr,1000g2014oct_amr,1000g2014oct_eas,
+# 1000g2014oct_eur,1000g2014oct_sas,snp137,clinvar_20140929,cosmic70,exac03

@@ -19,7 +19,7 @@ def perform_calculation(number):
 perform_calculation(args.number)
 
 
-# work in progress for TIGRA-ext
+# work in progress for TIGRA-ext - can't "make" tool
 def run_tigra():
     os.system("perl TIGRA-ext.pl "
               "-o %s "  # output as ./sv.vcf
