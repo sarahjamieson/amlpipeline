@@ -189,30 +189,26 @@ def pindel_to_vcf(infile, outfile):
 
 # is nCPU=1 needed if default is 1??
 # badReadsThreshold twice with different values
+# need to add --regions for target regions (currently as default which is ALL)
 # https://wiki.gacrc.uga.edu/wiki/Platypus-Sapelo - arguments for platypus
+@follows(run_pindel)
+@transform(sort_bam, suffix(".bwa.drm.sorted.bam"), ".platypus_output.unsorted.vcf")
 def run_platypus(infile, outfile):
-    params = {
-        'platypus': platypus,
-        'input': infile,
-        'reference': genome,
-        'output': outfile
-    }
-    os.system("python %(platypus)s callVariants "
-              "--bamFiles=%(input)s "
-              "--refFile=%(reference)s "
-              "--output=%(output)s "
-              "--regions=ROI_converted_to_platypus "  # ??
+    os.system("python %s callVariants "
+              "--bamFiles=%s "
+              "--refFile=%s "
+              "--output=%s "
               "--minReads=10 "  # min reads required to support variant
-              "--maxReads=2000000"  # why specify a maximum??
+              "--maxReads=2000000 "  # why specify a maximum??
               "--minPosterior=1 "  # Phred score
               "--minFlank=0 "  # multiple variants within this distance of each other are discarded (0 = keep all)
               "--badReadsThreshold=0 "  # median base quality threshold in surrounding 7bp (0=keep all)
               "--minVarFreq=0 "  # threshold for fraction of reads supporting variant (0=keep all)
               "--minBaseQual=15 "  # min base quality score threshold
-              "--filterDuplicates= "  # remove likely PCR copies
+              "--filterDuplicates=1 "  # remove likely PCR copies
               "--minMapQual=0 "  # min mapping quality threshold (0=keep all)
               "--minGoodQualBases=1"  # min good quality bases in a read
-              % params)
+              % (platypus, infile, genome, outfile))
 
 
 # verbose = 3 gives medium level of information about run
