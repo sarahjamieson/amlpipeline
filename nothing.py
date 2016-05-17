@@ -120,7 +120,7 @@ def run_platypus(infile, outfile):
               % (platypus, infile, genome, outfile))
 
 
-# the number of arguments for "-protocol", "-arg" and "operation" should all be equal and match in order.
+# the number of arguments for "-protocol", "-arg" and "-operation" should all be equal and match in order.
 @follows(run_platypus)
 @transform(run_platypus, suffix(".platypus_output.unsorted.vcf"), ".annovar.vcf")
 def annotate_vcf(infile, outfile):
