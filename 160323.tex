@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[tmargin=0.75in,lmargin=0.75in,rmargin=0.75in]{geometry}
+\usepackage[ddmmyyyy]{datetime}
+\usepackage{needspace}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\newdateformat{mydate}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+
+\begin{document}
+\begin{center}
+\Large{\textbf{MiSeq Quality Check}}
+\end{center}
+\begin{flushright}
+\Large{160323\_M00636\_0277\_000000000{-}AMM99}
+\end{flushright}
+\begin{flushright}
+\Large{\mydate\today}
+\end{flushright}
+\needspace{20em}
+\section{Quality data}
+\begin{tabular}{p{5cm}|c|c}
+Data&Value&Pass/Fail\\
+\hline
+Mean Cluster Density (k/mm2)&1650.96&\\
+Clusters passed filter (\%)&61.17&\\
+Average >= Q30&81.23&\\
+1st full read >= Q30&42.56&\\
+2nd full read >= Q30&37.92&\\
+\end{tabular}
+
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[width=\linewidth]{/tmp/pylatex/6b98fd81-cace-4196-aab1-f6d6d171f649.pdf}
+\caption{Q{-}score distribution plot (all reads all cycles)}
+\end{subfigure}
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[width=\linewidth]{/tmp/pylatex/1519b574-7737-4f09-b55e-2ba4c893864b.pdf}
+\caption{Q{-}score heat map}
+\end{subfigure}
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[width=\linewidth]{/tmp/pylatex/c2411006-ab4b-469e-ade3-3e9a2029304f.pdf}
+\caption{Cluster density per tile}
+\end{subfigure}
+\end{figure}
+
+
+\section{Phas/Prephas data}
+\begin{tabular}{p{5cm}|c|c}
+Data&Value&Pass/Fail\\
+\hline
+1st full read&0.063 / 0.014&\\
+2nd full read&0.144 / 0.012&\\
+\end{tabular}
+
+
+\needspace{10em}
+\section{Indexing}
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+Total Reads&PF Reads&\% Reads Identified (PF)&Min&Max\\
+\hline
+6824732&3382992&49.5696&0.0192&4.0140\\
+\end{tabular}
+\end{center}
+
+
+\begin{figure}[htbp]
+\begin{tabular}{c|c|c|c}
+Sample\_ID&Index&Index2&\% Reads  Identified (PF)\\
+\hline
+1&TAAGGCGA&CTCTCTAT&0.0192\\
+2&CGTACTAG&CTCTCTAT&3.4152\\
+3&AGGCAGAA&CTCTCTAT&2.6494\\
+4&TCCTGAGC&CTCTCTAT&3.4582\\
+5&GGACTCCT&CTCTCTAT&3.7589\\
+6&TAGGCATG&CTCTCTAT&3.7270\\
+7&CTCTCTAC&CTCTCTAT&3.0917\\
+8&CAGAGAGG&CTCTCTAT&2.4057\\
+9&GCTACGCT&CTCTCTAT&2.9730\\
+10&CGAGGCTG&CTCTCTAT&3.1706\\
+11&AAGAGGCA&CTCTCTAT&3.9600\\
+12&GTAGAGGA&CTCTCTAT&4.0140\\
+13&TAAGGCGA&GTAAGGAG&3.5041\\
+14&CGTACTAG&GTAAGGAG&2.2892\\
+15&AGGCAGAA&GTAAGGAG&2.7785\\
+16&TCCTGAGC&GTAAGGAG&1.5194\\
+17&GGACTCCT&GTAAGGAG&2.8356\\
+\end{tabular}
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[width=\linewidth]{/tmp/pylatex/a2c0bb7c-b43d-411a-b7ae-8d8a751490c5.pdf}
+\end{subfigure}
+\end{figure}
+
+
+\end{document}

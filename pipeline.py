@@ -6,6 +6,8 @@ import os
 import datetime
 from pandas import ExcelWriter
 from ruffus import *
+import glob
+from create_pdf import CreatePDF
 
 Trimmomatic = '/home/cuser/programs/Trimmomatic-0.36/trimmomatic-0.36.jar'
 trim_adapters = '/home/cuser/programs/Trimmomatic-0.36/adapters/NexteraPE-PE.fa'
@@ -43,7 +45,8 @@ def assess_quality():
                     corintmetrics)
     pdf.create_pdf()  # creates PDF document using LaTeX of quality data.
 
-    os.system('mv /home/cuser/PycharmProjects/amlpipeline/output.pdf /media/sf_sarah_share/')  # move file to location.
+    os.system('mv /home/cuser/PycharmProjects/amlpipeline/output.pdf /media/sf_sarah_share/MiSeq_quality_outputs/')
+    # move file to location.
 
     # Could then have something like:
     # if tilemetrics.mean_cluster_density in range(1100, 1300) or tilemetrics.percent_pf_clusters > 90:
@@ -58,7 +61,6 @@ assess_quality()
 # Input: all files ending in fastq.gz; formatter collates files with same name ending either R1 or R2; outputs into file
 # with common name. Uses Trimmomatic 0.36.
 @collate("*.fastq", formatter("([^/]+)R[12].fastq$"), "{1[0]}.fastq.gz")  # (input, filter, output)
-@follows(assess_quality)
 def quality_trim(infile, outfile):
     fastq1 = infile[0]  # first input file given
     fastq2 = infile[1]  # second input file given
@@ -104,6 +106,7 @@ def align_bwa(infile, outfile):
               "> %s.samblaster.log - "
               "| %s view -Sb - > %s"  # -Sb puts output through samtools sort
               % (bwa, rg_header, genome, fastq1, fastq2, id, sample, samblaster, sample, samtools, outfile))
+
 
 @follows(align_bwa)
 @transform(["*.bwa.drm.bam"], suffix(".bwa.drm.bam"), ".bwa.drm.sorted.bam")
@@ -176,6 +179,8 @@ def run_pindel(infile, outfile):
               % (pindel, genome, infile, infile[:-18], 'cataracts.breakdancer_output.sv'))
 
 
+# https://github.com/ELIXIR-ITA-training/VarCall2015/blob/master/Tutorials/T5.2_variantcalling_stucturalvariants_tutorial.md
+# for pindel2vcf parameters
 @follows(run_pindel)
 @transform(run_pindel, formatter(), "{path[0]}/{basename[0]}.pindel.merged.vcf", "{path[0]}/{basename[0]}.")
 def pindel_to_vcf(infile, outfile, pindel_prefix):
@@ -184,7 +189,14 @@ def pindel_to_vcf(infile, outfile, pindel_prefix):
               "-r %s "  # reference genome on computer
               "-R hg19 "  # reference genome
               "-d hg19 "  # ??
-              "-v %s"  # output file
+              "--min_size 0.5 "  # minimum size of events (what measurement??)
+              "--min_coverage 5 "  # minimum number of reads
+              "--min_supporting_reads 0 "
+              "--max_size 10000 "
+              "-v %s "  # output file
+              "--het_cutoff 0.1 "
+              "--hom_cutoff 0.85 "
+              "-G"
               % (pindel2vcf, pindel_prefix, genome, outfile))
 
 
