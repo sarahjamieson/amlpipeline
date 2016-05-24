@@ -23,10 +23,11 @@ genome = '/media/sf_sarah_share/ucsc_hg19/ucsc.hg19.fasta'
 platypus = '/home/cuser/programs/Platypus/bin/Platypus.py'
 pindel2vcf = '/home/cuser/programs/pindel/pindel2vcf'
 annovar = '/home/cuser/programs/ANNOVAR/annovar/table_annovar.pl'
+varscan = '/home/cuser/programs/VarScan2/VarScan.v2.4.0.jar'
 
 curr_datetime = datetime.datetime.now().isoformat()
 
-
+'''
 def assess_quality():
     """Obtains quality statistics from MiSeq InterOp files and produces PDF summary report.
     Notes:
@@ -200,7 +201,7 @@ def pindel_to_vcf(infile, outfile, pindel_prefix):
               % (pindel2vcf, pindel_prefix, genome, outfile))
 
 
-@follows(run_pindel)
+@follows(pindel_to_vcf)
 @transform(sort_bam, suffix(".bwa.drm.sorted.bam"), ".platypus_output.unsorted.vcf")
 def run_platypus(infile, outfile):
     os.system("python %s callVariants "
@@ -220,10 +221,50 @@ def run_platypus(infile, outfile):
               "--nCPU=?"  # number of processors/cores, parallel jobs
               % (platypus, infile, genome, outfile))
 
+'''
+# need to run samtools mpileup to create pileup file. VarScan requires pileup file as input (run mpileup2snp for
+# multiple samples).
+# @follows(run_platypus)
+@transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".snps.vs2.vcf")
+def run_varscan2_snps(infile, outfile):
+    os.system("%s mpileup "
+              "-B "  # disables probabilistic realignment, reduces false SNPs caused by misalignments
+              "-f %s "  # reference fasta
+              "%s "
+              "| "  # run output through VarScan
+              "java -jar %s mpileup2snp "
+              "--min-coverage 8 "
+              "--min-reads2 2 "
+              "--min-avg-qual 10 "
+              "--p-value 99e-02 "
+              "--output-vcf 1 "
+              "--strand-filter 0 > %s"
+              % (samtools, genome, infile, varscan, outfile))
+'''
+
+@follows(run_varscan2_snps)
+@transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".indels.vs2.vcf")
+def run_varscan2_indels(infile, outfile):
+    os.system("%s mpileup "
+              "-B "  # disables probabilistic realignment, reduces false SNPs caused by misalignments
+              "-f %s "  # reference fasta
+              "%s "
+              "| "  # run output through VarScan
+              "java -jar %s mpileup2indel "
+              "--min-coverage 8 "
+              "--min-reads2 2 "
+              "--min-avg-qual 10 "
+              "--p-value 99e-02 "
+              "--output-vcf 1 "
+              "--strand-filter 0 > %s"
+              % (samtools, genome, infile, varscan, outfile))
+
+'''
+
 
 # the number of arguments for "-protocol", "-arg" and "-operation" should all be equal and match in order.
-@follows(run_platypus)
-@transform(run_platypus, suffix(".platypus_output.unsorted.vcf"), ".annovar.vcf")
+# @follows(run_varscan2_indels)
+@transform(["*.snps.vs2.vcf"], suffix(".snps.vs2.vcf"), ".annovar.vcf")
 def annotate_vcf(infile, outfile):
     os.system("%s "  # table_annovar.pl
               "%s "  # infile
@@ -231,19 +272,16 @@ def annotate_vcf(infile, outfile):
               "-buildver hg19 "  # genome build
               "-out %s "  # outfile
               "-remove "  # removes all temporary files
-              "-protocol refGene,knownGene,ensgene,esp6500siv2_all, "  # databases
-              "-arg '-exonicsplicing -hgvs -splicing 30',, "  # optional arguments, splicing threshold 30bp
-              "-operation g,f,f "  # gene-based or filter-based for protocols
+              "-protocol refGene,knownGene,ensgene,esp6500siv2_all,snp138, "  # databases
+              "-arg '-exonicsplicing -hgvs -splicing 30',,,, "  # optional arguments, splicing threshold 30bp
+              "-operation g,g,g,f,f "  # gene-based or filter-based for protocols
               "-nastring . "  # if variant doesn't have a score from tools (e.g. intronic variant & SIFT), position="."
               "-vcfinput"  # required if input is vcf file
               % (annovar, infile, outfile))
 
-    # rename vcf file to match expected
-    os.rename("%s.hg19.multianno.vcf" % outfile, '%s' % outfile)
 
+pipeline_run(verbose=4, forcedtorun_tasks=[run_varscan2_snps, annotate_vcf])
 
-pipeline_run(verbose=4, forcedtorun_tasks=pindel_to_vcf)
-
-# use these databases for actually running:
+# Use these databases for actually running:
 # refGene,knownGene,ensgene,esp6500_all,1000g2014oct_all,1000g2014oct_afr,1000g2014oct_amr,1000g2014oct_eas,
 # 1000g2014oct_eur,1000g2014oct_sas,snp137,clinvar_20140929,cosmic70,exac03
