@@ -54,10 +54,41 @@ def run_hydra(infile, outfile):
 # ------------------------------------------------------------------------------
 '''
 
-txt_file = 'cataracts.annovar.vcf.hg19_multianno.txt'
-vcf_file = 'cataracts.annovar.vcf.hg19_multianno.vcf'
 
-vcf_reader = vcf.Reader(open(vcf_file, 'r'))
-for record in vcf_reader:
-    new_dict = record.INFO
-    print new_dict.get("Gene.refGene")
+def get_output():
+    vcf_file = 'cataracts.annovar.vcf'
+    sample = vcf_file[:-12]
+    vcf_reader = vcf.Reader(open(vcf_file, 'r'))
+    for record in vcf_reader:
+        for sample in record:
+            # PyVCF reader
+            chr = record.CHROM
+            pos = record.POS
+            ref = record.REF
+            alt = ",".join(str(a) for a in record.ALT)
+            type = record.var_type
+            gt = sample['GT']
+            if record.QUAL is None:
+                gq = '.'
+            else:
+                gq = record.QUAL
+            nv = sample['NV']
+
+            # ANNOVAR info
+            info_dict = record.INFO
+            gene = ",".join(str(g) for g in info_dict.get("Gene.refGene"))
+            depth = info_dict.get("TC")
+            ab = "%.1f" % ((float(nv)/float(depth))*100)
+            tcf = info_dict.get("TCF")
+            tcr = info_dict.get("TCR")
+            nf = ",".join(str(f) for f in info_dict.get("NF"))
+            nr = ",".join(str(r) for r in info_dict.get("NR"))
+            qd = info_dict.get("QD")
+            mq = ",".join(str(m) for m in info_dict.get("MQ"))
+            sbpval = ",".join(str(s) for s in info_dict.get("SbPval"))
+            hp = info_dict.get("HP")
+            func = ",".join(str(f) for f in info_dict.get("ExonicFunc.refGene"))
+            # HGVS in AAChange.refGene for exonic and in GeneDetail.refGene for intronic
+            hgvs = ",".join(str(h) for h in info_dict.get("AAChange.refGene"))
+
+get_output()

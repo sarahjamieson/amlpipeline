@@ -221,7 +221,7 @@ def run_platypus(infile, outfile):
               "--nCPU=?"  # number of processors/cores, parallel jobs
               % (platypus, infile, genome, outfile))
 
-'''
+
 # need to run samtools mpileup to create pileup file. VarScan requires pileup file as input (run mpileup2snp for
 # multiple samples).
 # @follows(run_platypus)
@@ -240,7 +240,7 @@ def run_varscan2_snps(infile, outfile):
               "--output-vcf 1 "
               "--strand-filter 0 > %s"
               % (samtools, genome, infile, varscan, outfile))
-'''
+
 
 @follows(run_varscan2_snps)
 @transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".indels.vs2.vcf")
@@ -279,8 +279,11 @@ def annotate_vcf(infile, outfile):
               "-vcfinput"  # required if input is vcf file
               % (annovar, infile, outfile))
 
+    # rename to match expected output
+    os.rename("%s.hg19_multianno.vcf" % outfile, "%s" % outfile)
 
-pipeline_run(verbose=4, forcedtorun_tasks=[run_varscan2_snps, annotate_vcf])
+
+pipeline_run(verbose=4, forcedtorun_tasks=annotate_vcf)
 
 # Use these databases for actually running:
 # refGene,knownGene,ensgene,esp6500_all,1000g2014oct_all,1000g2014oct_afr,1000g2014oct_amr,1000g2014oct_eas,
