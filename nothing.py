@@ -91,4 +91,19 @@ def get_output():
             # HGVS in AAChange.refGene for exonic and in GeneDetail.refGene for intronic
             hgvs = ",".join(str(h) for h in info_dict.get("AAChange.refGene"))
 
-get_output()
+
+def get_sample_id_index(df_sample_sheet):
+    for column in df_sample_sheet:
+        for row_index, row in df_sample_sheet.iterrows():
+            if row[column] == 'Sample_ID':
+                id_index = row_index
+                return id_index
+
+
+def parse_sample_sheet(csv_file):
+    df_sample_sheet = pd.read_csv(csv_file)
+    id_index = get_sample_id_index(df_sample_sheet)
+    df_final = df_sample_sheet.drop(df_sample_sheet.index[[1, (id_index-1)]])
+    print df_final
+
+parse_sample_sheet('SampleSheet.csv')

@@ -1,0 +1,1 @@
+map:04-.bwa.drm.sorted.bam	mean:160	std:50	readlen:150	sample:04-	exe:bwa-0.7.12

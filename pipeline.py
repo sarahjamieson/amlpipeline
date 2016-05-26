@@ -27,7 +27,7 @@ varscan = '/home/cuser/programs/VarScan2/VarScan.v2.4.0.jar'
 
 curr_datetime = datetime.datetime.now().isoformat()
 
-'''
+
 def assess_quality():
     """Obtains quality statistics from MiSeq InterOp files and produces PDF summary report.
     Notes:
@@ -58,10 +58,10 @@ def assess_quality():
 
 assess_quality()
 
-
+'''
 # Input: all files ending in fastq.gz; formatter collates files with same name ending either R1 or R2; outputs into file
 # with common name. Uses Trimmomatic 0.36.
-@collate("*.fastq", formatter("([^/]+)R[12].fastq$"), "{1[0]}.fastq.gz")  # (input, filter, output)
+@collate("*.fastq.gz", formatter("([^/]+)R[12].fastq.gz$"), "{1[0]}.qfilter.fastq.gz")  # (input, filter, output)
 def quality_trim(infile, outfile):
     fastq1 = infile[0]  # first input file given
     fastq2 = infile[1]  # second input file given
@@ -73,40 +73,39 @@ def quality_trim(infile, outfile):
               "%s %s "  # input files R1 R2
               "%s.qfilter.fastq.gz %s.unpaired.fastq.gz "  # paired and unpaired output R1
               "%s.qfilter.fastq.gz %s.unpaired.fastq.gz "  # paired and unpaired output R2
-              "CROP:150 "  # crop reads to max 150 from end
               "ILLUMINACLIP:%s:2:30:10 "  # adaptor trimming, seed matches (16bp), allow 2 mismatches,
               # PE reads Q30, SE reads Q10
+              "CROP:150 "  # crop reads to max 150 from end
               "SLIDINGWINDOW:4:25 "  # perform trim on every 4 bases for min quality of 25
               "MINLEN:50"  # all reads should be min 50
-              % (Trimmomatic, fastq1, fastq2, fastq1[:-6], fastq1, fastq2[:-6], fastq2,
+              % (Trimmomatic, fastq1, fastq2, fastq1[:-9], fastq1, fastq2[:-9], fastq2,
                  trim_adapters))  # [:-6] removes file extension
 
     # glob module: finds path names matching specified pattern (https://docs.python.org/2/library/glob.html).
     filelist = glob.glob("*unpaired*")
     for f in filelist:
         os.remove(f)
+'''
 
-
-@follows(quality_trim)
+# @follows(quality_trim)
 @collate("*qfilter.fastq.gz", formatter("([^/]+)R[12].qfilter.fastq.gz$"), "{1[0]}.bwa.drm.bam")
 def align_bwa(infile, outfile):
     fastq1 = infile[0]
     fastq2 = infile[1]
     sample = fastq1[:-20]
-    id = 'bwa'
     rg_header = '@RG\tID:%s\tCN:WMRGL\tDS:TruSight_Myeloid_Nextera_v1.1\tDT:%s' % (sample, curr_datetime)
 
-    os.system("%s mem -M -a "  # mark shorter split hits as secondary, output alignments for SE and unpaired PE
-              "-t 2 "  # number of threads
-              "-k 18 "  # min seed length
+    os.system("%s mem -t 2 "  # mark shorter split hits as secondary, output alignments for SE and unpaired PE
+              "-k 18 "  # number of threads
+              "-aM "  # min seed length
               "-R \'%s\' "  # read group header
               "%s "  # genome (bwa indexed hg19)
               "%s %s"  # input R1, input R2
-              "| sed \'s/@PG\tID:%s/@PG\tID:%s/\' - "  # "-" requests standard output, useful when combining tools
-              "| %s -M -r -u "
-              "> %s.samblaster.log - "
+              "| sed \'s/@PG\tID:bwa/@PG\tID:%s/\' - "  # "-" requests standard output, useful when combining tools
+              "| %s --removeDups 2> "
+              "%s.samblaster.log --splitterFile %s.splitreads.sam --discordantFile %s.discordant.sam "
               "| %s view -Sb - > %s"  # -Sb puts output through samtools sort
-              % (bwa, rg_header, genome, fastq1, fastq2, id, sample, samblaster, sample, samtools, outfile))
+              % (bwa, rg_header, genome, fastq1, fastq2, sample, samblaster, sample, sample, sample, samtools, outfile))
 
 
 @follows(align_bwa)
@@ -139,7 +138,7 @@ def run_samtools_stats(infile, outfile):
 @transform(sort_bam, suffix(".bwa.drm.sorted.bam"), ".breakdancer_config.txt")
 def create_breakdancer_config(infile, outfile):
     config_file = open("%s" % outfile, "w")  # write into output file
-    config_file.write("map:%s\tmean:240\tstd:40\treadlen:36.00\tsample:%s\texe:bwa-0.7.12\n" % (infile, infile[:-19]))
+    config_file.write("map:%s\tmean:160\tstd:50\treadlen:150\tsample:%s\texe:bwa-0.7.12\n" % (infile, infile[:-19]))
     config_file.close()
 
 
@@ -186,7 +185,7 @@ def run_pindel(infile, outfile):
 @transform(run_pindel, formatter(), "{path[0]}/{basename[0]}.pindel.merged.vcf", "{path[0]}/{basename[0]}.")
 def pindel_to_vcf(infile, outfile, pindel_prefix):
     os.system("%s "  # pindel2vcf program
-              "-P %s "  # input file
+              "-p %s "  # input file
               "-r %s "  # reference genome on computer
               "-R hg19 "  # reference genome
               "-d hg19 "  # ??
@@ -196,11 +195,10 @@ def pindel_to_vcf(infile, outfile, pindel_prefix):
               "--max_size 10000 "
               "-v %s "  # output file
               "--het_cutoff 0.1 "
-              "--hom_cutoff 0.85 "
-              "-G"
+              "--hom_cutoff 0.85"
               % (pindel2vcf, pindel_prefix, genome, outfile))
 
-
+'''
 @follows(pindel_to_vcf)
 @transform(sort_bam, suffix(".bwa.drm.sorted.bam"), ".platypus_output.unsorted.vcf")
 def run_platypus(infile, outfile):
@@ -259,8 +257,6 @@ def run_varscan2_indels(infile, outfile):
               "--strand-filter 0 > %s"
               % (samtools, genome, infile, varscan, outfile))
 
-'''
-
 
 # the number of arguments for "-protocol", "-arg" and "-operation" should all be equal and match in order.
 # @follows(run_varscan2_indels)
@@ -282,9 +278,9 @@ def annotate_vcf(infile, outfile):
     # rename to match expected output
     os.rename("%s.hg19_multianno.vcf" % outfile, "%s" % outfile)
 
+'''
+pipeline_run(verbose=4, forcedtorun_tasks=[create_pindel_config, run_pindel, pindel_to_vcf])
 
-pipeline_run(verbose=4, forcedtorun_tasks=annotate_vcf)
-
-# Use these databases for actually running:
+# Use these databases:
 # refGene,knownGene,ensgene,esp6500_all,1000g2014oct_all,1000g2014oct_afr,1000g2014oct_amr,1000g2014oct_eas,
 # 1000g2014oct_eur,1000g2014oct_sas,snp137,clinvar_20140929,cosmic70,exac03

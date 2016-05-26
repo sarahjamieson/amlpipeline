@@ -1,1 +1,1 @@
-map:cataracts.bwa.drm.sorted.bam	mean:240	std:40	readlen:36.00	sample:cataracts	exe:bwa-0.7.12
+map:cataracts.bwa.drm.sorted.bam	mean:160	std:50	readlen:150	sample:cataracts	exe:bwa-0.7.12

@@ -1,0 +1,9 @@
+samblaster: Version 0.1.22
+samblaster: Inputting from stdin
+samblaster: Outputting to stdout
+samblaster: Opening 04.discordant.sam for write.
+samblaster: Opening 04.splitreads.sam for write.
+samblaster: Loaded 93 header sequence entries.
+samblaster: Output 1157 discordant read pairs to 04.discordant.sam
+samblaster: Output 0 split reads to 04.splitreads.sam
+samblaster: Removed 32152 of 229378 (14.02%) read ids as duplicates using 6784k memory in 0.150S CPU seconds and 4M55S(295S) wall time.
