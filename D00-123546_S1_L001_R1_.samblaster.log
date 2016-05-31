@@ -1,0 +1,6 @@
+samblaster: Version 0.1.22
+samblaster: Inputting from stdin
+samblaster: Outputting to stdout
+samblaster: Opening D00-123546_S1_L001_R1_.discordant.sam for write.
+samblaster: Opening D00-123546_S1_L001_R1_.splitreads.sam for write.
+samblaster: Loaded 93 header sequence entries.

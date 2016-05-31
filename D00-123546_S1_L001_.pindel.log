@@ -1,0 +1,2271 @@
+Pindel version 0.2.5b8, 20151210.
+Processing region: chrM	1	16571
+Chromosome Size: 16571
+NumBoxes: 61878	BoxSize: 7
+
+Looking at chromosome chrM bases 1 to 16571 of the bed region: chromosome chrM:1-16571 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrM found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr1	1	249250621
+Chromosome Size: 249250621
+NumBoxes: 60001	BoxSize: 8315
+
+Looking at chromosome chr1 bases 1 to 50000001 of the bed region: chromosome chr1:1-249250621 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr1 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr1 bases 50000001 to 100000001 of the bed region: chromosome chr1:1-249250621 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr1 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr1 bases 100000001 to 150000001 of the bed region: chromosome chr1:1-249250621 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr1 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr1 bases 150000001 to 200000001 of the bed region: chromosome chr1:1-249250621 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr1 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr1 bases 200000001 to 249250621 of the bed region: chromosome chr1:1-249250621 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr1 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr2	1	243199373
+Chromosome Size: 243199373
+NumBoxes: 60003	BoxSize: 8113
+
+Looking at chromosome chr2 bases 1 to 50000001 of the bed region: chromosome chr2:1-243199373 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr2 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr2 bases 50000001 to 100000001 of the bed region: chromosome chr2:1-243199373 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr2 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr2 bases 100000001 to 150000001 of the bed region: chromosome chr2:1-243199373 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr2 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr2 bases 150000001 to 200000001 of the bed region: chromosome chr2:1-243199373 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr2 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr2 bases 200000001 to 243199373 of the bed region: chromosome chr2:1-243199373 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr2 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr3	1	198022430
+Chromosome Size: 198022430
+NumBoxes: 60004	BoxSize: 6607
+
+Looking at chromosome chr3 bases 1 to 50000001 of the bed region: chromosome chr3:1-198022430 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr3 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr3 bases 50000001 to 100000001 of the bed region: chromosome chr3:1-198022430 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr3 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr3 bases 100000001 to 150000001 of the bed region: chromosome chr3:1-198022430 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr3 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr3 bases 150000001 to 198022430 of the bed region: chromosome chr3:1-198022430 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr3 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr4	1	191154276
+Chromosome Size: 191154276
+NumBoxes: 60005	BoxSize: 6378
+
+Looking at chromosome chr4 bases 1 to 50000001 of the bed region: chromosome chr4:1-191154276 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr4 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr4 bases 50000001 to 100000001 of the bed region: chromosome chr4:1-191154276 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr4 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr4 bases 100000001 to 150000001 of the bed region: chromosome chr4:1-191154276 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr4 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr4 bases 150000001 to 191154276 of the bed region: chromosome chr4:1-191154276 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr4 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr5	1	180915260
+Chromosome Size: 180915260
+NumBoxes: 60002	BoxSize: 6037
+
+Looking at chromosome chr5 bases 1 to 50000001 of the bed region: chromosome chr5:1-180915260 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr5 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr5 bases 50000001 to 100000001 of the bed region: chromosome chr5:1-180915260 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr5 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr5 bases 100000001 to 150000001 of the bed region: chromosome chr5:1-180915260 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr5 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr5 bases 150000001 to 180915260 of the bed region: chromosome chr5:1-180915260 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr5 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr6	1	171115067
+Chromosome Size: 171115067
+NumBoxes: 60006	BoxSize: 5710
+
+Looking at chromosome chr6 bases 1 to 50000001 of the bed region: chromosome chr6:1-171115067 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr6 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr6 bases 50000001 to 100000001 of the bed region: chromosome chr6:1-171115067 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr6 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr6 bases 100000001 to 150000001 of the bed region: chromosome chr6:1-171115067 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr6 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr6 bases 150000001 to 171115067 of the bed region: chromosome chr6:1-171115067 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr6 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr7	1	159138663
+Chromosome Size: 159138663
+NumBoxes: 60004	BoxSize: 5311
+
+Looking at chromosome chr7 bases 1 to 50000001 of the bed region: chromosome chr7:1-159138663 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr7 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr7 bases 50000001 to 100000001 of the bed region: chromosome chr7:1-159138663 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr7 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr7 bases 100000001 to 150000001 of the bed region: chromosome chr7:1-159138663 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr7 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr7 bases 150000001 to 159138663 of the bed region: chromosome chr7:1-159138663 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr7 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr8	1	146364022
+Chromosome Size: 146364022
+NumBoxes: 60006	BoxSize: 4885
+
+Looking at chromosome chr8 bases 1 to 50000001 of the bed region: chromosome chr8:1-146364022 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr8 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr8 bases 50000001 to 100000001 of the bed region: chromosome chr8:1-146364022 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr8 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr8 bases 100000001 to 146364022 of the bed region: chromosome chr8:1-146364022 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr8 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr9	1	141213431
+Chromosome Size: 141213431
+NumBoxes: 60010	BoxSize: 4713
+
+Looking at chromosome chr9 bases 1 to 50000001 of the bed region: chromosome chr9:1-141213431 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr9 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr9 bases 50000001 to 100000001 of the bed region: chromosome chr9:1-141213431 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr9 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr9 bases 100000001 to 141213431 of the bed region: chromosome chr9:1-141213431 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr9 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr10	1	135534747
+Chromosome Size: 135534747
+NumBoxes: 60007	BoxSize: 4524
+
+Looking at chromosome chr10 bases 1 to 50000001 of the bed region: chromosome chr10:1-135534747 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr10 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr10 bases 50000001 to 100000001 of the bed region: chromosome chr10:1-135534747 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr10 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr10 bases 100000001 to 135534747 of the bed region: chromosome chr10:1-135534747 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr10 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr11	1	135006516
+Chromosome Size: 135006516
+NumBoxes: 60012	BoxSize: 4506
+
+Looking at chromosome chr11 bases 1 to 50000001 of the bed region: chromosome chr11:1-135006516 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr11 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr11 bases 50000001 to 100000001 of the bed region: chromosome chr11:1-135006516 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr11 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr11 bases 100000001 to 135006516 of the bed region: chromosome chr11:1-135006516 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr11 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr12	1	133851895
+Chromosome Size: 133851895
+NumBoxes: 60006	BoxSize: 4468
+
+Looking at chromosome chr12 bases 1 to 50000001 of the bed region: chromosome chr12:1-133851895 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr12 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr12 bases 50000001 to 100000001 of the bed region: chromosome chr12:1-133851895 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr12 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr12 bases 100000001 to 133851895 of the bed region: chromosome chr12:1-133851895 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr12 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr13	1	115169878
+Chromosome Size: 115169878
+NumBoxes: 60011	BoxSize: 3845
+
+Looking at chromosome chr13 bases 1 to 50000001 of the bed region: chromosome chr13:1-115169878 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr13 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr13 bases 50000001 to 100000001 of the bed region: chromosome chr13:1-115169878 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr13 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr13 bases 100000001 to 115169878 of the bed region: chromosome chr13:1-115169878 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr13 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr14	1	107349540
+Chromosome Size: 107349540
+NumBoxes: 60017	BoxSize: 3584
+
+Looking at chromosome chr14 bases 1 to 50000001 of the bed region: chromosome chr14:1-107349540 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr14 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr14 bases 50000001 to 100000001 of the bed region: chromosome chr14:1-107349540 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr14 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr14 bases 100000001 to 107349540 of the bed region: chromosome chr14:1-107349540 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr14 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr15	1	102531392
+Chromosome Size: 102531392
+NumBoxes: 60007	BoxSize: 3424
+
+Looking at chromosome chr15 bases 1 to 50000001 of the bed region: chromosome chr15:1-102531392 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr15 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr15 bases 50000001 to 100000001 of the bed region: chromosome chr15:1-102531392 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr15 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr15 bases 100000001 to 102531392 of the bed region: chromosome chr15:1-102531392 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr15 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr16	1	90354753
+Chromosome Size: 90354753
+NumBoxes: 60010	BoxSize: 3018
+
+Looking at chromosome chr16 bases 1 to 50000001 of the bed region: chromosome chr16:1-90354753 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr16 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr16 bases 50000001 to 90354753 of the bed region: chromosome chr16:1-90354753 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr16 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr17	1	81195210
+Chromosome Size: 81195210
+NumBoxes: 60004	BoxSize: 2713
+
+Looking at chromosome chr17 bases 1 to 50000001 of the bed region: chromosome chr17:1-81195210 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr17 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr17 bases 50000001 to 81195210 of the bed region: chromosome chr17:1-81195210 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr17 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr18	1	78077248
+Chromosome Size: 78077248
+NumBoxes: 60006	BoxSize: 2609
+
+Looking at chromosome chr18 bases 1 to 50000001 of the bed region: chromosome chr18:1-78077248 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr18 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr18 bases 50000001 to 78077248 of the bed region: chromosome chr18:1-78077248 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr18 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr19	1	59128983
+Chromosome Size: 59128983
+NumBoxes: 60020	BoxSize: 1977
+
+Looking at chromosome chr19 bases 1 to 50000001 of the bed region: chromosome chr19:1-59128983 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr19 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr19 bases 50000001 to 59128983 of the bed region: chromosome chr19:1-59128983 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr19 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr20	1	63025520
+Chromosome Size: 63025520
+NumBoxes: 60015	BoxSize: 2107
+
+Looking at chromosome chr20 bases 1 to 50000001 of the bed region: chromosome chr20:1-63025520 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr20 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr20 bases 50000001 to 63025520 of the bed region: chromosome chr20:1-63025520 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr20 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr21	1	48129895
+Chromosome Size: 48129895
+NumBoxes: 60038	BoxSize: 1610
+
+Looking at chromosome chr21 bases 1 to 48129895 of the bed region: chromosome chr21:1-48129895 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr21 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr22	1	51304566
+Chromosome Size: 51304566
+NumBoxes: 60029	BoxSize: 1716
+
+Looking at chromosome chr22 bases 1 to 50000001 of the bed region: chromosome chr22:1-51304566 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr22 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chr22 bases 50000001 to 51304566 of the bed region: chromosome chr22:1-51304566 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr22 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrX	1	155270560
+Chromosome Size: 155270560
+NumBoxes: 60005	BoxSize: 5182
+
+Looking at chromosome chrX bases 1 to 50000001 of the bed region: chromosome chrX:1-155270560 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrX found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chrX bases 50000001 to 100000001 of the bed region: chromosome chrX:1-155270560 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrX found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chrX bases 100000001 to 150000001 of the bed region: chromosome chrX:1-155270560 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrX found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chrX bases 150000001 to 155270560 of the bed region: chromosome chrX:1-155270560 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrX found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrY	1	59373566
+Chromosome Size: 59373566
+NumBoxes: 60024	BoxSize: 1985
+
+Looking at chromosome chrY bases 1 to 50000001 of the bed region: chromosome chrY:1-59373566 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrY found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+
+Looking at chromosome chrY bases 50000001 to 59373566 of the bed region: chromosome chrY:1-59373566 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrY found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr1_gl000191_random	1	106433
+Chromosome Size: 106433
+NumBoxes: 61287	BoxSize: 10
+
+Looking at chromosome chr1_gl000191_random bases 1 to 106433 of the bed region: chromosome chr1_gl000191_random:1-106433 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr1_gl000191_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr1_gl000192_random	1	547496
+Chromosome Size: 547496
+NumBoxes: 62292	BoxSize: 24
+
+Looking at chromosome chr1_gl000192_random bases 1 to 547496 of the bed region: chromosome chr1_gl000192_random:1-547496 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr1_gl000192_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr4_ctg9_hap1	1	590426
+Chromosome Size: 590426
+NumBoxes: 60803	BoxSize: 26
+
+Looking at chromosome chr4_ctg9_hap1 bases 1 to 590426 of the bed region: chromosome chr4_ctg9_hap1:1-590426 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr4_ctg9_hap1 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr4_gl000193_random	1	189789
+Chromosome Size: 189789
+NumBoxes: 64965	BoxSize: 12
+
+Looking at chromosome chr4_gl000193_random bases 1 to 189789 of the bed region: chromosome chr4_gl000193_random:1-189789 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr4_gl000193_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr4_gl000194_random	1	191469
+Chromosome Size: 191469
+NumBoxes: 60227	BoxSize: 13
+
+Looking at chromosome chr4_gl000194_random bases 1 to 191469 of the bed region: chromosome chr4_gl000194_random:1-191469 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr4_gl000194_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr6_apd_hap1	1	4622290
+Chromosome Size: 4622290
+NumBoxes: 60279	BoxSize: 160
+
+Looking at chromosome chr6_apd_hap1 bases 1 to 4622290 of the bed region: chromosome chr6_apd_hap1:1-4622290 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr6_apd_hap1 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr6_cox_hap2	1	4795371
+Chromosome Size: 4795371
+NumBoxes: 60186	BoxSize: 166
+
+Looking at chromosome chr6_cox_hap2 bases 1 to 4795371 of the bed region: chromosome chr6_cox_hap2:1-4795371 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr6_cox_hap2 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr6_dbb_hap3	1	4610396
+Chromosome Size: 4610396
+NumBoxes: 60130	BoxSize: 160
+
+Looking at chromosome chr6_dbb_hap3 bases 1 to 4610396 of the bed region: chromosome chr6_dbb_hap3:1-4610396 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr6_dbb_hap3 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr6_mann_hap4	1	4683263
+Chromosome Size: 4683263
+NumBoxes: 60288	BoxSize: 162
+
+Looking at chromosome chr6_mann_hap4 bases 1 to 4683263 of the bed region: chromosome chr6_mann_hap4:1-4683263 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr6_mann_hap4 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr6_mcf_hap5	1	4833398
+Chromosome Size: 4833398
+NumBoxes: 60281	BoxSize: 167
+
+Looking at chromosome chr6_mcf_hap5 bases 1 to 4833398 of the bed region: chromosome chr6_mcf_hap5:1-4833398 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr6_mcf_hap5 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr6_qbl_hap6	1	4611984
+Chromosome Size: 4611984
+NumBoxes: 60150	BoxSize: 160
+
+Looking at chromosome chr6_qbl_hap6 bases 1 to 4611984 of the bed region: chromosome chr6_qbl_hap6:1-4611984 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr6_qbl_hap6 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr6_ssto_hap7	1	4928567
+Chromosome Size: 4928567
+NumBoxes: 60337	BoxSize: 170
+
+Looking at chromosome chr6_ssto_hap7 bases 1 to 4928567 of the bed region: chromosome chr6_ssto_hap7:1-4928567 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr6_ssto_hap7 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr7_gl000195_random	1	182896
+Chromosome Size: 182896
+NumBoxes: 63817	BoxSize: 12
+
+Looking at chromosome chr7_gl000195_random bases 1 to 182896 of the bed region: chromosome chr7_gl000195_random:1-182896 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr7_gl000195_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr8_gl000196_random	1	38914
+Chromosome Size: 38914
+NumBoxes: 68262	BoxSize: 7
+
+Looking at chromosome chr8_gl000196_random bases 1 to 38914 of the bed region: chromosome chr8_gl000196_random:1-38914 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr8_gl000196_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr8_gl000197_random	1	37175
+Chromosome Size: 37175
+NumBoxes: 67765	BoxSize: 7
+
+Looking at chromosome chr8_gl000197_random bases 1 to 37175 of the bed region: chromosome chr8_gl000197_random:1-37175 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr8_gl000197_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr9_gl000198_random	1	90085
+Chromosome Size: 90085
+NumBoxes: 64464	BoxSize: 9
+
+Looking at chromosome chr9_gl000198_random bases 1 to 90085 of the bed region: chromosome chr9_gl000198_random:1-90085 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr9_gl000198_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr9_gl000199_random	1	169874
+Chromosome Size: 169874
+NumBoxes: 61646	BoxSize: 12
+
+Looking at chromosome chr9_gl000199_random bases 1 to 169874 of the bed region: chromosome chr9_gl000199_random:1-169874 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr9_gl000199_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr9_gl000200_random	1	187035
+Chromosome Size: 187035
+NumBoxes: 64506	BoxSize: 12
+
+Looking at chromosome chr9_gl000200_random bases 1 to 187035 of the bed region: chromosome chr9_gl000200_random:1-187035 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr9_gl000200_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr9_gl000201_random	1	36148
+Chromosome Size: 36148
+NumBoxes: 67471	BoxSize: 7
+
+Looking at chromosome chr9_gl000201_random bases 1 to 36148 of the bed region: chromosome chr9_gl000201_random:1-36148 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr9_gl000201_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr11_gl000202_random	1	40103
+Chromosome Size: 40103
+NumBoxes: 60026	BoxSize: 8
+
+Looking at chromosome chr11_gl000202_random bases 1 to 40103 of the bed region: chromosome chr11_gl000202_random:1-40103 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr11_gl000202_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr17_ctg5_hap1	1	1680828
+Chromosome Size: 1680828
+NumBoxes: 60672	BoxSize: 62
+
+Looking at chromosome chr17_ctg5_hap1 bases 1 to 1680828 of the bed region: chromosome chr17_ctg5_hap1:1-1680828 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr17_ctg5_hap1 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr17_gl000203_random	1	37498
+Chromosome Size: 37498
+NumBoxes: 67857	BoxSize: 7
+
+Looking at chromosome chr17_gl000203_random bases 1 to 37498 of the bed region: chromosome chr17_gl000203_random:1-37498 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr17_gl000203_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr17_gl000204_random	1	81310
+Chromosome Size: 81310
+NumBoxes: 62514	BoxSize: 9
+
+Looking at chromosome chr17_gl000204_random bases 1 to 81310 of the bed region: chromosome chr17_gl000204_random:1-81310 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr17_gl000204_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr17_gl000205_random	1	174588
+Chromosome Size: 174588
+NumBoxes: 62432	BoxSize: 12
+
+Looking at chromosome chr17_gl000205_random bases 1 to 174588 of the bed region: chromosome chr17_gl000205_random:1-174588 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr17_gl000205_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr17_gl000206_random	1	41001
+Chromosome Size: 41001
+NumBoxes: 60251	BoxSize: 8
+
+Looking at chromosome chr17_gl000206_random bases 1 to 41001 of the bed region: chromosome chr17_gl000206_random:1-41001 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr17_gl000206_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr18_gl000207_random	1	4262
+Chromosome Size: 4262
+NumBoxes: 68088	BoxSize: 6
+
+Looking at chromosome chr18_gl000207_random bases 1 to 4262 of the bed region: chromosome chr18_gl000207_random:1-4262 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr18_gl000207_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr19_gl000208_random	1	92689
+Chromosome Size: 92689
+NumBoxes: 65043	BoxSize: 9
+
+Looking at chromosome chr19_gl000208_random bases 1 to 92689 of the bed region: chromosome chr19_gl000208_random:1-92689 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr19_gl000208_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr19_gl000209_random	1	159169
+Chromosome Size: 159169
+NumBoxes: 65304	BoxSize: 11
+
+Looking at chromosome chr19_gl000209_random bases 1 to 159169 of the bed region: chromosome chr19_gl000209_random:1-159169 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr19_gl000209_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chr21_gl000210_random	1	27682
+Chromosome Size: 27682
+NumBoxes: 65053	BoxSize: 7
+
+Looking at chromosome chr21_gl000210_random bases 1 to 27682 of the bed region: chromosome chr21_gl000210_random:1-27682 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chr21_gl000210_random found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000211	1	166566
+Chromosome Size: 166566
+NumBoxes: 61095	BoxSize: 12
+
+Looking at chromosome chrUn_gl000211 bases 1 to 166566 of the bed region: chromosome chrUn_gl000211:1-166566 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000211 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000212	1	186858
+Chromosome Size: 186858
+NumBoxes: 64477	BoxSize: 12
+
+Looking at chromosome chrUn_gl000212 bases 1 to 186858 of the bed region: chromosome chrUn_gl000212:1-186858 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000212 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000213	1	164239
+Chromosome Size: 164239
+NumBoxes: 60707	BoxSize: 12
+
+Looking at chromosome chrUn_gl000213 bases 1 to 164239 of the bed region: chromosome chrUn_gl000213:1-164239 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000213 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000214	1	137718
+Chromosome Size: 137718
+NumBoxes: 61404	BoxSize: 11
+
+Looking at chromosome chrUn_gl000214 bases 1 to 137718 of the bed region: chromosome chrUn_gl000214:1-137718 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000214 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000215	1	172545
+Chromosome Size: 172545
+NumBoxes: 62091	BoxSize: 12
+
+Looking at chromosome chrUn_gl000215 bases 1 to 172545 of the bed region: chromosome chrUn_gl000215:1-172545 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000215 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000216	1	172294
+Chromosome Size: 172294
+NumBoxes: 62050	BoxSize: 12
+
+Looking at chromosome chrUn_gl000216 bases 1 to 172294 of the bed region: chromosome chrUn_gl000216:1-172294 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000216 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000217	1	172149
+Chromosome Size: 172149
+NumBoxes: 62025	BoxSize: 12
+
+Looking at chromosome chrUn_gl000217 bases 1 to 172149 of the bed region: chromosome chrUn_gl000217:1-172149 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000217 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000218	1	161147
+Chromosome Size: 161147
+NumBoxes: 60192	BoxSize: 12
+
+Looking at chromosome chrUn_gl000218 bases 1 to 161147 of the bed region: chromosome chrUn_gl000218:1-161147 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000218 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000219	1	179198
+Chromosome Size: 179198
+NumBoxes: 63200	BoxSize: 12
+
+Looking at chromosome chrUn_gl000219 bases 1 to 179198 of the bed region: chromosome chrUn_gl000219:1-179198 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000219 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000220	1	161802
+Chromosome Size: 161802
+NumBoxes: 60301	BoxSize: 12
+
+Looking at chromosome chrUn_gl000220 bases 1 to 161802 of the bed region: chromosome chrUn_gl000220:1-161802 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000220 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000221	1	155397
+Chromosome Size: 155397
+NumBoxes: 64618	BoxSize: 11
+
+Looking at chromosome chrUn_gl000221 bases 1 to 155397 of the bed region: chromosome chrUn_gl000221:1-155397 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000221 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000222	1	186861
+Chromosome Size: 186861
+NumBoxes: 64477	BoxSize: 12
+
+Looking at chromosome chrUn_gl000222 bases 1 to 186861 of the bed region: chromosome chrUn_gl000222:1-186861 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000222 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000223	1	180455
+Chromosome Size: 180455
+NumBoxes: 63410	BoxSize: 12
+
+Looking at chromosome chrUn_gl000223 bases 1 to 180455 of the bed region: chromosome chrUn_gl000223:1-180455 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000223 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000224	1	179693
+Chromosome Size: 179693
+NumBoxes: 63283	BoxSize: 12
+
+Looking at chromosome chrUn_gl000224 bases 1 to 179693 of the bed region: chromosome chrUn_gl000224:1-179693 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000224 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000225	1	211173
+Chromosome Size: 211173
+NumBoxes: 63258	BoxSize: 13
+
+Looking at chromosome chrUn_gl000225 bases 1 to 211173 of the bed region: chromosome chrUn_gl000225:1-211173 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000225 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000226	1	15008
+Chromosome Size: 15008
+NumBoxes: 61431	BoxSize: 7
+
+Looking at chromosome chrUn_gl000226 bases 1 to 15008 of the bed region: chromosome chrUn_gl000226:1-15008 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000226 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000227	1	128374
+Chromosome Size: 128374
+NumBoxes: 65675	BoxSize: 10
+
+Looking at chromosome chrUn_gl000227 bases 1 to 128374 of the bed region: chromosome chrUn_gl000227:1-128374 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000227 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000228	1	129120
+Chromosome Size: 129120
+NumBoxes: 65825	BoxSize: 10
+
+Looking at chromosome chrUn_gl000228 bases 1 to 129120 of the bed region: chromosome chrUn_gl000228:1-129120 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000228 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000229	1	19913
+Chromosome Size: 19913
+NumBoxes: 62833	BoxSize: 7
+
+Looking at chromosome chrUn_gl000229 bases 1 to 19913 of the bed region: chromosome chrUn_gl000229:1-19913 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000229 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000230	1	43691
+Chromosome Size: 43691
+NumBoxes: 60923	BoxSize: 8
+
+Looking at chromosome chrUn_gl000230 bases 1 to 43691 of the bed region: chromosome chrUn_gl000230:1-43691 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000230 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000231	1	27386
+Chromosome Size: 27386
+NumBoxes: 64968	BoxSize: 7
+
+Looking at chromosome chrUn_gl000231 bases 1 to 27386 of the bed region: chromosome chrUn_gl000231:1-27386 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000231 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000232	1	40652
+Chromosome Size: 40652
+NumBoxes: 60164	BoxSize: 8
+
+Looking at chromosome chrUn_gl000232 bases 1 to 40652 of the bed region: chromosome chrUn_gl000232:1-40652 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000232 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000233	1	45941
+Chromosome Size: 45941
+NumBoxes: 61486	BoxSize: 8
+
+Looking at chromosome chrUn_gl000233 bases 1 to 45941 of the bed region: chromosome chrUn_gl000233:1-45941 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000233 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000234	1	40531
+Chromosome Size: 40531
+NumBoxes: 60133	BoxSize: 8
+
+Looking at chromosome chrUn_gl000234 bases 1 to 40531 of the bed region: chromosome chrUn_gl000234:1-40531 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000234 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000235	1	34474
+Chromosome Size: 34474
+NumBoxes: 66993	BoxSize: 7
+
+Looking at chromosome chrUn_gl000235 bases 1 to 34474 of the bed region: chromosome chrUn_gl000235:1-34474 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000235 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000236	1	41934
+Chromosome Size: 41934
+NumBoxes: 60484	BoxSize: 8
+
+Looking at chromosome chrUn_gl000236 bases 1 to 41934 of the bed region: chromosome chrUn_gl000236:1-41934 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000236 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000237	1	45867
+Chromosome Size: 45867
+NumBoxes: 61467	BoxSize: 8
+
+Looking at chromosome chrUn_gl000237 bases 1 to 45867 of the bed region: chromosome chrUn_gl000237:1-45867 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000237 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000238	1	39939
+Chromosome Size: 39939
+NumBoxes: 68555	BoxSize: 7
+
+Looking at chromosome chrUn_gl000238 bases 1 to 39939 of the bed region: chromosome chrUn_gl000238:1-39939 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000238 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000239	1	33824
+Chromosome Size: 33824
+NumBoxes: 66807	BoxSize: 7
+
+Looking at chromosome chrUn_gl000239 bases 1 to 33824 of the bed region: chromosome chrUn_gl000239:1-33824 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000239 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000240	1	41933
+Chromosome Size: 41933
+NumBoxes: 60484	BoxSize: 8
+
+Looking at chromosome chrUn_gl000240 bases 1 to 41933 of the bed region: chromosome chrUn_gl000240:1-41933 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000240 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000241	1	42152
+Chromosome Size: 42152
+NumBoxes: 60539	BoxSize: 8
+
+Looking at chromosome chrUn_gl000241 bases 1 to 42152 of the bed region: chromosome chrUn_gl000241:1-42152 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000241 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000242	1	43523
+Chromosome Size: 43523
+NumBoxes: 60881	BoxSize: 8
+
+Looking at chromosome chrUn_gl000242 bases 1 to 43523 of the bed region: chromosome chrUn_gl000242:1-43523 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000242 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000243	1	43341
+Chromosome Size: 43341
+NumBoxes: 60836	BoxSize: 8
+
+Looking at chromosome chrUn_gl000243 bases 1 to 43341 of the bed region: chromosome chrUn_gl000243:1-43341 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000243 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000244	1	39929
+Chromosome Size: 39929
+NumBoxes: 68552	BoxSize: 7
+
+Looking at chromosome chrUn_gl000244 bases 1 to 39929 of the bed region: chromosome chrUn_gl000244:1-39929 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000244 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000245	1	36651
+Chromosome Size: 36651
+NumBoxes: 67615	BoxSize: 7
+
+Looking at chromosome chrUn_gl000245 bases 1 to 36651 of the bed region: chromosome chrUn_gl000245:1-36651 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000245 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000246	1	38154
+Chromosome Size: 38154
+NumBoxes: 68045	BoxSize: 7
+
+Looking at chromosome chrUn_gl000246 bases 1 to 38154 of the bed region: chromosome chrUn_gl000246:1-38154 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000246 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000247	1	36422
+Chromosome Size: 36422
+NumBoxes: 67550	BoxSize: 7
+
+Looking at chromosome chrUn_gl000247 bases 1 to 36422 of the bed region: chromosome chrUn_gl000247:1-36422 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000247 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000248	1	39786
+Chromosome Size: 39786
+NumBoxes: 68511	BoxSize: 7
+
+Looking at chromosome chrUn_gl000248 bases 1 to 39786 of the bed region: chromosome chrUn_gl000248:1-39786 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000248 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Processing region: chrUn_gl000249	1	38502
+Chromosome Size: 38503
+NumBoxes: 68144	BoxSize: 7
+
+Looking at chromosome chrUn_gl000249 bases 1 to 38502 of the bed region: chromosome chrUn_gl000249:1-38502 
+No discordant RP reads in Bamfile D00-123546_S1_L001_.bwa.drm.sorted.bam
+
+Insertsize in config: 240
+Number of problematic reads in current window:            	0, + 0 - 0
+Number of split-reads where the close end could be mapped:	0, + 0 - 0
+Percentage of problematic reads with close end mapped:    	+ 0.00% - 0.00%
+No currentState.Reads for chrUn_gl000249 found in D00-123546_S1_L001_.bwa.drm.sorted.bam
+BAM file index	0
+Bam file name	D00-123546_S1_L001_.bwa.drm.sorted.bam
+Number of split-reads so far	0
+
+no reads 
+Initializing pindel 149 seconds.
+Loading chromosomes 5 seconds.
+Reading in reads + matching close ends 317 seconds.

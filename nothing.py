@@ -9,6 +9,7 @@ from ruffus import *
 from ruffus.proxy_logger import *
 from pybedtools import BedTool
 import vcf
+from zipfile import ZipFile
 '''
 samtools = '/home/cuser/programs/samtools/samtools/bin/samtools'
 genome = '/media/sf_sarah_share/ucsc_hg19/ucsc.hg19.fasta'
@@ -52,7 +53,7 @@ def dedup_discordants(infile, outfile):
 def run_hydra(infile, outfile):
     os.system("%s -in %s -out %s" % (hydra, infile, outfile))
 # ------------------------------------------------------------------------------
-'''
+
 
 
 def get_output():
@@ -90,20 +91,90 @@ def get_output():
             func = ",".join(str(f) for f in info_dict.get("ExonicFunc.refGene"))
             # HGVS in AAChange.refGene for exonic and in GeneDetail.refGene for intronic
             hgvs = ",".join(str(h) for h in info_dict.get("AAChange.refGene"))
+'''
+'''
+
+fastqc = '/home/cuser/programs/FastQC/fastqc'
 
 
-def get_sample_id_index(df_sample_sheet):
-    for column in df_sample_sheet:
-        for row_index, row in df_sample_sheet.iterrows():
-            if row[column] == 'Sample_ID':
-                id_index = row_index
-                return id_index
+@collate("04*.fastq.gz", formatter("([^/]+)R[12].qfilter.fastq.gz$"), "{1[0]}.fastq.gz")
+def run_fastqc(infile, outfile):
+    fastq1 = infile[0]
+    fastq2 = infile[1]
+    os.system("%s --extract %s" % (fastqc, fastq1))
+    os.system("%s --extract %s" % (fastqc, fastq2))
+
+    with ZipFile(outfile, 'w') as myzip:
+        print myzip.namelist()
+
+
+pipeline_run()
+'''
 
 
 def parse_sample_sheet(csv_file):
-    df_sample_sheet = pd.read_csv(csv_file)
-    id_index = get_sample_id_index(df_sample_sheet)
-    df_final = df_sample_sheet.drop(df_sample_sheet.index[[1, (id_index-1)]])
-    print df_final
+    # set some variables so we can use outside loops
+    header_index = 0
+    data_index = 0
+    manifest_index = 0
+    read_index = 0
+    settings_index = 0
+    df_headings = pd.DataFrame([])
+    df_final = pd.DataFrame(columns=['Property', 'Value'])  # this allows for easy appending later
+    # 1) Parse sample sheet into pandasdataframe
+    df_sample_sheet = pd.read_csv(csv_file, header=None)
+    # 2) Get index where these details are
+    for column in df_sample_sheet:
+        for row_index, row in df_sample_sheet.iterrows():
+            if row[column] == '[Data]':
+                data_index = row_index
+                df_headings = df_sample_sheet.ix[:data_index-2, 0:1]  # Put all header info into a separate dataframe
+                df_headings.columns = ['Property', 'Value']
+            elif row[column] == '[Header]':
+                header_index = row_index
+            elif row[column] == '[Manifests]':
+                manifest_index = row_index
+            elif row[column] == '[Reads]':
+                read_index = row_index
+            elif row[column] == '[Settings]':
+                settings_index = row_index
+            else:
+                pass
+    # 3) Split and modify the data for each header type so it can be merged into one consistent dataframe
+    df_headers = df_headings.ix[header_index+1:manifest_index-1]
+    df_manifests = df_headings.ix[manifest_index+1:read_index-2]
+    for row_index, row in df_manifests.iterrows():
+        row['Property'] = 'Manifest ' + row['Property']
+    df_reads = df_headings.ix[read_index+1:settings_index-2]
+    read_list = []
+    for row_index, row in df_reads.iterrows():
+        read_list.append(row['Property'])
+    df_settings = df_headings.ix[settings_index+1:]
+    df_final = df_final.append(df_headers)
+    df_final = df_final.append(df_manifests)
+    df_final = df_final.append({'Property': 'Reads', 'Value': read_list}, ignore_index=True)
+    df_final = df_final.append(df_settings)
+    df_final = df_final.reset_index(drop=True)
+    # 4) Convert the dataframe to a dictionary
+    final_dict = df_final.set_index('Property')['Value'].to_dict()
+
+    # 5) Now deal with the sample data itself
+    df_data = df_sample_sheet.ix[data_index+1:]
+    df_data = df_data.reset_index(drop=True)
+    df_data.columns = df_data.iloc[0]
+    df_data = df_data.reindex(df_data.index.drop(0))
+    df_data = df_data.dropna(axis=1, how='all')
+    sample_id_list = []
+    for row_index, row in df_data.iterrows():
+        sample_id_list.append(row['Sample_Name'][3:12])
+    df_trans = df_data.transpose()
+    df_trans.columns = sample_id_list
+    data_dict = df_trans.to_dict()
+
+    return final_dict, data_dict
 
 parse_sample_sheet('SampleSheet.csv')
+
+
+
+

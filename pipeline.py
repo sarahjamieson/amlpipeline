@@ -7,7 +7,8 @@ import datetime
 from pandas import ExcelWriter
 from ruffus import *
 import glob
-from create_pdf import CreatePDF
+
+# from create_pdf import CreatePDF
 
 Trimmomatic = '/home/cuser/programs/Trimmomatic-0.36/trimmomatic-0.36.jar'
 trim_adapters = '/home/cuser/programs/Trimmomatic-0.36/adapters/NexteraPE-PE.fa'
@@ -27,7 +28,7 @@ varscan = '/home/cuser/programs/VarScan2/VarScan.v2.4.0.jar'
 
 curr_datetime = datetime.datetime.now().isoformat()
 
-
+'''
 def assess_quality():
     """Obtains quality statistics from MiSeq InterOp files and produces PDF summary report.
     Notes:
@@ -55,13 +56,12 @@ def assess_quality():
     # else:
     #       stop pipeline and return error message
 
-
-assess_quality()
-
 '''
+
+
 # Input: all files ending in fastq.gz; formatter collates files with same name ending either R1 or R2; outputs into file
 # with common name. Uses Trimmomatic 0.36.
-@collate("*.fastq.gz", formatter("([^/]+)R[12].fastq.gz$"), "{1[0]}.qfilter.fastq.gz")  # (input, filter, output)
+@collate("*.fastq.gz", formatter("([^/]+)R[12]_001.fastq.gz$"), "{1[0]}.qfilter.fastq.gz")  # (input, filter, output)
 def quality_trim(infile, outfile):
     fastq1 = infile[0]  # first input file given
     fastq2 = infile[1]  # second input file given
@@ -85,10 +85,10 @@ def quality_trim(infile, outfile):
     filelist = glob.glob("*unpaired*")
     for f in filelist:
         os.remove(f)
-'''
 
-# @follows(quality_trim)
-@collate("*qfilter.fastq.gz", formatter("([^/]+)R[12].qfilter.fastq.gz$"), "{1[0]}.bwa.drm.bam")
+
+@follows(quality_trim)
+@collate("*qfilter.fastq.gz", formatter("([^/]+)R[12]_001.qfilter.fastq.gz$"), "{1[0]}.bwa.drm.bam")
 def align_bwa(infile, outfile):
     fastq1 = infile[0]
     fastq2 = infile[1]
@@ -149,9 +149,9 @@ def run_breakdancer(infile, outfile):
 
 
 @follows(run_breakdancer)
-@transform(sort_bam, suffix(".bwa.drm.sorted.bam"), ".pindel_config.txt")
+@transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".pindel_config")
 def create_pindel_config(infile, outfile):
-    config_file = open("%s" % outfile, "w")  # write into output file
+    config_file = open("%s" % outfile, "w+")  # write into output file
     config_file.write("%s\t240\t%s\n" % (infile, infile[:-19]))  # name of BAM; insert size; sample_label
     config_file.close()
 
@@ -163,20 +163,25 @@ def create_pindel_config(infile, outfile):
                                                "{path[0]}/{basename[0]}._LI",
                                                "{path[0]}/{basename[0]}._RP",
                                                "{path[0]}/{basename[0]}._SI",
-                                               "{path[0]}/{basename[0]}._TD"])
-def run_pindel(infile, outfile):
+                                               "{path[0]}/{basename[0]}._TD"], "{path[0]}/{basename[0]}.")
+def run_pindel(infile, outfile, pindel_prefix):
     os.system("%s "  # pindel program
               "-f %s "  # reference genome
               "-i %s "
-              "-o %s "  # ??output_prefix
-              "-c ALL "  # look at all chromosomes
+              "-c ALL "  # ??output_prefix
+              "-o %s "  # look at all chromosomes
+              "--minimum_support_for_event 5 "
               "-T 2 "  # number of threads
               "-w 50 "  # window size
               "-x 4 "  # maximum size of SVs to detect, 4 = 8092    why 4???
+              "--sensitivity 0.96 "
               "-v 6 "  # minimum inversion size in bases     why 6???
               "-e 0.01 "  # expected sequencing error rate
-              "-b %s"  # file name with BreakDancer results     or -Q???
-              % (pindel, genome, infile, infile[:-18], 'cataracts.breakdancer_output.sv'))
+              "--report_breakpoints TRUE "
+              "--report_long_insertions TRUE "
+              "--name_of_logfile %spindel.log"
+              # "-b %s"  # file name with BreakDancer results     or -Q???
+              % (pindel, genome, infile, pindel_prefix, pindel_prefix))
 
 
 # https://github.com/ELIXIR-ITA-training/VarCall2015/blob/master/Tutorials/T5.2_variantcalling_stucturalvariants_tutorial.md
@@ -185,18 +190,20 @@ def run_pindel(infile, outfile):
 @transform(run_pindel, formatter(), "{path[0]}/{basename[0]}.pindel.merged.vcf", "{path[0]}/{basename[0]}.")
 def pindel_to_vcf(infile, outfile, pindel_prefix):
     os.system("%s "  # pindel2vcf program
-              "-p %s "  # input file
+              "-P %s "  # input file
               "-r %s "  # reference genome on computer
               "-R hg19 "  # reference genome
-              "-d hg19 "  # ??
-              "--min_size 0.5 "  # minimum size of events (what measurement??)
-              "--min_coverage 5 "  # minimum number of reads
-              "--min_supporting_reads 0 "
-              "--max_size 10000 "
+              "-d 2009 "
+              "--min_size 5 "  # minimum size of events (what measurement??)
+              "--min_coverage 10 "  # minimum number of reads
+              "--min_supporting_reads 5 "
+              "--max_size 8092 "
               "-v %s "  # output file
               "--het_cutoff 0.1 "
-              "--hom_cutoff 0.85"
+              "--hom_cutoff 0.85 "
+              "-G"
               % (pindel2vcf, pindel_prefix, genome, outfile))
+
 
 '''
 @follows(pindel_to_vcf)
