@@ -2,95 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3263912c-bade-4af7-a324-2eabc4187c74" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.breakdancer_config.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.breakdancer_output.sv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.bwa.drm.bam" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.bwa.drm.sorted.bam" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.bwa.drm.sorted.bam.bai" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.bwa.drm.sorted.bam.stats" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.pindel_config.pindel.merged.vcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.pindel_config.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.fastq.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter.fastq.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.fastq.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter.fastq.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-_BP" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-_CloseEndMapped" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-_D" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-_INT_final" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-_INV" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-_LI" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-_RP" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-_SI" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-_TD" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04.discordant.sam" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04.samblaster.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04.splitreads.sam" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-.bwa.drm.sorted.bam.bai" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-.bwa.drm.sorted.bam.stats" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-R1.fastq" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-R1.qfilter.fastq" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05-R2.fastq" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/05.samblaster.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.annovar.vcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.annovar.vcf.avinput" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.annovar.vcf.hg19_multianno.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.bed" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.bedpe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.breakdancer_config.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.breakdancer_output.sv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.breakdancer_result" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.breaks.all" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.breaks.detail" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.breaks.final" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.bwa.drm.bam" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.bwa.drm.sorted.bam" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.bwa.drm.sorted.bam.bai" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.bwa.drm.sorted.bam.stats" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.bwa.drm.sorted.bam.stats-quals.gp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.deduped.bedpe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.indels.vs2.vcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.pindel_config._BP" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.pindel_config._D" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.pindel_config._INV" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.pindel_config._LI" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.pindel_config._RP" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.pindel_config._SI" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.pindel_config._TD" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.pindel_config.pindel.merged.vcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.pindel_config.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.platypus" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.platypus_output.unsorted.vcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.snps.vs2.vcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts.vs2.vcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts_BP" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts_CloseEndMapped" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts_D" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts_INT_final" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts_INV" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts_LI" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts_RP" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts_SI" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cataracts_TD" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/not right now/05-.bwa.drm.bam" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/not right now/05-.bwa.drm.sorted.bam" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/not right now/05-.fastq.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/not right now/05-R1.fa.qfilter.fastq.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/not right now/05-R1.fastq.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/not right now/05-R1.qfilter.fastq.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/not right now/05-R2.fa.qfilter.fastq.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/not right now/05-R2.fastq.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/not right now/05-R2.qfilter.fastq.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/not right now/cataracts.bwa.drm.bam" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sample.breaks.all" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sample.breaks.detail" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sample.breaks.final" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.ruffus_history.sqlite" afterPath="$PROJECT_DIR$/.ruffus_history.sqlite" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/extras.py" afterPath="$PROJECT_DIR$/extras.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nothing.py" afterPath="$PROJECT_DIR$/nothing.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output.tex" afterPath="$PROJECT_DIR$/output.tex" />
     </list>
     <ignored path="AMLpipeline.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -123,14 +36,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nothing.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="nothing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nothing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.39958158">
-              <caret line="133" column="40" selection-start-line="133" selection-start-column="40" selection-end-line="133" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
               <folding>
                 <element signature="e#0#195#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parse_sample_sheet.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/parse_sample_sheet.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.43438914">
+              <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -149,6 +72,13 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -157,6 +87,7 @@
       <list>
         <option value="$PROJECT_DIR$/pipeline.py" />
         <option value="$PROJECT_DIR$/nothing.py" />
+        <option value="$PROJECT_DIR$/parse_sample_sheet.py" />
       </list>
     </option>
   </component>
@@ -403,7 +334,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24960423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3159304" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06827309" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -454,11 +385,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nothing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.39958158">
-          <caret line="133" column="40" selection-start-line="133" selection-start-column="40" selection-end-line="133" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
           <folding>
             <element signature="e#0#195#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parse_sample_sheet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43438914">
+          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

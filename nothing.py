@@ -112,69 +112,6 @@ pipeline_run()
 '''
 
 
-def parse_sample_sheet(csv_file):
-    # set some variables so we can use outside loops
-    header_index = 0
-    data_index = 0
-    manifest_index = 0
-    read_index = 0
-    settings_index = 0
-    df_headings = pd.DataFrame([])
-    df_final = pd.DataFrame(columns=['Property', 'Value'])  # this allows for easy appending later
-    # 1) Parse sample sheet into pandasdataframe
-    df_sample_sheet = pd.read_csv(csv_file, header=None)
-    # 2) Get index where these details are
-    for column in df_sample_sheet:
-        for row_index, row in df_sample_sheet.iterrows():
-            if row[column] == '[Data]':
-                data_index = row_index
-                df_headings = df_sample_sheet.ix[:data_index-2, 0:1]  # Put all header info into a separate dataframe
-                df_headings.columns = ['Property', 'Value']
-            elif row[column] == '[Header]':
-                header_index = row_index
-            elif row[column] == '[Manifests]':
-                manifest_index = row_index
-            elif row[column] == '[Reads]':
-                read_index = row_index
-            elif row[column] == '[Settings]':
-                settings_index = row_index
-            else:
-                pass
-    # 3) Split and modify the data for each header type so it can be merged into one consistent dataframe
-    df_headers = df_headings.ix[header_index+1:manifest_index-1]
-    df_manifests = df_headings.ix[manifest_index+1:read_index-2]
-    for row_index, row in df_manifests.iterrows():
-        row['Property'] = 'Manifest ' + row['Property']
-    df_reads = df_headings.ix[read_index+1:settings_index-2]
-    read_list = []
-    for row_index, row in df_reads.iterrows():
-        read_list.append(row['Property'])
-    df_settings = df_headings.ix[settings_index+1:]
-    df_final = df_final.append(df_headers)
-    df_final = df_final.append(df_manifests)
-    df_final = df_final.append({'Property': 'Reads', 'Value': read_list}, ignore_index=True)
-    df_final = df_final.append(df_settings)
-    df_final = df_final.reset_index(drop=True)
-    # 4) Convert the dataframe to a dictionary
-    final_dict = df_final.set_index('Property')['Value'].to_dict()
-
-    # 5) Now deal with the sample data itself
-    df_data = df_sample_sheet.ix[data_index+1:]
-    df_data = df_data.reset_index(drop=True)
-    df_data.columns = df_data.iloc[0]
-    df_data = df_data.reindex(df_data.index.drop(0))
-    df_data = df_data.dropna(axis=1, how='all')
-    sample_id_list = []
-    for row_index, row in df_data.iterrows():
-        sample_id_list.append(row['Sample_Name'][3:12])
-    df_trans = df_data.transpose()
-    df_trans.columns = sample_id_list
-    data_dict = df_trans.to_dict()
-
-    return final_dict, data_dict
-
-parse_sample_sheet('SampleSheet.csv')
-
 
 
 
