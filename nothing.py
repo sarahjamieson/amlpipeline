@@ -10,6 +10,9 @@ from ruffus.proxy_logger import *
 from pybedtools import BedTool
 import vcf
 from zipfile import ZipFile
+from pylatex import Document, Section, Tabular, Package, Command, Figure, SubFigure, Description
+from pylatex.utils import NoEscape, bold
+
 '''
 samtools = '/home/cuser/programs/samtools/samtools/bin/samtools'
 genome = '/media/sf_sarah_share/ucsc_hg19/ucsc.hg19.fasta'
@@ -95,23 +98,71 @@ def get_output():
 '''
 
 fastqc = '/home/cuser/programs/FastQC/fastqc'
+Trimmomatic = '/home/cuser/programs/Trimmomatic-0.36/trimmomatic-0.36.jar'
+trim_adapters = '/home/cuser/programs/Trimmomatic-0.36/adapters/NexteraPE-PE.fa'
 
 
-@collate("04*.fastq.gz", formatter("([^/]+)R[12].qfilter.fastq.gz$"), "{1[0]}.fastq.gz")
+@collate("*.fastq.gz", formatter("([^/]+)R[12].fastq.gz$"), "{1[0]}.qfilter.fastq.gz")  # (input, filter, output)
+def quality_trim(infile, outfile):
+    fastq1 = infile[0]  # first input file given
+    fastq2 = infile[1]  # second input file given
+
+    os.system("java -Xmx4g -jar %s "  # ?-Xmx4g
+              "PE "  # paired-end mode
+              "-threads 2 "  # multi-threading
+              "-phred33 "  # use phred33 encoding for base quality (>= Illumina 1.8)
+              "%s %s "  # input files R1 R2
+              "%s.qfilter.fastq.gz %s.unpaired.fastq.gz "  # paired and unpaired output R1
+              "%s.qfilter.fastq.gz %s.unpaired.fastq.gz "  # paired and unpaired output R2
+              "ILLUMINACLIP:%s:2:30:10 "  # adaptor trimming, seed matches (16bp), allow 2 mismatches,
+              # PE reads Q30, SE reads Q10
+              "CROP:150 "  # crop reads to max 150 from end
+              "SLIDINGWINDOW:4:25 "  # perform trim on every 4 bases for min quality of 25
+              "MINLEN:50"  # all reads should be min 50
+              % (Trimmomatic, fastq1, fastq2, fastq1[:-9], fastq1, fastq2[:-9], fastq2,
+                 trim_adapters))  # [:-6] removes file extension
+
+
+@follows(quality_trim)
+@collate("*qfilter.fastq.gz", formatter("([^/]+)R[12].qfilter.fastq.gz$"), "{1[0]}.fastq.gz")
 def run_fastqc(infile, outfile):
     fastq1 = infile[0]
     fastq2 = infile[1]
     os.system("%s --extract %s" % (fastqc, fastq1))
     os.system("%s --extract %s" % (fastqc, fastq2))
 
-    with ZipFile(outfile, 'w') as myzip:
-        print myzip.namelist()
-
 
 pipeline_run()
 '''
+# with ZipFile('04-R1.qfilter_fastqc.zip', 'w') as myzip:
+# myzip.extractall()
+
+pdflatex = '/usr/local/texlive/2015/bin/x86_64-linux/pdflatex'
 
 
+summary_df = pd.read_table('04-R1.qfilter_fastqc/summary.txt', header=None, names=['Score', 'Parameter'],
+                           usecols=[0, 1])
+basic_stats_df = pd.read_table('04-R1.qfilter_fastqc/fastqc_data.txt', header=None, names=['Property', 'Value'],
+                               usecols=[0, 1], skiprows=3, nrows=7)
 
+doc = Document()
+doc.append(Command('begin', 'center'))
+doc.append(Command('Large', bold('FastqQC Quality Results')))
+doc.append(Command('end', 'center'))
 
+with doc.create(Section('Basic Statistics')):
+    with doc.create(Description()) as desc:
+        for row_index, row in basic_stats_df.iterrows:
+            desc.add_item("%s" % row['Property'], "%s" % row['Value'])
+        '''
+        desc.add_item("Filename", "%s" % basic_stats_df.get_value(0, 'Value'))
+        desc.add_item("File type", "%s" % basic_stats_df.get_value(1, 'Value'))
+        desc.add_item("Encoding", "%s" % basic_stats_df.get_value(2, 'Value'))
+        desc.add_item("Total Sequences", "%s" % basic_stats_df.get_value(3, 'Value'))
+        desc.add_item("Sequences flagged as poor quality", "%s" % basic_stats_df.get_value(4, 'Value'))
+        desc.add_item("Filename", "%s" % basic_stats_df.get_value(0, 'Value'))
+        '''
+with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))) as plot:
+    plot.add_image('04-R1.qfilter_fastqc/Images/per_base_quality.png')
 
+doc.generate_pdf('fastqc', clean_tex=False, compiler=pdflatex)
