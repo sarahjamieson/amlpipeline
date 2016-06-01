@@ -142,27 +142,32 @@ pdflatex = '/usr/local/texlive/2015/bin/x86_64-linux/pdflatex'
 
 summary_df = pd.read_table('04-R1.qfilter_fastqc/summary.txt', header=None, names=['Score', 'Parameter'],
                            usecols=[0, 1])
+score_list = summary_df['Score'].tolist()
+parameter_list = summary_df['Parameter'].tolist()
+summary_dict = dict(zip(parameter_list, score_list))
+
 basic_stats_df = pd.read_table('04-R1.qfilter_fastqc/fastqc_data.txt', header=None, names=['Property', 'Value'],
                                usecols=[0, 1], skiprows=3, nrows=7)
 
 doc = Document()
+doc.packages.append(Package('geometry', options=['tmargin=0.75in', 'lmargin=0.75in', 'rmargin=0.75in']))
 doc.append(Command('begin', 'center'))
-doc.append(Command('Large', bold('FastqQC Quality Results')))
+doc.append(Command('Large', bold('FastQC Quality Results')))
 doc.append(Command('end', 'center'))
 
 with doc.create(Section('Basic Statistics')):
     with doc.create(Description()) as desc:
-        for row_index, row in basic_stats_df.iterrows:
-            desc.add_item("%s" % row['Property'], "%s" % row['Value'])
-        '''
-        desc.add_item("Filename", "%s" % basic_stats_df.get_value(0, 'Value'))
-        desc.add_item("File type", "%s" % basic_stats_df.get_value(1, 'Value'))
-        desc.add_item("Encoding", "%s" % basic_stats_df.get_value(2, 'Value'))
-        desc.add_item("Total Sequences", "%s" % basic_stats_df.get_value(3, 'Value'))
-        desc.add_item("Sequences flagged as poor quality", "%s" % basic_stats_df.get_value(4, 'Value'))
-        desc.add_item("Filename", "%s" % basic_stats_df.get_value(0, 'Value'))
-        '''
-with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))) as plot:
-    plot.add_image('04-R1.qfilter_fastqc/Images/per_base_quality.png')
+        for row_index, row in basic_stats_df.iterrows():
+            desc.add_item("%s:" % row['Property'], "%s" % row['Value'])
+
+with doc.create(Section('Per base sequence quality: %s' % summary_dict.get('Per base sequence quality'))):
+    with doc.create(Figure(position='htbp')) as plot:
+        plot.add_image('04-R1.qfilter_fastqc/Images/per_base_quality.png', width='60.0\textwidth')
+
+with doc.create(Section('Per tile sequence quality: %s' % summary_dict.get('Per tile sequence quality'))):
+    with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))) as plot:
+        plot.add_image('04-R1.qfilter_fastqc/Images/per_tile_quality.png')
+
 
 doc.generate_pdf('fastqc', clean_tex=False, compiler=pdflatex)
+os.system('mv /home/cuser/PycharmProjects/amlpipeline/fastqc.pdf /media/sf_sarah_share/MiSeq_quality_outputs/')
