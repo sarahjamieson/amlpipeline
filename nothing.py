@@ -10,7 +10,7 @@ from ruffus.proxy_logger import *
 from pybedtools import BedTool
 import vcf
 from zipfile import ZipFile
-from pylatex import Document, Section, Tabular, Package, Command, Figure, SubFigure, Description
+from pylatex import Document, Section, Tabular, Package, Command, Figure, SubFigure, Description, Subsection
 from pylatex.utils import NoEscape, bold
 
 '''
@@ -151,22 +151,60 @@ basic_stats_df = pd.read_table('04-R1.qfilter_fastqc/fastqc_data.txt', header=No
 
 doc = Document()
 doc.packages.append(Package('geometry', options=['tmargin=0.75in', 'lmargin=0.75in', 'rmargin=0.75in']))
+doc.packages.append(Package('subcaption'))
+doc.append(Command(NoEscape(r'renewcommand{\baselinestretch}'), '1.0'))
 doc.append(Command('begin', 'center'))
 doc.append(Command('Large', bold('FastQC Quality Results')))
 doc.append(Command('end', 'center'))
 
 with doc.create(Section('Basic Statistics')):
     with doc.create(Description()) as desc:
+        doc.append(Command(NoEscape(r'renewcommand{\baselinestretch}'), '1.0'))
         for row_index, row in basic_stats_df.iterrows():
             desc.add_item("%s:" % row['Property'], "%s" % row['Value'])
 
-with doc.create(Section('Per base sequence quality: %s' % summary_dict.get('Per base sequence quality'))):
-    with doc.create(Figure(position='htbp')) as plot:
-        plot.add_image('04-R1.qfilter_fastqc/Images/per_base_quality.png', width='60.0\textwidth')
+with doc.create(Section('Graphs')):
+    with doc.create(Description()) as desc:
+        if summary_dict.get('Overrepresented sequences') == 'PASS':
+            desc.add_item('Overrepresented sequences:', 'None')
+        else:
+            desc.add_item('Overrepresented sequences:', 'Apparently so.')
+    with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
+        doc.append(Command('centering'))
+        with doc.create(SubFigure()) as plot:
+            plot.add_image('04-R1.qfilter_fastqc/Images/per_base_quality.png')
+            plot.add_caption('Per base sequence quality: %s' % summary_dict.get('Per base sequence quality'))
+        with doc.create(SubFigure()) as plot:
+            plot.add_image('04-R1.qfilter_fastqc/Images/per_tile_quality.png')
+            plot.add_caption('Per tile sequence quality: %s' % summary_dict.get('Per tile sequence quality'))
+        with doc.create(SubFigure()) as plot:
+            plot.add_image('04-R1.qfilter_fastqc/Images/per_sequence_quality.png')
+            plot.add_caption('Per sequence quality scores: %s' % summary_dict.get('Per sequence quality scores'))
+        with doc.create(SubFigure()) as plot:
+            plot.add_image('04-R1.qfilter_fastqc/Images/per_base_sequence_content.png')
+            plot.add_caption('Per base sequence content: %s' % summary_dict.get('Per base sequence content'))
+    with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
+        doc.append(Command('ContinuedFloat'))
+        doc.append(Command('centering'))
+        with doc.create(SubFigure()) as plot:
+            plot.add_image('04-R1.qfilter_fastqc/Images/per_sequence_gc_content.png')
+            plot.add_caption('Per sequence GC content: %s' % summary_dict.get('Per sequence GC content'))
+        with doc.create(SubFigure()) as plot:
+            plot.add_image('04-R1.qfilter_fastqc/Images/per_base_n_content.png')
+            plot.add_caption('Per base N content: %s' % summary_dict.get('Per base N content'))
+        with doc.create(SubFigure()) as plot:
+            plot.add_image('04-R1.qfilter_fastqc/Images/sequence_length_distribution.png')
+            plot.add_caption('Sequence Length Distribution: %s' % summary_dict.get('Sequence Length Distribution'))
+        with doc.create(SubFigure()) as plot:
+            plot.add_image('04-R1.qfilter_fastqc/Images/duplication_levels.png')
+            plot.add_caption('Sequence Duplication Levels: %s' % summary_dict.get('Sequence Duplication Levels'))
+        with doc.create(SubFigure()) as plot:
+            plot.add_image('04-R1.qfilter_fastqc/Images/adapter_content.png')
+            plot.add_caption('Adapter content: %s' % summary_dict.get('Adapter Content'))
+        with doc.create(SubFigure()) as plot:
+            plot.add_image('04-R1.qfilter_fastqc/Images/kmer_profiles.png')
+            plot.add_caption('Kmer content: %s' % summary_dict.get('Kmer Content'))
 
-with doc.create(Section('Per tile sequence quality: %s' % summary_dict.get('Per tile sequence quality'))):
-    with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))) as plot:
-        plot.add_image('04-R1.qfilter_fastqc/Images/per_tile_quality.png')
 
 
 doc.generate_pdf('fastqc', clean_tex=False, compiler=pdflatex)
