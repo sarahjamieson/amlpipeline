@@ -20,7 +20,7 @@ plot_bamstats = '/home/cuser/programs/samtools/samtools/bin/plot-bamstats'
 bam2cfg = '/home/cuser/programs/breakdancer/breakdancer-max1.4.5/bam2cfg.pl'
 breakdancer = '/home/cuser/programs/breakdancer/breakdancer-max'
 pindel = '/home/cuser/programs/pindel/pindel'
-genome = '/media/sf_sarah_share/ucsc_hg19/ucsc.hg19.fasta'
+genome = '/media/genomicdata/ucsc_hg19/ucsc.hg19.fasta'
 platypus = '/home/cuser/programs/Platypus/bin/Platypus.py'
 pindel2vcf = '/home/cuser/programs/pindel/pindel2vcf'
 annovar = '/home/cuser/programs/ANNOVAR/annovar/table_annovar.pl'
@@ -58,10 +58,10 @@ def assess_quality():
 
 '''
 
-
+'''
 # Input: all files ending in fastq.gz; formatter collates files with same name ending either R1 or R2; outputs into file
 # with common name. Uses Trimmomatic 0.36.
-@collate("*.fastq.gz", formatter("([^/]+)R[12]_001.fastq.gz$"), "{1[0]}.qfilter.fastq.gz")  # (input, filter, output)
+@collate("*.fastq.gz", formatter("([^/]+)R[12].fastq.gz$"), "{1[0]}.qfilter.fastq.gz")  # (input, filter, output)
 def quality_trim(infile, outfile):
     fastq1 = infile[0]  # first input file given
     fastq2 = infile[1]  # second input file given
@@ -87,8 +87,8 @@ def quality_trim(infile, outfile):
         os.remove(f)
 
 
-@follows(quality_trim)
-@collate("*qfilter.fastq.gz", formatter("([^/]+)R[12]_001.qfilter.fastq.gz$"), "{1[0]}.bwa.drm.bam")
+# @follows(quality_trim)
+@collate("*qfilter.fastq.gz", formatter("([^/]+)R[12].qfilter.fastq.gz$"), "{1[0]}.bwa.drm.bam")
 def align_bwa(infile, outfile):
     fastq1 = infile[0]
     fastq2 = infile[1]
@@ -108,7 +108,8 @@ def align_bwa(infile, outfile):
               % (bwa, rg_header, genome, fastq1, fastq2, sample, samblaster, sample, sample, sample, samtools, outfile))
 
 
-@follows(align_bwa)
+
+# @follows(align_bwa)
 @transform(["*.bwa.drm.bam"], suffix(".bwa.drm.bam"), ".bwa.drm.sorted.bam")
 def sort_bam(infile, outfile):
     os.system("%s sort "
@@ -121,21 +122,20 @@ def sort_bam(infile, outfile):
               % (samtools, infile, outfile, infile))
 
 
-@follows(sort_bam)
-@transform(sort_bam, suffix(".bwa.drm.sorted.bam"), ".bwa.drm.sorted.bam.bai")
+# @follows(sort_bam)
+@transform("*.bwa.drm.sorted.bam", suffix(".bwa.drm.sorted.bam"), ".bwa.drm.sorted.bam.bai")
 def index_bam(infile, outfile):
     os.system("%s index %s" % (samtools, infile))
 
-
-@follows(index_bam)
-@transform(sort_bam, suffix(".bwa.drm.sorted.bam"), ".bwa.drm.sorted.bam.stats")
+# @follows(index_bam)
+@transform("*.bwa.drm.sorted.bam", suffix(".bwa.drm.sorted.bam"), ".bwa.drm.sorted.bam.stats")
 def run_samtools_stats(infile, outfile):
     os.system("%s stats %s > %s" % (samtools, infile, outfile))
     # os.system("%s -p %s %s" % (plot_bamstats, outfile, outfile))  # error: no such file or directory gnuplot
 
 
-@follows(run_samtools_stats)
-@transform(sort_bam, suffix(".bwa.drm.sorted.bam"), ".breakdancer_config.txt")
+# @follows(run_samtools_stats)
+@transform("*.bwa.drm.sorted.bam", suffix(".bwa.drm.sorted.bam"), ".breakdancer_config.txt")
 def create_breakdancer_config(infile, outfile):
     config_file = open("%s" % outfile, "w")  # write into output file
     config_file.write("map:%s\tmean:160\tstd:50\treadlen:150\tsample:%s\texe:bwa-0.7.12\n" % (infile, infile[:-19]))
@@ -148,16 +148,17 @@ def run_breakdancer(infile, outfile):
     os.system("%s -q 10 %s > %s" % (breakdancer, infile, outfile))
 
 
-@follows(run_breakdancer)
+
+# @follows(run_breakdancer)
 @transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".pindel_config")
 def create_pindel_config(infile, outfile):
     config_file = open("%s" % outfile, "w+")  # write into output file
     config_file.write("%s\t240\t%s\n" % (infile, infile[:-19]))  # name of BAM; insert size; sample_label
     config_file.close()
 
-
-@follows(create_pindel_config)
-@transform(create_pindel_config, formatter(), ["{path[0]}/{basename[0]}._BP",
+'''
+# @follows(create_pindel_config)
+@transform("*.pindel_config", formatter(), ["{path[0]}/{basename[0]}._BP",
                                                "{path[0]}/{basename[0]}._D",
                                                "{path[0]}/{basename[0]}._INV",
                                                "{path[0]}/{basename[0]}._LI",
@@ -286,7 +287,8 @@ def annotate_vcf(infile, outfile):
     os.rename("%s.hg19_multianno.vcf" % outfile, "%s" % outfile)
 
 '''
-pipeline_run(verbose=4, forcedtorun_tasks=[create_pindel_config, run_pindel, pindel_to_vcf])
+
+pipeline_run(verbose=4)
 
 # Use these databases:
 # refGene,knownGene,ensgene,esp6500_all,1000g2014oct_all,1000g2014oct_afr,1000g2014oct_amr,1000g2014oct_eas,

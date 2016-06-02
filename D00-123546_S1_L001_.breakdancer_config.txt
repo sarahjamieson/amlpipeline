@@ -1,1 +1,0 @@
-map:D00-123546_S1_L001_.bwa.drm.sorted.bam	mean:160	std:50	readlen:150	sample:D00-123546_S1_L001_	exe:bwa-0.7.12

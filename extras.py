@@ -50,26 +50,3 @@ def annotate_vcf(infile, outfile):
               "-vcfinput"  # required if input is vcf file
               % ('annovar', infile, outfile))
 
-
-def parse_sample_sheet(csv_file):
-    """Parses a sample sheet from a CSV file to produce...
-
-    :param csv_file: sample sheet file
-    :return: dataframe with relevant columns (?dictionary)
-    """
-    df_final = pd.DataFrame([])
-    # 1) Read CSV file
-    df_sample_sheet = pd.read_csv(csv_file)
-    # 2) Find row index where the cell has "Sample_ID" and remove rows before this.
-    for column in df_sample_sheet:
-        for row_index, row in df_sample_sheet.iterrows():
-            if row[column] == 'Sample_ID':
-                id_index = row_index
-                df_final = df_sample_sheet.ix[id_index+1:]
-            else:
-                pass
-    # 3) If dataframe is empty "Sample_ID" was not found so raise AssertionError.
-    assert not df_final.empty, "No Sample_ID column detected"
-    return df_final
-
-parse_sample_sheet('SampleSheet.csv')
