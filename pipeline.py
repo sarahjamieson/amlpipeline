@@ -1,14 +1,12 @@
 from illuminate import InteropTileMetrics, InteropControlMetrics, InteropErrorMetrics, InteropExtractionMetrics, \
     InteropIndexMetrics, InteropQualityMetrics, InteropCorrectedIntensityMetrics
-import numpy as np
-import pandas as pd
 import os
 import datetime
-from pandas import ExcelWriter
 from ruffus import *
 import glob
 
-# from create_pdf import CreatePDF
+from create_pdf import CreatePDF
+from create_fastqc_pdf import CreateFastQCPDF
 
 Trimmomatic = '/home/cuser/programs/Trimmomatic-0.36/trimmomatic-0.36.jar'
 trim_adapters = '/home/cuser/programs/Trimmomatic-0.36/adapters/NexteraPE-PE.fa'
@@ -23,12 +21,13 @@ pindel = '/home/cuser/programs/pindel/pindel'
 genome = '/media/genomicdata/ucsc_hg19/ucsc.hg19.fasta'
 platypus = '/home/cuser/programs/Platypus/bin/Platypus.py'
 pindel2vcf = '/home/cuser/programs/pindel/pindel2vcf'
-annovar = '/home/cuser/programs/ANNOVAR/annovar/table_annovar.pl'
+annovar = '/media/sf_sarah_share/ANNOVAR/annovar/table_annovar.pl'
 varscan = '/home/cuser/programs/VarScan2/VarScan.v2.4.0.jar'
+fastqc = '/home/cuser/programs/FastQC/fastqc'
 
 curr_datetime = datetime.datetime.now().isoformat()
 
-'''
+
 def assess_quality():
     """Obtains quality statistics from MiSeq InterOp files and produces PDF summary report.
     Notes:
@@ -56,12 +55,10 @@ def assess_quality():
     # else:
     #       stop pipeline and return error message
 
-'''
 
-'''
 # Input: all files ending in fastq.gz; formatter collates files with same name ending either R1 or R2; outputs into file
 # with common name. Uses Trimmomatic 0.36.
-@collate("*.fastq.gz", formatter("([^/]+)R[12].fastq.gz$"), "{1[0]}.qfilter.fastq.gz")  # (input, filter, output)
+@collate("*.fastq.gz", formatter("([^/]+)R[12]_001.fastq.gz$"), "{path[0]}/{1[0]}.qfilter.fastq.gz")  # (input, filter, output)
 def quality_trim(infile, outfile):
     fastq1 = infile[0]  # first input file given
     fastq2 = infile[1]  # second input file given
@@ -87,8 +84,21 @@ def quality_trim(infile, outfile):
         os.remove(f)
 
 
-# @follows(quality_trim)
-@collate("*qfilter.fastq.gz", formatter("([^/]+)R[12].qfilter.fastq.gz$"), "{1[0]}.bwa.drm.bam")
+@follows(quality_trim)
+@collate("*qfilter.fastq.gz", formatter("([^/]+)R[12]_001.qfilter.fastq.gz$"), "{path[0]}/{1[0]}.fastq.gz")
+def run_fastqc(infile, outfile):
+    fastq1 = infile[0]
+    fastq2 = infile[1]
+    os.system("%s --extract %s" % (fastqc, fastq1))
+    os.system("%s --extract %s" % (fastqc, fastq2))
+
+    fastqc_zip = '%s.qfilter_fastqc.zip' % fastq1[:-17]
+    pdf = CreateFastQCPDF(fastqc_zip)
+    pdf.create_pdf()
+
+
+@follows(quality_trim)
+@collate("*qfilter.fastq.gz", formatter("([^/]+)R[12]_001.qfilter.fastq.gz$"), "{path[0]}/{1[0]}.bwa.drm.bam")
 def align_bwa(infile, outfile):
     fastq1 = infile[0]
     fastq2 = infile[1]
@@ -108,8 +118,7 @@ def align_bwa(infile, outfile):
               % (bwa, rg_header, genome, fastq1, fastq2, sample, samblaster, sample, sample, sample, samtools, outfile))
 
 
-
-# @follows(align_bwa)
+@follows(align_bwa)
 @transform(["*.bwa.drm.bam"], suffix(".bwa.drm.bam"), ".bwa.drm.sorted.bam")
 def sort_bam(infile, outfile):
     os.system("%s sort "
@@ -122,19 +131,20 @@ def sort_bam(infile, outfile):
               % (samtools, infile, outfile, infile))
 
 
-# @follows(sort_bam)
+@follows(sort_bam)
 @transform("*.bwa.drm.sorted.bam", suffix(".bwa.drm.sorted.bam"), ".bwa.drm.sorted.bam.bai")
 def index_bam(infile, outfile):
     os.system("%s index %s" % (samtools, infile))
 
-# @follows(index_bam)
+
+@follows(index_bam)
 @transform("*.bwa.drm.sorted.bam", suffix(".bwa.drm.sorted.bam"), ".bwa.drm.sorted.bam.stats")
 def run_samtools_stats(infile, outfile):
     os.system("%s stats %s > %s" % (samtools, infile, outfile))
     # os.system("%s -p %s %s" % (plot_bamstats, outfile, outfile))  # error: no such file or directory gnuplot
 
-
-# @follows(run_samtools_stats)
+'''
+@follows(run_samtools_stats)
 @transform("*.bwa.drm.sorted.bam", suffix(".bwa.drm.sorted.bam"), ".breakdancer_config.txt")
 def create_breakdancer_config(infile, outfile):
     config_file = open("%s" % outfile, "w")  # write into output file
@@ -146,18 +156,18 @@ def create_breakdancer_config(infile, outfile):
 @transform(create_breakdancer_config, suffix(".breakdancer_config.txt"), ".breakdancer_output.sv")
 def run_breakdancer(infile, outfile):
     os.system("%s -q 10 %s > %s" % (breakdancer, infile, outfile))
+'''
 
 
-
-# @follows(run_breakdancer)
+@follows(run_samtools_stats)
 @transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".pindel_config")
 def create_pindel_config(infile, outfile):
     config_file = open("%s" % outfile, "w+")  # write into output file
     config_file.write("%s\t240\t%s\n" % (infile, infile[:-19]))  # name of BAM; insert size; sample_label
     config_file.close()
 
-'''
-# @follows(create_pindel_config)
+
+@follows(create_pindel_config)
 @transform("*.pindel_config", formatter(), ["{path[0]}/{basename[0]}._BP",
                                                "{path[0]}/{basename[0]}._D",
                                                "{path[0]}/{basename[0]}._INV",
@@ -206,7 +216,6 @@ def pindel_to_vcf(infile, outfile, pindel_prefix):
               % (pindel2vcf, pindel_prefix, genome, outfile))
 
 
-'''
 @follows(pindel_to_vcf)
 @transform(sort_bam, suffix(".bwa.drm.sorted.bam"), ".platypus_output.unsorted.vcf")
 def run_platypus(infile, outfile):
@@ -224,7 +233,7 @@ def run_platypus(infile, outfile):
               "--filterDuplicates=1 "  # remove likely PCR copies
               "--minMapQual=0 "  # min mapping quality threshold (0=keep all)
               "--minGoodQualBases=1 "  # min good quality bases in a read
-              "--nCPU=?"  # number of processors/cores, parallel jobs
+              "--nCPU=2"  # number of processors/cores, parallel jobs
               % (platypus, infile, genome, outfile))
 
 
@@ -267,17 +276,17 @@ def run_varscan2_indels(infile, outfile):
 
 
 # the number of arguments for "-protocol", "-arg" and "-operation" should all be equal and match in order.
-# @follows(run_varscan2_indels)
-@transform(["*.snps.vs2.vcf"], suffix(".snps.vs2.vcf"), ".annovar.vcf")
+@follows(pindel_to_vcf)
+@transform(["*.pindel.merged.vcf"], suffix(".pindel.merged.vcf"), ".annovar.vcf")
 def annotate_vcf(infile, outfile):
     os.system("%s "  # table_annovar.pl
               "%s "  # infile
-              "/home/cuser/programs/ANNOVAR/annovar/humandb/ "  # directory database files are stored in
+              "/media/sf_sarah_share/ANNOVAR/annovar/humandb/ "  # directory database files are stored in
               "-buildver hg19 "  # genome build
               "-out %s "  # outfile
               "-remove "  # removes all temporary files
               "-protocol refGene,knownGene,ensgene,esp6500siv2_all,snp138, "  # databases
-              "-arg '-exonicsplicing -hgvs -splicing 30',,,, "  # optional arguments, splicing threshold 30bp
+              "-arg '--exonicsplicing --hgvs --splicing 30',,,, "  # optional arguments, splicing threshold 30bp
               "-operation g,g,g,f,f "  # gene-based or filter-based for protocols
               "-nastring . "  # if variant doesn't have a score from tools (e.g. intronic variant & SIFT), position="."
               "-vcfinput"  # required if input is vcf file
@@ -285,8 +294,8 @@ def annotate_vcf(infile, outfile):
 
     # rename to match expected output
     os.rename("%s.hg19_multianno.vcf" % outfile, "%s" % outfile)
+    os.system("cp %s /media/sf_sarah_share/" % outfile)
 
-'''
 
 pipeline_run(verbose=4)
 

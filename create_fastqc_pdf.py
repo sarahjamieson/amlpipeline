@@ -8,6 +8,7 @@ import os
 class CreateFastQCPDF(object):
     def __init__(self, fastqc):
         self.fastqc = fastqc
+        self.name = fastqc[:-19]
 
     def create_pdf(self):
         # 1) Extract files from zip folder
@@ -15,13 +16,13 @@ class CreateFastQCPDF(object):
             myzip.extractall()
 
         # 2) Put summary.txt and fastqc_data.txt files into dataframes
-        summary_df = pd.read_table('04-R1.qfilter_fastqc/summary.txt', header=None, names=['Score', 'Parameter'],
+        summary_df = pd.read_table('%s.qfilter_fastqc/summary.txt' % self.name, header=None, names=['Score', 'Parameter'],
                                    usecols=[0, 1])
         score_list = summary_df['Score'].tolist()  # not currently used, may be needed
         parameter_list = summary_df['Parameter'].tolist()
         summary_dict = dict(zip(parameter_list, score_list))
 
-        basic_stats_df = pd.read_table('04-R1.qfilter_fastqc/fastqc_data.txt', header=None, names=['Property', 'Value'],
+        basic_stats_df = pd.read_table('%s.qfilter_fastqc/fastqc_data.txt' % self.name, header=None, names=['Property', 'Value'],
                                        usecols=[0, 1], skiprows=3, nrows=7)
 
         # 3) Create PDF with basic statistics, summary data and png images
@@ -57,39 +58,40 @@ class CreateFastQCPDF(object):
             with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
                 doc.append(Command('centering'))
                 with doc.create(SubFigure()) as plot:
-                    plot.add_image('04-R1.qfilter_fastqc/Images/per_base_quality.png')
+                    plot.add_image('%s.qfilter_fastqc/Images/per_base_quality.png' % self.name)
                     plot.add_caption('Per base sequence quality')
                 with doc.create(SubFigure()) as plot:
-                    plot.add_image('04-R1.qfilter_fastqc/Images/per_tile_quality.png')
+                    plot.add_image('%s.qfilter_fastqc/Images/per_tile_quality.png' % self.name)
                     plot.add_caption('Per tile sequence quality')
                 with doc.create(SubFigure()) as plot:
-                    plot.add_image('04-R1.qfilter_fastqc/Images/per_sequence_quality.png')
+                    plot.add_image('%s.qfilter_fastqc/Images/per_sequence_quality.png' % self.name)
                     plot.add_caption('Per sequence quality scores')
                 with doc.create(SubFigure()) as plot:
-                    plot.add_image('04-R1.qfilter_fastqc/Images/per_base_sequence_content.png')
+                    plot.add_image('%s.qfilter_fastqc/Images/per_base_sequence_content.png' % self.name)
                     plot.add_caption('Per base sequence content')
                 with doc.create(SubFigure()) as plot:
-                    plot.add_image('04-R1.qfilter_fastqc/Images/per_sequence_gc_content.png')
+                    plot.add_image('%s.qfilter_fastqc/Images/per_sequence_gc_content.png' % self.name)
                     plot.add_caption('Per sequence GC content')
                 with doc.create(SubFigure()) as plot:
-                    plot.add_image('04-R1.qfilter_fastqc/Images/per_base_n_content.png')
+                    plot.add_image('%s.qfilter_fastqc/Images/per_base_n_content.png' % self.name)
                     plot.add_caption('Per base N content')
             with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
                 doc.append(Command('ContinuedFloat'))
                 doc.append(Command('centering'))
                 with doc.create(SubFigure()) as plot:
-                    plot.add_image('04-R1.qfilter_fastqc/Images/sequence_length_distribution.png')
+                    plot.add_image('%s.qfilter_fastqc/Images/sequence_length_distribution.png' % self.name)
                     plot.add_caption('Sequence Length Distribution')
                 with doc.create(SubFigure()) as plot:
-                    plot.add_image('04-R1.qfilter_fastqc/Images/duplication_levels.png')
+                    plot.add_image('%s.qfilter_fastqc/Images/duplication_levels.png' % self.name)
                     plot.add_caption('Sequence Duplication Levels')
                 with doc.create(SubFigure()) as plot:
-                    plot.add_image('04-R1.qfilter_fastqc/Images/adapter_content.png')
+                    plot.add_image('%s.qfilter_fastqc/Images/adapter_content.png' % self.name)
                     plot.add_caption('Adapter content: %s')
                 with doc.create(SubFigure()) as plot:
-                    plot.add_image('04-R1.qfilter_fastqc/Images/kmer_profiles.png')
+                    plot.add_image('%s.qfilter_fastqc/Images/kmer_profiles.png' % self.name)
                     plot.add_caption('Kmer content: %s')
 
         pdflatex = '/usr/local/texlive/2015/bin/x86_64-linux/pdflatex'
-        doc.generate_pdf('fastqc', clean_tex=False, compiler=pdflatex)
-        os.system('mv /home/cuser/PycharmProjects/amlpipeline/fastqc.pdf /media/sf_sarah_share/MiSeq_quality_outputs/')
+        doc.generate_pdf('%s' % self.name, clean_tex=False, compiler=pdflatex)
+        os.system('mv /home/cuser/PycharmProjects/amlpipeline/%s.pdf /media/sf_sarah_share/MiSeq_quality_outputs/'
+                  % self.name)

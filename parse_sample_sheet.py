@@ -38,7 +38,7 @@ class ParseSampleSheet(object):
             for row_index, row in df_sample_sheet.iterrows():
                 if row[column] == '[Data]':
                     data_index = row_index
-                    df_headings = df_sample_sheet.ix[:data_index - 2, 0:1]  # Put all header info into a separate dataframe
+                    df_headings = df_sample_sheet.ix[:data_index - 2, 0:1]  # Put all header info into a separate df
                     df_headings.columns = ['Property', 'Value']
                 elif row[column] == '[Header]':
                     header_index = row_index

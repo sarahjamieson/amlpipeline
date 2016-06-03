@@ -1,48 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3263912c-bade-4af7-a324-2eabc4187c74" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.fastq.gz.unpaired.fastq.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.fastq.gz.unpaired.fastq.gz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_._BP" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_._CloseEndMapped" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_._D" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_._INT_final" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_._INV" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_._LI" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_._RP" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_._SI" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_._TD" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.breakdancer_config.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.breakdancer_output.sv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.bwa.drm.bam" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.bwa.drm.sorted.bam" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.bwa.drm.sorted.bam.bai" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.bwa.drm.sorted.bam.stats" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.pindel.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.pindel.merged.vcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.pindel_config" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.pindel_config._BP" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.pindel_config._CloseEndMapped" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.pindel_config._D" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.pindel_config._INT_final" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.pindel_config._INV" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.pindel_config._LI" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.pindel_config._RP" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.pindel_config._SI" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.pindel_config._TD" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.pindel_config.pindel.merged.vcf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_.pindel_config.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_R1_.discordant.sam" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_R1_.samblaster.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_R1_.splitreads.sam" afterPath="" />
+    <list default="true" id="6eebfb79-2714-43f4-be09-28300ccfc8a6" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-._BP" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-._CloseEndMapped" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-._D" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-._INT_final" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-._INV" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-._LI" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-._RP" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-._SI" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-._TD" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.breakdancer_config.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.bwa.drm.bam" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.bwa.drm.sorted.bam" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.bwa.drm.sorted.bam.bai" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.bwa.drm.sorted.bam.stats" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.pindel.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.pindel.merged.vcf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-.pindel_config" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.fastq.gz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter.fastq.gz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/Icons/error.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/Icons/fastqc_icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/Icons/tick.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/Icons/warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/Images/adapter_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/Images/duplication_levels.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/Images/kmer_profiles.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/Images/per_base_n_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/Images/per_base_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/Images/per_base_sequence_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/Images/per_sequence_gc_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/Images/per_sequence_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/Images/per_tile_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/Images/sequence_length_distribution.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/fastqc.fo" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/fastqc_data.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/fastqc_report.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R1.qfilter_fastqc/summary.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.fastq.gz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter.fastq.gz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/Icons/error.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/Icons/fastqc_icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/Icons/tick.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/Icons/warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/Images/adapter_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/Images/duplication_levels.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/Images/kmer_profiles.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/Images/per_base_n_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/Images/per_base_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/Images/per_base_sequence_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/Images/per_sequence_gc_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/Images/per_sequence_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/Images/per_tile_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/Images/sequence_length_distribution.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/fastqc.fo" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/fastqc_data.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/fastqc_report.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-R2.qfilter_fastqc/summary.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04.discordant.sam" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04.samblaster.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04.splitreads.sam" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_R1_001.fastq.gz" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_R1_001.qfilter.fastq.gz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_R2_001.fastq.gz" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/D00-123546_S1_L001_R2_001.qfilter.fastq.gz" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.ruffus_history.sqlite" afterPath="$PROJECT_DIR$/.ruffus_history.sqlite" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/extras.py" afterPath="$PROJECT_DIR$/extras.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fastqc.tex" afterPath="$PROJECT_DIR$/fastqc.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/create_fastqc_pdf.py" afterPath="$PROJECT_DIR$/create_fastqc_pdf.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nothing.py" afterPath="$PROJECT_DIR$/nothing.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parse_sample_sheet.py" afterPath="$PROJECT_DIR$/parse_sample_sheet.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline.py" afterPath="$PROJECT_DIR$/pipeline.py" />
     </list>
     <ignored path="AMLpipeline.iws" />
@@ -63,61 +95,7 @@
     <favorites_list name="AMLpipeline" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pipeline.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="208" column="3" selection-start-line="208" selection-start-column="3" selection-end-line="208" selection-end-column="3" />
-              <folding>
-                <element signature="e#0#195#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nothing.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/nothing.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3277311">
-              <caret line="13" column="40" selection-start-line="11" selection-start-column="0" selection-end-line="13" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#195#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fastqc.tex" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fastqc.tex">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="65" column="15" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create_pdf.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/create_pdf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
-              <folding>
-                <element signature="e#0#83#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -125,18 +103,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/parse_sample_sheet.py" />
-        <option value="$PROJECT_DIR$/04-R1.qfilter_fastqc/summary.txt" />
-        <option value="$PROJECT_DIR$/D00-123546_S1_L001_._BP" />
-        <option value="$PROJECT_DIR$/D00-123546_S1_L001_._D" />
-        <option value="$PROJECT_DIR$/D00-123546_S1_L001_._LI" />
-        <option value="$PROJECT_DIR$/D00-123546_S1_L001_._SI" />
-        <option value="$PROJECT_DIR$/D00-123546_S1_L001_._TD" />
-        <option value="$PROJECT_DIR$/pipeline.py" />
-        <option value="$PROJECT_DIR$/extras.py" />
-        <option value="$PROJECT_DIR$/create_fastq_pdf.py" />
-        <option value="$PROJECT_DIR$/nothing.py" />
         <option value="$PROJECT_DIR$/create_fastqc_pdf.py" />
+        <option value="$PROJECT_DIR$/create_pdf.py" />
+        <option value="$PROJECT_DIR$/pipeline.py" />
       </list>
     </option>
   </component>
@@ -145,25 +114,6 @@
     <option name="y" value="28" />
     <option name="width" value="1922" />
     <option name="height" value="884" />
-  </component>
-  <component name="ProjectInspectionProfilesVisibleTreeState">
-    <entry key="Project Default">
-      <profile-state>
-        <expanded-state>
-          <State>
-            <id />
-          </State>
-          <State>
-            <id>Python</id>
-          </State>
-        </expanded-state>
-        <selected-state>
-          <State>
-            <id>PyPep8Inspection</id>
-          </State>
-        </selected-state>
-      </profile-state>
-    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -190,6 +140,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -208,30 +160,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AMLpipeline" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="amlpipeline" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="04-R1.qfilter_fastqc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../django_apps/mysitedev" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Python.nothing">
+  <component name="RunManager" selected="Python.pipeline">
     <configuration default="false" name="pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -245,23 +181,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="AMLpipeline" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pipeline.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="nothing" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="AMLpipeline" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/nothing.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -388,214 +307,56 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="2">
+    <list size="1">
       <item index="0" class="java.lang.String" itemvalue="Python.pipeline" />
-      <item index="1" class="java.lang.String" itemvalue="Python.nothing" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.nothing" />
-        <item index="1" class="java.lang.String" itemvalue="Python.pipeline" />
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Python.pipeline" />
       </list>
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3263912c-bade-4af7-a324-2eabc4187c74" name="Default" comment="" />
-      <created>1464679499800</created>
+      <changelist id="6eebfb79-2714-43f4-be09-28300ccfc8a6" name="Default" comment="" />
+      <created>1464881314310</created>
       <option name="number" value="Default" />
-      <updated>1464679499800</updated>
+      <updated>1464881314310</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="28" width="1922" height="884" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24960423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24960423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931727" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33119383" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
-  </component>
-  <component name="Vcs.Log.UiProperties">
-    <option name="RECENTLY_FILTERED_USER_GROUPS">
-      <collection />
-    </option>
-    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-      <collection />
-    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/extras.py</url>
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="1" />
-    </breakpoint-manager>
+    <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/04-._SI">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-._TD">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="118" selection-start-line="9" selection-start-column="118" selection-end-line="9" selection-end-column="118" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nothing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="203" column="45" selection-start-line="203" selection-start-column="45" selection-end-line="203" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#195#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-.pindel.merged.vcf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastqc.tex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="65" column="15" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/create_pdf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="208" column="3" selection-start-line="208" selection-start-column="3" selection-end-line="208" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#195#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-._INV">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-._LI">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-._RP">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-._SI">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-._TD">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="118" selection-start-line="9" selection-start-column="118" selection-end-line="9" selection-end-column="118" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nothing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="203" column="45" selection-start-line="203" selection-start-column="45" selection-end-line="203" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#195#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-.pindel.merged.vcf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastqc.tex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="65" column="15" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/create_pdf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -609,17 +370,10 @@
     <entry file="file://$PROJECT_DIR$/create_pdf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
+          <caret line="1" column="40" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
           <folding>
             <element signature="e#0#83#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extras.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="58" selection-start-line="67" selection-start-column="16" selection-end-line="67" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -630,256 +384,40 @@
           <folding>
             <element signature="e#0#195#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nothing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="159" column="45" selection-start-line="159" selection-start-column="45" selection-end-line="159" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#195#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/create_pdf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="85" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="85" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extras.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="58" selection-start-line="67" selection-start-column="16" selection-end-line="67" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="85" column="22" selection-start-line="85" selection-start-column="22" selection-end-line="85" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#195#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nothing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#195#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/create_pdf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="33" selection-start-line="47" selection-start-column="12" selection-end-line="49" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extras.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="58" selection-start-line="67" selection-start-column="16" selection-end-line="67" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-R1.qfilter_fastqc/fastqc_report.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-R1.qfilter_fastqc/fastqc.fo">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-R2.qfilter_fastqc/summary.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output.tex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-R1.qfilter_fastqc/fastqc_data.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-49.751038">
-          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastqc.tex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="65" column="15" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-R1.qfilter_fastqc/summary.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35643566">
-          <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/D00-123546_S1_L001_R1_001.qfilter.fastq.gz">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-.breakdancer_config.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-._BP">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-._CloseEndMapped">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-._INT_final">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-._INV">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-._LI">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-._RP">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-._SI">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-._TD">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="118" selection-start-line="9" selection-start-column="118" selection-end-line="9" selection-end-column="118" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="208" column="3" selection-start-line="208" selection-start-column="3" selection-end-line="208" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#195#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-.pindel.merged.vcf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2857143">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extras.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/parse_sample_sheet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3207283">
-          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/create_pdf.py">
-      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#83#0" expanded="true" />
-          </folding>
+          <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/create_fastqc_pdf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6554622">
-          <caret line="26" column="74" selection-start-line="26" selection-start-column="74" selection-end-line="26" selection-end-column="74" />
+        <state vertical-scroll-proportion="3.5769231">
+          <caret line="93" column="70" selection-start-line="93" selection-start-column="70" selection-end-line="93" selection-end-column="70" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nothing.py">
+    <entry file="file://$PROJECT_DIR$/create_pdf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3277311">
-          <caret line="13" column="40" selection-start-line="11" selection-start-column="0" selection-end-line="13" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.7692308">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30769232">
+          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
           <folding>
             <element signature="e#0#195#0" expanded="true" />
           </folding>

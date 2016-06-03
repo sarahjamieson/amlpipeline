@@ -56,13 +56,12 @@ def dedup_discordants(infile, outfile):
 def run_hydra(infile, outfile):
     os.system("%s -in %s -out %s" % (hydra, infile, outfile))
 # ------------------------------------------------------------------------------
+'''
 
 
-
-def get_output():
-    vcf_file = 'cataracts.annovar.vcf'
-    sample = vcf_file[:-12]
+def get_output(vcf_file):
     vcf_reader = vcf.Reader(open(vcf_file, 'r'))
+    sample_no = vcf_reader.samples
     for record in vcf_reader:
         for sample in record:
             # PyVCF reader
@@ -70,14 +69,34 @@ def get_output():
             pos = record.POS
             ref = record.REF
             alt = ",".join(str(a) for a in record.ALT)
-            type = record.var_type
+            # type = record.var_type
             gt = sample['GT']
+            ad = sample['AD']
+            '''
             if record.QUAL is None:
                 gq = '.'
             else:
                 gq = record.QUAL
             nv = sample['NV']
-
+            '''
+            # GET INFO (Pindel and ANNOVAR)
+            info_dict = record.INFO
+            end_pos = info_dict.get("END")
+            sv_type = info_dict.get("SVTYPE")
+            gene = ",".join(str(g) for g in info_dict.get("Gene.refGene"))
+            func = ",".join(str(f) for f in info_dict.get("Func.refGene"))
+            exonic_func = ",".join(str(f) for f in info_dict.get("ExonicFunc.refGene"))
+            # hgvs
+            ref_reads = ad[0]
+            alt_reads = ad[1]
+            total_reads = ref_reads + alt_reads
+            if alt_reads != 0 and ref_reads != 0:
+                ab = (float(alt_reads) / float(ref_reads))*100
+            else:
+                ab = 0
+            size = info_dict.get("SVLEN")
+            print chr, pos, ref, alt, end_pos, sv_type, size, gt, total_reads, ad, ab, gene, func, exonic_func
+            '''
             # ANNOVAR info
             info_dict = record.INFO
             gene = ",".join(str(g) for g in info_dict.get("Gene.refGene"))
@@ -94,125 +113,6 @@ def get_output():
             func = ",".join(str(f) for f in info_dict.get("ExonicFunc.refGene"))
             # HGVS in AAChange.refGene for exonic and in GeneDetail.refGene for intronic
             hgvs = ",".join(str(h) for h in info_dict.get("AAChange.refGene"))
-'''
-'''
+            '''
 
-fastqc = '/home/cuser/programs/FastQC/fastqc'
-Trimmomatic = '/home/cuser/programs/Trimmomatic-0.36/trimmomatic-0.36.jar'
-trim_adapters = '/home/cuser/programs/Trimmomatic-0.36/adapters/NexteraPE-PE.fa'
-
-
-@collate("*.fastq.gz", formatter("([^/]+)R[12].fastq.gz$"), "{1[0]}.qfilter.fastq.gz")  # (input, filter, output)
-def quality_trim(infile, outfile):
-    fastq1 = infile[0]  # first input file given
-    fastq2 = infile[1]  # second input file given
-
-    os.system("java -Xmx4g -jar %s "  # ?-Xmx4g
-              "PE "  # paired-end mode
-              "-threads 2 "  # multi-threading
-              "-phred33 "  # use phred33 encoding for base quality (>= Illumina 1.8)
-              "%s %s "  # input files R1 R2
-              "%s.qfilter.fastq.gz %s.unpaired.fastq.gz "  # paired and unpaired output R1
-              "%s.qfilter.fastq.gz %s.unpaired.fastq.gz "  # paired and unpaired output R2
-              "ILLUMINACLIP:%s:2:30:10 "  # adaptor trimming, seed matches (16bp), allow 2 mismatches,
-              # PE reads Q30, SE reads Q10
-              "CROP:150 "  # crop reads to max 150 from end
-              "SLIDINGWINDOW:4:25 "  # perform trim on every 4 bases for min quality of 25
-              "MINLEN:50"  # all reads should be min 50
-              % (Trimmomatic, fastq1, fastq2, fastq1[:-9], fastq1, fastq2[:-9], fastq2,
-                 trim_adapters))  # [:-6] removes file extension
-
-
-@follows(quality_trim)
-@collate("*qfilter.fastq.gz", formatter("([^/]+)R[12].qfilter.fastq.gz$"), "{1[0]}.fastq.gz")
-def run_fastqc(infile, outfile):
-    fastq1 = infile[0]
-    fastq2 = infile[1]
-    os.system("%s --extract %s" % (fastqc, fastq1))
-    os.system("%s --extract %s" % (fastqc, fastq2))
-
-
-pipeline_run()
-'''
-with ZipFile('04-R1.qfilter_fastqc.zip', 'w') as myzip:
-myzip.extractall()
-
-pdflatex = '/usr/local/texlive/2015/bin/x86_64-linux/pdflatex'
-
-summary_df = pd.read_table('04-R1.qfilter_fastqc/summary.txt', header=None, names=['Score', 'Parameter'],
-                           usecols=[0, 1])
-score_list = summary_df['Score'].tolist()
-parameter_list = summary_df['Parameter'].tolist()
-summary_dict = dict(zip(parameter_list, score_list))
-
-basic_stats_df = pd.read_table('04-R1.qfilter_fastqc/fastqc_data.txt', header=None, names=['Property', 'Value'],
-                               usecols=[0, 1], skiprows=3, nrows=7)
-
-doc = Document()
-doc.packages.append(Package('geometry', options=['tmargin=0.75in', 'lmargin=0.75in', 'rmargin=0.75in']))
-doc.packages.append(Package('subcaption'))
-doc.packages.append(Package('xcolor'))
-doc.append(Command(NoEscape(r'renewcommand{\baselinestretch}'), '1.0'))
-doc.append(Command('begin', 'center'))
-doc.append(Command('Large', bold('FastQC Quality Results')))
-doc.append(Command('end', 'center'))
-
-with doc.create(Section('Basic Statistics')):
-    with doc.create(Description()) as desc:
-        for row_index, row in basic_stats_df.iterrows():
-            desc.add_item("%s:" % row['Property'], "%s" % row['Value'])
-
-with doc.create(Section('Summary')):
-    with doc.create(Tabular(NoEscape(r'p{5cm}|c'))) as table:
-        table.add_row(('Parameter', 'Pass/Warning/Fail'))
-        table.add_hline()
-        colour = None
-        for row_index, row in summary_df.iterrows():
-            if row['Score'] == 'PASS':
-                colour = 'green'
-            elif row['Score'] == 'WARN':
-                colour = 'orange'
-            elif row['Score'] == 'FAIL':
-                colour = 'red'
-            else:
-                colour = 'black'
-            table.add_row(('%s' % row['Parameter'], NoEscape(r'\textcolor{%s}{%s}' % (colour, row['Score']))))
-
-    with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
-        doc.append(Command('centering'))
-        with doc.create(SubFigure()) as plot:
-            plot.add_image('04-R1.qfilter_fastqc/Images/per_base_quality.png')
-            plot.add_caption('Per base sequence quality')
-        with doc.create(SubFigure()) as plot:
-            plot.add_image('04-R1.qfilter_fastqc/Images/per_tile_quality.png')
-            plot.add_caption('Per tile sequence quality')
-        with doc.create(SubFigure()) as plot:
-            plot.add_image('04-R1.qfilter_fastqc/Images/per_sequence_quality.png')
-            plot.add_caption('Per sequence quality scores')
-        with doc.create(SubFigure()) as plot:
-            plot.add_image('04-R1.qfilter_fastqc/Images/per_base_sequence_content.png')
-            plot.add_caption('Per base sequence content')
-        with doc.create(SubFigure()) as plot:
-            plot.add_image('04-R1.qfilter_fastqc/Images/per_sequence_gc_content.png')
-            plot.add_caption('Per sequence GC content')
-        with doc.create(SubFigure()) as plot:
-            plot.add_image('04-R1.qfilter_fastqc/Images/per_base_n_content.png')
-            plot.add_caption('Per base N content')
-    with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
-        doc.append(Command('ContinuedFloat'))
-        doc.append(Command('centering'))
-        with doc.create(SubFigure()) as plot:
-            plot.add_image('04-R1.qfilter_fastqc/Images/sequence_length_distribution.png')
-            plot.add_caption('Sequence Length Distribution')
-        with doc.create(SubFigure()) as plot:
-            plot.add_image('04-R1.qfilter_fastqc/Images/duplication_levels.png')
-            plot.add_caption('Sequence Duplication Levels')
-        with doc.create(SubFigure()) as plot:
-            plot.add_image('04-R1.qfilter_fastqc/Images/adapter_content.png')
-            plot.add_caption('Adapter content: %s')
-        with doc.create(SubFigure()) as plot:
-            plot.add_image('04-R1.qfilter_fastqc/Images/kmer_profiles.png')
-            plot.add_caption('Kmer content: %s')
-
-doc.generate_pdf('fastqc', clean_tex=False, compiler=pdflatex)
-os.system('mv /home/cuser/PycharmProjects/amlpipeline/fastqc.pdf /media/sf_sarah_share/MiSeq_quality_outputs/')
+get_output('04-.annovar.vcf')
