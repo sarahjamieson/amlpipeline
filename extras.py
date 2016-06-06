@@ -1,15 +1,14 @@
 import argparse
 from argparse import RawTextHelpFormatter
 import os
-import pandas as pd
 
 # use of parser to create arguments for script to run from command line
-parser = argparse.ArgumentParser(description="Multiplies given number by 2",
-                                 epilog="This script relies on number being integer",
+parser = argparse.ArgumentParser(description="Runs pipeline for AML data.",
                                  formatter_class=RawTextHelpFormatter)
 
-parser.add_argument('-n', '--number', action="store", dest='number', help=' A number to multiply', required=True,
-                    type=int)
+parser.add_argument('-s', '--sheet', action="store", dest='samplesheet', help='An illumina sample sheet for this run.',
+                    required=True)
+parser.add_argument('-d', '--directory', action='store', dest='directory', help='')
 args = parser.parse_args()
 
 

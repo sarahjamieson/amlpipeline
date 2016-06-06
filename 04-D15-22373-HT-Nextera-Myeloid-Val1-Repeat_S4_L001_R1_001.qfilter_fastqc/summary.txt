@@ -1,0 +1,12 @@
+PASS	Basic Statistics	04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter.fastq.gz
+PASS	Per base sequence quality	04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter.fastq.gz
+PASS	Per tile sequence quality	04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter.fastq.gz
+PASS	Per sequence quality scores	04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter.fastq.gz
+FAIL	Per base sequence content	04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter.fastq.gz
+FAIL	Per sequence GC content	04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter.fastq.gz
+PASS	Per base N content	04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter.fastq.gz
+WARN	Sequence Length Distribution	04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter.fastq.gz
+FAIL	Sequence Duplication Levels	04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter.fastq.gz
+PASS	Overrepresented sequences	04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter.fastq.gz
+PASS	Adapter Content	04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter.fastq.gz
+WARN	Kmer Content	04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter.fastq.gz

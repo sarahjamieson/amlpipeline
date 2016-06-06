@@ -56,8 +56,17 @@ def assess_quality():
     #       stop pipeline and return error message
 
 
+@collate("*.fastq.gz", formatter("([^/]+)R[12]_001.fastq.gz$"), "{path[0]}/{1[0]}.fastq.gz")
+def run_fastqc(infile, outfile):
+    fastq1 = infile[0]
+    fastq2 = infile[1]
+    os.system("%s --extract %s" % (fastqc, fastq1))
+    os.system("%s --extract %s" % (fastqc, fastq2))
+
+
 # Input: all files ending in fastq.gz; formatter collates files with same name ending either R1 or R2; outputs into file
 # with common name. Uses Trimmomatic 0.36.
+@follows()
 @collate("*.fastq.gz", formatter("([^/]+)R[12]_001.fastq.gz$"), "{path[0]}/{1[0]}.qfilter.fastq.gz")  # (input, filter, output)
 def quality_trim(infile, outfile):
     fastq1 = infile[0]  # first input file given
@@ -86,18 +95,14 @@ def quality_trim(infile, outfile):
 
 @follows(quality_trim)
 @collate("*qfilter.fastq.gz", formatter("([^/]+)R[12]_001.qfilter.fastq.gz$"), "{path[0]}/{1[0]}.fastq.gz")
-def run_fastqc(infile, outfile):
+def run_fastqc_trimmed(infile, outfile):
     fastq1 = infile[0]
     fastq2 = infile[1]
     os.system("%s --extract %s" % (fastqc, fastq1))
     os.system("%s --extract %s" % (fastqc, fastq2))
 
-    fastqc_zip = '%s.qfilter_fastqc.zip' % fastq1[:-17]
-    pdf = CreateFastQCPDF(fastqc_zip)
-    pdf.create_pdf()
 
-
-@follows(quality_trim)
+@follows(run_fastqc_trimmed)
 @collate("*qfilter.fastq.gz", formatter("([^/]+)R[12]_001.qfilter.fastq.gz$"), "{path[0]}/{1[0]}.bwa.drm.bam")
 def align_bwa(infile, outfile):
     fastq1 = infile[0]
@@ -141,9 +146,12 @@ def index_bam(infile, outfile):
 @transform("*.bwa.drm.sorted.bam", suffix(".bwa.drm.sorted.bam"), ".bwa.drm.sorted.bam.stats")
 def run_samtools_stats(infile, outfile):
     os.system("%s stats %s > %s" % (samtools, infile, outfile))
-    # os.system("%s -p %s %s" % (plot_bamstats, outfile, outfile))  # error: no such file or directory gnuplot
+    os.system("%s -p %s %s" % (plot_bamstats, outfile, outfile))
+    joint_sample_name = infile[:-19]
+    pdf = CreateFastQCPDF(joint_sample_name)
+    pdf.create_pdf()
 
-'''
+
 @follows(run_samtools_stats)
 @transform("*.bwa.drm.sorted.bam", suffix(".bwa.drm.sorted.bam"), ".breakdancer_config.txt")
 def create_breakdancer_config(infile, outfile):
@@ -156,10 +164,9 @@ def create_breakdancer_config(infile, outfile):
 @transform(create_breakdancer_config, suffix(".breakdancer_config.txt"), ".breakdancer_output.sv")
 def run_breakdancer(infile, outfile):
     os.system("%s -q 10 %s > %s" % (breakdancer, infile, outfile))
-'''
 
 
-@follows(run_samtools_stats)
+@follows(run_breakdancer)
 @transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".pindel_config")
 def create_pindel_config(infile, outfile):
     config_file = open("%s" % outfile, "w+")  # write into output file
@@ -176,6 +183,7 @@ def create_pindel_config(infile, outfile):
                                                "{path[0]}/{basename[0]}._SI",
                                                "{path[0]}/{basename[0]}._TD"], "{path[0]}/{basename[0]}.")
 def run_pindel(infile, outfile, pindel_prefix):
+    bd_file = infile[:-14]
     os.system("%s "  # pindel program
               "-f %s "  # reference genome
               "-i %s "
@@ -191,8 +199,8 @@ def run_pindel(infile, outfile, pindel_prefix):
               "--report_breakpoints TRUE "
               "--report_long_insertions TRUE "
               "--name_of_logfile %spindel.log"
-              # "-b %s"  # file name with BreakDancer results     or -Q???
-              % (pindel, genome, infile, pindel_prefix, pindel_prefix))
+              "-b %s.breakdancer_output.sv"  # file name with BreakDancer results     or -Q???
+              % (pindel, genome, infile, pindel_prefix, pindel_prefix, bd_file))
 
 
 # https://github.com/ELIXIR-ITA-training/VarCall2015/blob/master/Tutorials/T5.2_variantcalling_stucturalvariants_tutorial.md
