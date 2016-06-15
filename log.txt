@@ -1,62 +1,81 @@
-2016-06-06 09:28:19,426 - INFO - Beginning variant calling
-2016-06-06 09:28:19,426 - INFO - Output will go to 04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_.platypus_output.unsorted.vcf
-2016-06-06 09:28:19,445 - DEBUG - Loading regions from FASTA index datas
-2016-06-06 09:28:19,445 - DEBUG - The following regions will be searched: [('chr19_gl000208_random', 0, 92689), ('chr21_gl000210_random', 0, 27682), ('chr6_apd_hap1', 0, 4622290), ('chr13', 0, 115169878), ('chr12', 0, 133851895), ('chr11', 0, 135006516), ('chr10', 0, 135534747), ('chr17', 0, 81195210), ('chr16', 0, 90354753), ('chr15', 0, 102531392), ('chr14', 0, 107349540), ('chr19', 0, 59128983), ('chr18', 0, 78077248), ('chr9_gl000198_random', 0, 90085), ('chrUn_gl000239', 0, 33824), ('chrUn_gl000238', 0, 39939), ('chrUn_gl000233', 0, 45941), ('chrUn_gl000232', 0, 40652), ('chrUn_gl000231', 0, 27386), ('chrUn_gl000230', 0, 43691), ('chrUn_gl000237', 0, 45867), ('chrUn_gl000236', 0, 41934), ('chrUn_gl000235', 0, 34474), ('chrUn_gl000234', 0, 40531), ('chr6_qbl_hap6', 0, 4611984), ('chr11_gl000202_random', 0, 40103), ('chr17_gl000206_random', 0, 41001), ('chr6_cox_hap2', 0, 4795371), ('chr4_gl000193_random', 0, 189789), ('chrUn_gl000248', 0, 39786), ('chrUn_gl000249', 0, 38502), ('chrUn_gl000246', 0, 38154), ('chrUn_gl000247', 0, 36422), ('chrUn_gl000244', 0, 39929), ('chrUn_gl000245', 0, 36651), ('chrUn_gl000242', 0, 43523), ('chrUn_gl000243', 0, 43341), ('chrUn_gl000240', 0, 41933), ('chrUn_gl000241', 0, 42152), ('chr17_gl000204_random', 0, 81310), ('chr17_ctg5_hap1', 0, 1680828), ('chr17_gl000205_random', 0, 174588), ('chr9_gl000199_random', 0, 169874), ('chr9_gl000201_random', 0, 36148), ('chr8', 0, 146364022), ('chr6_ssto_hap7', 0, 4928567), ('chr8_gl000197_random', 0, 37175), ('chr6_dbb_hap3', 0, 4610396), ('chr7_gl000195_random', 0, 182896), ('chr1_gl000191_random', 0, 106433), ('chr4_ctg9_hap1', 0, 590426), ('chr3', 0, 198022430), ('chr2', 0, 243199373), ('chr1', 0, 249250621), ('chr17_gl000203_random', 0, 37498), ('chrUn_gl000225', 0, 211173), ('chrY', 0, 59373566), ('chrX', 0, 155270560), ('chr9_gl000200_random', 0, 187035), ('chr9', 0, 141213431), ('chrM', 0, 16571), ('chr8_gl000196_random', 0, 38914), ('chr6_mann_hap4', 0, 4683263), ('chrUn_gl000211', 0, 166566), ('chrUn_gl000213', 0, 164239), ('chrUn_gl000212', 0, 186858), ('chrUn_gl000215', 0, 172545), ('chrUn_gl000214', 0, 137718), ('chrUn_gl000217', 0, 172149), ('chrUn_gl000216', 0, 172294), ('chrUn_gl000219', 0, 179198), ('chrUn_gl000218', 0, 161147), ('chr19_gl000209_random', 0, 159169), ('chr22', 0, 51304566), ('chr20', 0, 63025520), ('chr21', 0, 48129895), ('chr6_mcf_hap5', 0, 4833398), ('chr7', 0, 159138663), ('chr6', 0, 171115067), ('chr5', 0, 180915260), ('chr4', 0, 191154276), ('chrUn_gl000228', 0, 129120), ('chrUn_gl000229', 0, 19913), ('chr1_gl000192_random', 0, 547496), ('chrUn_gl000224', 0, 179693), ('chr4_gl000194_random', 0, 191469), ('chrUn_gl000226', 0, 15008), ('chrUn_gl000227', 0, 128374), ('chrUn_gl000220', 0, 161802), ('chrUn_gl000221', 0, 155397), ('chrUn_gl000222', 0, 186861), ('chrUn_gl000223', 0, 180455), ('chr18_gl000207_random', 0, 4262)]
-2016-06-06 09:28:19,516 - DEBUG - Error in BAM header sample parsing. Error was 
+2016-06-08 11:44:34,216 - INFO - Beginning variant calling
+2016-06-08 11:44:34,216 - INFO - Output will go to 03-D15-21584-RD-Nextera-Myeloid-Val1-Repeat_S3_L001_.platypus_output.unsorted.vcf
+2016-06-08 11:44:34,708 - DEBUG - Loading regions from FASTA index datas
+2016-06-08 11:44:34,709 - DEBUG - The following regions will be searched: [('chr19_gl000208_random', 0, 92689), ('chr21_gl000210_random', 0, 27682), ('chr6_apd_hap1', 0, 4622290), ('chr13', 0, 115169878), ('chr12', 0, 133851895), ('chr11', 0, 135006516), ('chr10', 0, 135534747), ('chr17', 0, 81195210), ('chr16', 0, 90354753), ('chr15', 0, 102531392), ('chr14', 0, 107349540), ('chr19', 0, 59128983), ('chr18', 0, 78077248), ('chr9_gl000198_random', 0, 90085), ('chrUn_gl000239', 0, 33824), ('chrUn_gl000238', 0, 39939), ('chrUn_gl000233', 0, 45941), ('chrUn_gl000232', 0, 40652), ('chrUn_gl000231', 0, 27386), ('chrUn_gl000230', 0, 43691), ('chrUn_gl000237', 0, 45867), ('chrUn_gl000236', 0, 41934), ('chrUn_gl000235', 0, 34474), ('chrUn_gl000234', 0, 40531), ('chr6_qbl_hap6', 0, 4611984), ('chr11_gl000202_random', 0, 40103), ('chr17_gl000206_random', 0, 41001), ('chr6_cox_hap2', 0, 4795371), ('chr4_gl000193_random', 0, 189789), ('chrUn_gl000248', 0, 39786), ('chrUn_gl000249', 0, 38502), ('chrUn_gl000246', 0, 38154), ('chrUn_gl000247', 0, 36422), ('chrUn_gl000244', 0, 39929), ('chrUn_gl000245', 0, 36651), ('chrUn_gl000242', 0, 43523), ('chrUn_gl000243', 0, 43341), ('chrUn_gl000240', 0, 41933), ('chrUn_gl000241', 0, 42152), ('chr17_gl000204_random', 0, 81310), ('chr17_ctg5_hap1', 0, 1680828), ('chr17_gl000205_random', 0, 174588), ('chr9_gl000199_random', 0, 169874), ('chr9_gl000201_random', 0, 36148), ('chr8', 0, 146364022), ('chr6_ssto_hap7', 0, 4928567), ('chr8_gl000197_random', 0, 37175), ('chr6_dbb_hap3', 0, 4610396), ('chr7_gl000195_random', 0, 182896), ('chr1_gl000191_random', 0, 106433), ('chr4_ctg9_hap1', 0, 590426), ('chr3', 0, 198022430), ('chr2', 0, 243199373), ('chr1', 0, 249250621), ('chr17_gl000203_random', 0, 37498), ('chrUn_gl000225', 0, 211173), ('chrY', 0, 59373566), ('chrX', 0, 155270560), ('chr9_gl000200_random', 0, 187035), ('chr9', 0, 141213431), ('chrM', 0, 16571), ('chr8_gl000196_random', 0, 38914), ('chr6_mann_hap4', 0, 4683263), ('chrUn_gl000211', 0, 166566), ('chrUn_gl000213', 0, 164239), ('chrUn_gl000212', 0, 186858), ('chrUn_gl000215', 0, 172545), ('chrUn_gl000214', 0, 137718), ('chrUn_gl000217', 0, 172149), ('chrUn_gl000216', 0, 172294), ('chrUn_gl000219', 0, 179198), ('chrUn_gl000218', 0, 161147), ('chr19_gl000209_random', 0, 159169), ('chr22', 0, 51304566), ('chr20', 0, 63025520), ('chr21', 0, 48129895), ('chr6_mcf_hap5', 0, 4833398), ('chr7', 0, 159138663), ('chr6', 0, 171115067), ('chr5', 0, 180915260), ('chr4', 0, 191154276), ('chrUn_gl000228', 0, 129120), ('chrUn_gl000229', 0, 19913), ('chr1_gl000192_random', 0, 547496), ('chrUn_gl000224', 0, 179693), ('chr4_gl000194_random', 0, 191469), ('chrUn_gl000226', 0, 15008), ('chrUn_gl000227', 0, 128374), ('chrUn_gl000220', 0, 161802), ('chrUn_gl000221', 0, 155397), ('chrUn_gl000222', 0, 186861), ('chrUn_gl000223', 0, 180455), ('chr18_gl000207_random', 0, 4262)]
+2016-06-08 11:44:34,872 - DEBUG - Error in BAM header sample parsing. Error was 
 unknown field code 'CN' in record 'PG'
 
-2016-06-06 09:28:19,516 - DEBUG - Adding sample name 04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_.bwa.drm.sorted, from BAM file 04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_.bwa.drm.sorted.bam
-2016-06-06 09:28:19,524 - DEBUG - Max haplotypes used for initial haplotype filtering = 50
-2016-06-06 09:28:19,524 - DEBUG - Max haplotypes used for genotype generation = 50
-2016-06-06 09:28:19,524 - DEBUG - Max genotypes = 1275
-2016-06-06 09:28:19,528 - DEBUG - Error in BAM header sample parsing. Error was 
+2016-06-08 11:44:34,872 - DEBUG - Adding sample name 03-D15-21584-RD-Nextera-Myeloid-Val1-Repeat_S3_L001_.bwa.drm.sorted, from BAM file 03-D15-21584-RD-Nextera-Myeloid-Val1-Repeat_S3_L001_.bwa.drm.sorted.bam
+2016-06-08 11:44:34,903 - DEBUG - Max haplotypes used for initial haplotype filtering = 50
+2016-06-08 11:44:34,903 - DEBUG - Max haplotypes used for genotype generation = 50
+2016-06-08 11:44:34,903 - DEBUG - Max genotypes = 1275
+2016-06-08 11:44:34,906 - DEBUG - Error in BAM header sample parsing. Error was 
 unknown field code 'CN' in record 'PG'
 
-2016-06-06 09:28:19,528 - DEBUG - Adding sample name 04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_.bwa.drm.sorted, from BAM file 04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_.bwa.drm.sorted.bam
-2016-06-06 09:28:19,534 - DEBUG - Max haplotypes used for initial haplotype filtering = 50
-2016-06-06 09:28:19,535 - DEBUG - Max haplotypes used for genotype generation = 50
-2016-06-06 09:28:19,535 - DEBUG - Max genotypes = 1275
-2016-06-06 09:28:19,583 - INFO - Processing region chr1:0-100000. (Only printing this message every 10 regions of size 100000)
-2016-06-06 09:28:19,584 - INFO - Processing region chr1:100000-200000. (Only printing this message every 10 regions of size 100000)
-2016-06-06 09:28:19,622 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:19,634 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:19,642 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:0-100000
-2016-06-06 09:28:19,653 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:100000-200000
-2016-06-06 09:28:19,656 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:19,658 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:19,661 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:200000-300000
-2016-06-06 09:28:19,672 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:300000-400000
-2016-06-06 09:28:19,674 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:19,679 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:19,681 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:400000-500000
-2016-06-06 09:28:19,682 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:500000-600000
-2016-06-06 09:28:19,687 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:19,691 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:19,725 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:600000-700000
-2016-06-06 09:28:19,751 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:19,762 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:800000-900000
-2016-06-06 09:28:19,768 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:19,824 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:1000000-1100000
-2016-06-06 09:28:19,830 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:19,839 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:1200000-1300000
-2016-06-06 09:28:19,893 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:19,901 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:1400000-1500000
-2016-06-06 09:28:19,908 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:19,926 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:1600000-1700000
-2016-06-06 09:28:19,968 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:19,979 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:1800000-1900000
-2016-06-06 09:28:19,980 - INFO - Processing region chr1:2000000-2100000. (Only printing this message every 10 regions of size 100000)
-2016-06-06 09:28:19,984 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:20,041 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:2000000-2100000
-2016-06-06 09:28:20,045 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:20,055 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:2200000-2300000
-2016-06-06 09:28:20,093 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:20,117 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:2400000-2500000
-2016-06-06 09:28:20,126 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:20,131 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:2600000-2700000
-2016-06-06 09:28:20,148 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:20,194 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:2800000-2900000
-2016-06-06 09:28:20,199 - DEBUG - There is one sample in each BAM file. No merging is required
-2016-06-06 09:28:22,584 - INFO - Merging output VCF file(s) into final file 04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_.platypus_output.unsorted.vcf
-2016-06-06 09:28:22,584 - INFO - Finished merging VCF file(s)
-2016-06-06 09:28:22,584 - INFO - Finished variant calling
+2016-06-08 11:44:34,906 - DEBUG - Adding sample name 03-D15-21584-RD-Nextera-Myeloid-Val1-Repeat_S3_L001_.bwa.drm.sorted, from BAM file 03-D15-21584-RD-Nextera-Myeloid-Val1-Repeat_S3_L001_.bwa.drm.sorted.bam
+2016-06-08 11:44:34,916 - DEBUG - Max haplotypes used for initial haplotype filtering = 50
+2016-06-08 11:44:34,916 - DEBUG - Max haplotypes used for genotype generation = 50
+2016-06-08 11:44:34,916 - DEBUG - Max genotypes = 1275
+2016-06-08 11:44:34,973 - INFO - Processing region chr1:0-100000. (Only printing this message every 10 regions of size 100000)
+2016-06-08 11:44:34,975 - INFO - Processing region chr1:100000-200000. (Only printing this message every 10 regions of size 100000)
+2016-06-08 11:44:34,988 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:34,989 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:34,990 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:0-100000
+2016-06-08 11:44:34,992 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:100000-200000
+2016-06-08 11:44:34,992 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:34,998 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:34,999 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:200000-300000
+2016-06-08 11:44:35,000 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:300000-400000
+2016-06-08 11:44:35,002 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,003 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,007 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:500000-600000
+2016-06-08 11:44:35,007 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:400000-500000
+2016-06-08 11:44:35,013 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,015 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,043 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:600000-700000
+2016-06-08 11:44:35,086 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,096 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:800000-900000
+2016-06-08 11:44:35,101 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,150 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:1000000-1100000
+2016-06-08 11:44:35,166 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,169 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:1200000-1300000
+2016-06-08 11:44:35,172 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,173 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:1400000-1500000
+2016-06-08 11:44:35,177 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,178 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:1600000-1700000
+2016-06-08 11:44:35,182 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,198 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:1800000-1900000
+2016-06-08 11:44:35,198 - INFO - Processing region chr1:2000000-2100000. (Only printing this message every 10 regions of size 100000)
+2016-06-08 11:44:35,204 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,262 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:2000000-2100000
+2016-06-08 11:44:35,267 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,279 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:2200000-2300000
+2016-06-08 11:44:35,296 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,352 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:2400000-2500000
+2016-06-08 11:44:35,361 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,368 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:2600000-2700000
+2016-06-08 11:44:35,385 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,413 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:2800000-2900000
+2016-06-08 11:44:35,437 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,448 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:3000000-3100000
+2016-06-08 11:44:35,453 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,461 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:3200000-3300000
+2016-06-08 11:44:35,468 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,478 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:3400000-3500000
+2016-06-08 11:44:35,492 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,548 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:3600000-3700000
+2016-06-08 11:44:35,552 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,563 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:3800000-3900000
+2016-06-08 11:44:35,563 - INFO - Processing region chr1:4000000-4100000. (Only printing this message every 10 regions of size 100000)
+2016-06-08 11:44:35,568 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,616 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:4000000-4100000
+2016-06-08 11:44:35,634 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,638 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:4200000-4300000
+2016-06-08 11:44:35,650 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,658 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:4400000-4500000
+2016-06-08 11:44:35,660 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,726 - DEBUG - There are 0 filtered variant candidates in reads which overlap the region chr1:4600000-4700000
+2016-06-08 11:44:35,730 - DEBUG - There is one sample in each BAM file. No merging is required
+2016-06-08 11:44:35,961 - INFO - Merging output VCF file(s) into final file 03-D15-21584-RD-Nextera-Myeloid-Val1-Repeat_S3_L001_.platypus_output.unsorted.vcf
+2016-06-08 11:44:35,961 - INFO - Finished merging VCF file(s)
+2016-06-08 11:44:35,961 - INFO - Finished variant calling

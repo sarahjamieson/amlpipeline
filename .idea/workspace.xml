@@ -1,13 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6eebfb79-2714-43f4-be09-28300ccfc8a6" name="Default" comment="">
+    <list default="true" id="5c381aae-f84d-47b2-881f-cbfa45820fb5" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4.tex" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_.bwa.drm.sorted.bam.stats-insert-size.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_.bwa.drm.sorted.bam.stats-quals-hm.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_.bwa.drm.sorted.bam.stats-quals2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_.tex" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.aux" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.fastq.gz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.fastqc.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter.fastq.gz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/Icons/error.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/Icons/fastqc_icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/Icons/tick.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/Icons/warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/Images/adapter_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/Images/duplication_levels.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/Images/kmer_profiles.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/Images/per_base_n_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/Images/per_base_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/Images/per_base_sequence_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/Images/per_sequence_gc_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/Images/per_sequence_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/Images/per_tile_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/Images/sequence_length_distribution.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/fastqc.fo" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/fastqc_data.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/fastqc_report.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc/summary.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/Icons/error.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/Icons/fastqc_icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/Icons/tick.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/Icons/warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/Images/adapter_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/Images/duplication_levels.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/Images/kmer_profiles.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/Images/per_base_n_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/Images/per_base_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/Images/per_base_sequence_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/Images/per_sequence_gc_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/Images/per_sequence_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/Images/per_tile_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/Images/sequence_length_distribution.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/fastqc.fo" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/fastqc_data.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/fastqc_report.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc/summary.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.fastq.gz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter.fastq.gz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/Icons/error.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/Icons/fastqc_icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/Icons/tick.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/Icons/warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/Images/adapter_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/Images/duplication_levels.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/Images/kmer_profiles.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/Images/per_base_n_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/Images/per_base_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/Images/per_base_sequence_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/Images/per_sequence_gc_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/Images/per_sequence_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/Images/per_tile_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/Images/sequence_length_distribution.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/fastqc.fo" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/fastqc_data.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/fastqc_report.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001.qfilter_fastqc/summary.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/Icons/error.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/Icons/fastqc_icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/Icons/tick.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/Icons/warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/Images/adapter_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/Images/duplication_levels.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/Images/kmer_profiles.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/Images/per_base_n_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/Images/per_base_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/Images/per_base_sequence_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/Images/per_sequence_gc_content.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/Images/per_sequence_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/Images/per_tile_quality.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/Images/sequence_length_distribution.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/fastqc.fo" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/fastqc_data.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/fastqc_report.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R2_001_fastqc/summary.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/160323.tex" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/160513.tex" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pindel_output/04-._INV" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pindel_output/04-._LI" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pindel_output/04-._RP" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pindel_output/04-._SI" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pindel_output/04-._TD" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.ruffus_history.sqlite" afterPath="$PROJECT_DIR$/.ruffus_history.sqlite" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/cuser.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/cuser.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/create_fastqc_pdf.py" afterPath="$PROJECT_DIR$/create_fastqc_pdf.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/extras.py" afterPath="$PROJECT_DIR$/extras.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fastqc.py" afterPath="$PROJECT_DIR$/fastqc.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log.txt" afterPath="$PROJECT_DIR$/log.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nothing.py" afterPath="$PROJECT_DIR$/nothing.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline.py" afterPath="$PROJECT_DIR$/pipeline.py" />
     </list>
     <ignored path="AMLpipeline.iws" />
@@ -33,9 +134,21 @@
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
+              <caret line="173" column="66" selection-start-line="173" selection-start-column="66" selection-end-line="173" selection-end-column="66" />
               <folding>
                 <element signature="e#0#195#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parse_vcfs.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/parse_vcfs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -45,7 +158,7 @@
         <entry file="file://$PROJECT_DIR$/extras.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+              <caret line="47" column="67" selection-start-line="47" selection-start-column="67" selection-end-line="47" selection-end-column="67" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -53,48 +166,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create_fastqc_pdf.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/create_fastqc_pdf.py">
+      <file leaf-file-name="nothing.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/nothing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="168" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.73464376">
+              <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
               <folding>
-                <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#0#195#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fastqc.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/fastqc.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.8867924">
-              <caret line="32" column="75" selection-start-line="32" selection-start-column="75" selection-end-line="32" selection-end-column="75" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create_pdf.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/create_pdf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="49" />
-              <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -102,11 +186,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/create_pdf.py" />
+        <option value="$PROJECT_DIR$/17-D13-42537-RB-Nextera-Myeloid-Val1-Repeat_S17_L001_.unified.vcf" />
+        <option value="$PROJECT_DIR$/17-D13-42537-RB-Nextera-Myeloid-Val1-Repeat_S17_L001_.annovar.vcf" />
         <option value="$PROJECT_DIR$/extras.py" />
+        <option value="$PROJECT_DIR$/parse_vcfs.py" />
         <option value="$PROJECT_DIR$/pipeline.py" />
-        <option value="$PROJECT_DIR$/create_fastqc_pdf.py" />
-        <option value="$PROJECT_DIR$/fastqc.py" />
+        <option value="$PROJECT_DIR$/nothing.py" />
       </list>
     </option>
   </component>
@@ -141,8 +226,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -163,12 +246,11 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../django_apps/mysite" />
-  </component>
-  <component name="RunManager" selected="Python.fastqc">
+  <component name="RunManager" selected="Python.nothing">
     <configuration default="false" name="pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -186,7 +268,7 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="create_fastqc_pdf" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="nothing" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -198,24 +280,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="AMLpipeline" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/create_fastqc_pdf.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="fastqc" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="AMLpipeline" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fastqc.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/nothing.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -342,40 +407,50 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Python.pipeline" />
-      <item index="1" class="java.lang.String" itemvalue="Python.create_fastqc_pdf" />
-      <item index="2" class="java.lang.String" itemvalue="Python.fastqc" />
+      <item index="1" class="java.lang.String" itemvalue="Python.nothing" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python.fastqc" />
-        <item index="1" class="java.lang.String" itemvalue="Python.create_fastqc_pdf" />
-        <item index="2" class="java.lang.String" itemvalue="Python.pipeline" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python.nothing" />
+        <item index="1" class="java.lang.String" itemvalue="Python.pipeline" />
       </list>
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6eebfb79-2714-43f4-be09-28300ccfc8a6" name="Default" comment="" />
-      <created>1464881314310</created>
+      <changelist id="5c381aae-f84d-47b2-881f-cbfa45820fb5" name="Default" comment="" />
+      <created>1465888346065</created>
       <option name="number" value="Default" />
-      <updated>1464881314310</updated>
+      <updated>1465888346065</updated>
     </task>
     <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="28" width="1922" height="884" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931727" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24960423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29340369" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3172691" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41097724" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -388,14 +463,21 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
-  <component name="UnknownFeatures">
-    <option featureType="com.intellij.fileTypeFactory" implementationName="*.tex" />
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -409,47 +491,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
+    <entry file="file://$PROJECT_DIR$/parse_vcfs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="170" column="21" selection-start-line="170" selection-start-column="21" selection-end-line="170" selection-end-column="21" />
           <folding>
-            <element signature="e#0#195#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/create_pdf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="40" selection-start-line="1" selection-start-column="40" selection-end-line="1" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#83#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#195#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parse_sample_sheet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/extras.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <caret line="47" column="67" selection-start-line="47" selection-start-column="67" selection-end-line="47" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nothing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="111" column="22" selection-start-line="111" selection-start-column="22" selection-end-line="111" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#195#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib64/python2.7/site-packages/vcf/parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37179488">
+          <caret line="547" column="0" selection-start-line="547" selection-start-column="0" selection-end-line="547" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extras.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="67" selection-start-line="47" selection-start-column="67" selection-end-line="47" selection-end-column="67" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -459,61 +541,29 @@
     <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
+          <caret line="173" column="66" selection-start-line="173" selection-start-column="66" selection-end-line="173" selection-end-column="66" />
           <folding>
             <element signature="e#0#195#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4.tex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5849056">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastqc.tex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.1320754">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_.tex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6792453">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/create_fastqc_pdf.py">
+    <entry file="file://$PROJECT_DIR$/parse_vcfs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="168" selection-end-column="16" />
+          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/create_pdf.py">
+    <entry file="file://$PROJECT_DIR$/nothing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fastqc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8867924">
-          <caret line="32" column="75" selection-start-line="32" selection-start-column="75" selection-end-line="32" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.73464376">
+          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#195#0" expanded="true" />
           </folding>
         </state>
       </provider>

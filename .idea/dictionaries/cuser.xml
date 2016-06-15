@@ -1,11 +1,18 @@
 <component name="ProjectDictionaryState">
   <dictionary name="cuser">
     <words>
+      <w>annovar</w>
+      <w>ensgene</w>
+      <w>exonic</w>
+      <w>exonicsplicing</w>
       <w>fastqc</w>
       <w>filelist</w>
+      <w>multianno</w>
+      <w>nastring</w>
       <w>pdflatex</w>
       <w>tilemetrics</w>
       <w>trimmomatic</w>
+      <w>vcfinput</w>
     </words>
   </dictionary>
 </component>

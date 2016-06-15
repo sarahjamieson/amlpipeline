@@ -12,107 +12,117 @@ import vcf
 from zipfile import ZipFile
 from pylatex import Document, Section, Tabular, Package, Command, Figure, SubFigure, Description, Subsection
 from pylatex.utils import NoEscape, bold
+import re
+import csv
 
-'''
+genome = '/media/genomicdata/ucsc_hg19/ucsc.hg19.fasta'
+delly = '/home/cuser/programs/delly_v0.7.3/delly'
+bam = '/home/cuser/PycharmProjects/amldata/02/02-D15-18331-AR-Nextera-Myeloid-Val1-Repeat_S2_L001_.bwa.drm.sorted.bam'
+bcftools = '/home/cuser/programs/samtools/bcftools-1.3.1/bcftools'
+bamtogasv = '/home/cuser/programs/gasv/bin/BAMToGASV.jar'
+gasv = '/home/cuser/programs/gasv/bin/GASV.jar'
+bwa = '/home/cuser/programs/bwa/bwa'
 samtools = '/home/cuser/programs/samtools/samtools/bin/samtools'
-genome = '/media/sf_sarah_share/ucsc_hg19/ucsc.hg19.fasta'
-varscan = '/home/cuser/programs/VarScan2/VarScan.v2.4.0.jar'
-bamToBed = '/home/cuser/programs/bedtools2/bin/bamToBed'
-pairDiscordants = '/home/cuser/programs/hydra/pairDiscordants.py'
-dedupDiscordants = '/home/cuser/programs/hydra/dedupDiscordants.py'
-hydra = '/home/cuser/programs/hydra/hydra'
+samblaster = '/home/cuser/programs/samblaster/samblaster'
 
-(logger_proxy, logging_mutex) = make_shared_logger_and_proxy(
-    setup_std_shared_logger,
-    "aml_logger",
-    {"file_name": "/home/cuser/PycharmProjects/amlpipeline/aml_pipeline.log"})
+curr_datetime = datetime.datetime.now().isoformat()
 
-
-@transform(["*.csv"], suffix(".csv"), ".bed", logger_proxy, logging_mutex)
-def first_task(infile, outfile, logger_proxy, logging_mutex):
-    with logging_mutex:
-        logger_proxy.info("First task completed")
-    bedfile = BedTool("%s" % infile)
-    bedfile.saveas("%s" % outfile)
-
-
-# ------------------------------------------------------------------------------
-# for Hydra-SV
-@transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".bedpe")
-def convert_bam_to_bed(infile, outfile):
-    os.system("%s -i %s -tag NM | "
-              "%s -i stdin -m hydra -z 800 > %s"
-              % (bamToBed, infile, pairDiscordants, outfile))
-
-
-@follows(convert_bam_to_bed)
-@transform(convert_bam_to_bed, suffix(".bedpe"), ".deduped.bedpe")
-def dedup_discordants(infile, outfile):
-    os.system("%s -i %s -s 3 > %s" % (dedupDiscordants, infile, outfile))
-
-
-@follows(dedup_discordants)
-@transform(dedup_discordants, suffix(".deduped.bedpe"), ".breaks")
-def run_hydra(infile, outfile):
-    os.system("%s -in %s -out %s" % (hydra, infile, outfile))
-# ------------------------------------------------------------------------------
 '''
+@collate("*qfilter.fastq.gz", formatter("([^/]+)R[12]_001.qfilter.fastq.gz$"), "{path[0]}/{1[0]}.bwa.drm.bam")
+def align_bwa(infile, outfile):
+    fastq1 = infile[0]
+    fastq2 = infile[1]
+    sample = fastq1[:-20]
+    rg_header = '@RG\tID:%s\tSM:%s\tCN:WMRGL\tDS:TruSight_Myeloid_Nextera_v1.1\tDT:%s' % (sample, sample, curr_datetime)
+
+    os.system("%s mem -t 2 "  # mark shorter split hits as secondary, output alignments for SE and unpaired PE
+              "-k 18 "  # number of threads
+              "-aM "  # min seed length
+              "-R \'%s\' "  # read group header
+              "%s "  # genome (bwa indexed hg19)
+              "%s %s"  # input R1, input R2
+              "| sed \'s/@PG\tID:bwa/@PG\tID:%s/\' - "  # "-" requests standard output, useful when combining tools
+              "| %s --removeDups 2> "
+              "%s.samblaster.log --splitterFile %s.splitreads.sam --discordantFile %s.discordant.sam "
+              "| %s view -Sb - > %s"  # -Sb puts output through samtools sort
+              % (bwa, rg_header, genome, fastq1, fastq2, sample, samblaster, sample, sample, sample, samtools, outfile))
 
 
-def get_output(vcf_file):
-    vcf_reader = vcf.Reader(open(vcf_file, 'r'))
-    sample_no = vcf_reader.samples
-    for record in vcf_reader:
-        for sample in record:
-            # PyVCF reader
-            chr = record.CHROM
-            pos = record.POS
-            ref = record.REF
-            alt = ",".join(str(a) for a in record.ALT)
-            # type = record.var_type
-            gt = sample['GT']
-            ad = sample['AD']
-            '''
-            if record.QUAL is None:
-                gq = '.'
+@follows(align_bwa)
+@transform(["02*.bwa.drm.bam"], suffix(".bwa.drm.bam"), ".bwa.drm.sorted.bam")
+def sort_bam(infile, outfile):
+    os.system("%s sort "
+              "-@ 2 "  # number of threads = 2
+              "-m 2G "  # memory per thread = 2G
+              "-O bam "  # output file format = .bam
+              "-T %s "  # temporary file name
+              "-o %s "  # output file
+              "%s"  # input file
+              % (samtools, infile, outfile, infile))
+
+
+@follows(sort_bam)
+@transform("02*.bwa.drm.sorted.bam", suffix(".bwa.drm.sorted.bam"), ".bwa.drm.sorted.bam.bai")
+def index_bam(infile, outfile):
+    os.system("%s index %s" % (samtools, infile))
+
+
+@follows(index_bam)
+@transform(["02*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".bam.gasv.in.clusters")
+def run_gasv(infile, outfile):
+    name = infile[:-19]
+    os.system("java -Xms512m -Xmx2048m -jar %s %s" % (bamtogasv, infile))
+    os.system("java -jar %s --batch %s.bam.gasv.in" % (gasv, name))
+'''
+'''
+def gasv_to_vcf(gasv_file):
+    sample = gasv_file[:-21]
+    outfile = '%s.gasv.vcf' % sample
+    header = ['##fileformat=VCFv4.0\n',
+              '##fileDate=%s\n' % curr_datetime,
+              '##source=GASVRelease_Oct1_2013\n',
+              '##INFO=<ID=SVLEN,Number=1,Type=Integer,Description="Difference in length between REF and ALT alleles">\n',
+              '##INFO=<ID=NUM_READS,Number=1,Type=Integer,Description="Number of supporting read pairs">\n',
+              '##INFO=<ID=LOCAL,Number=1,Type=Float,Description="Breakpoint localization">\n',
+              '##INFO=<ID=CHR2,Number=1,Type=String,Description="Chromosome for END coordinate">\n',
+              '##INFO=<ID=END,Number=1,Type=Integer,Description="END coordinate">\n',
+              '#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t%s\n' % sample]
+    vcf_output = open(outfile, 'w')
+    with open(gasv_file, 'r') as gasv:
+        reader = csv.reader(gasv, delimiter='\t')
+        reader.next()
+        for line in header:
+            vcf_output.write(line)
+        for attribute in reader:
+            chrom = attribute[1]
+            pos = attribute[2].split(',')[0]
+            id = '.'
+            ref = '.'
+            type = attribute[7]
+            if type == 'D':
+                alt = '<DEL>'
+            elif re.match("I(.*)", type):
+                alt = '<INV>'
+            elif type == 'V':
+                alt = '<DIV>'
+            elif type == 'T':
+                alt = '<TRA>'
             else:
-                gq = record.QUAL
-            nv = sample['NV']
-            '''
-            # GET INFO (Pindel and ANNOVAR)
-            info_dict = record.INFO
-            end_pos = info_dict.get("END")
-            sv_type = info_dict.get("SVTYPE")
-            gene = ",".join(str(g) for g in info_dict.get("Gene.refGene"))
-            func = ",".join(str(f) for f in info_dict.get("Func.refGene"))
-            exonic_func = ",".join(str(f) for f in info_dict.get("ExonicFunc.refGene"))
-            # hgvs
-            ref_reads = ad[0]
-            alt_reads = ad[1]
-            total_reads = ref_reads + alt_reads
-            if alt_reads != 0 and ref_reads != 0:
-                ab = (float(alt_reads) / float(ref_reads))*100
-            else:
-                ab = 0
-            size = info_dict.get("SVLEN")
-            print chr, pos, ref, alt, end_pos, sv_type, size, gt, total_reads, ad, ab, gene, func, exonic_func
-            '''
-            # ANNOVAR info
-            info_dict = record.INFO
-            gene = ",".join(str(g) for g in info_dict.get("Gene.refGene"))
-            depth = info_dict.get("TC")
-            ab = "%.1f" % ((float(nv)/float(depth))*100)
-            tcf = info_dict.get("TCF")
-            tcr = info_dict.get("TCR")
-            nf = ",".join(str(f) for f in info_dict.get("NF"))
-            nr = ",".join(str(r) for r in info_dict.get("NR"))
-            qd = info_dict.get("QD")
-            mq = ",".join(str(m) for m in info_dict.get("MQ"))
-            sbpval = ",".join(str(s) for s in info_dict.get("SbPval"))
-            hp = info_dict.get("HP")
-            func = ",".join(str(f) for f in info_dict.get("ExonicFunc.refGene"))
-            # HGVS in AAChange.refGene for exonic and in GeneDetail.refGene for intronic
-            hgvs = ",".join(str(h) for h in info_dict.get("AAChange.refGene"))
-            '''
+                alt = '<UNKNOWN>'
+            qual = "."
+            filter = "."
+            end = attribute[4].split(',')[0]
+            svlen = int(end) - int(pos)
+            num_reads = attribute[5]
+            local = attribute[6]
+            chr2 = attribute[3]
+            vcf_output.write("%s\t%s\t%s\t%s\t%s\t%s\t%s\tSVLEN=%s;NUM_READS=%s;LOCAL=%s;CHR2=%s;END=%s\t%s\t%s\n"
+                             % (chrom, pos, id, ref, alt, qual, filter, svlen, num_reads, local, chr2, end, " ", " "))
 
-get_output('04-.annovar.vcf')
+gasv_to_vcf('/home/cuser/programs/02-D15.bwa.drm.sorted.bam.gasv.in.clusters')
+'''
+listy = ['02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18',
+         '19', '20', '21', '22', '23', '24']
+for l in listy:
+    os.system("mv /home/cuser/PycharmProjects/amlpipeline/%s*vs2.vcf /home/cuser/PycharmProjects/amldata/%s_bd/"
+              % (l, l))

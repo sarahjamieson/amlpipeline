@@ -1,22 +1,36 @@
 import pandas as pd
-from pylatex import Document, Section, Tabular, Package, Command, Figure, SubFigure, Description, Subsection
+from pylatex import Document, Section, Tabular, Package, Command, Figure, SubFigure, Description
 from pylatex.utils import NoEscape, bold
 import os
 
 
 class CreateFastQCPDF(object):
+    """Takes a sample ID, extracts summary information and basic statistics from FastQC, and displays FastQC and
+       BamStats results in a PDF.
+
+       Notes:-
+            Sample ID e.g. 01-D01-23456-AB-Nextera-Myeloid_S1_L001_ (BAM file prefix)
+            Requires PDFLatex.
+
+    """
     def __init__(self, sample):
         self.sample = sample
 
     def create_pdf(self):
-        r1_summary_trim_dict, r1_stats_trim_dict, r2_summary_trim_dict, r2_stats_trim_dict = self.get_trimmed_data()
-        r1_summary_dict, r1_stats_dict, r2_summary_dict, r2_stats_dict = self.get_original_data()
+        """Creates the PDF using the PyLatex module.
+
+            Notes:-
+
+
+        """
+        r1_summary_trim_dict, r1_stats_trim_dict, r2_summary_trim_dict = self.get_trimmed_data()
+        r1_stats_dict = self.get_original_data()
 
         doc = Document()
         doc.packages.append(Package('geometry', options=['margin=0.75in']))
         doc.packages.append(Package('subcaption'))
         doc.packages.append(Package('xcolor'))
-        doc.packages.append(Package('needspace'))
+        doc.packages.append(Package('placeins'))
         doc.append(Command('makeatletter'))
         doc.append(Command('setlength', NoEscape(r'\@fptop}{0pt')))
         doc.append(Command('makeatother'))
@@ -30,31 +44,21 @@ class CreateFastQCPDF(object):
                 desc.add_item("Sample:", "%s" % r1_stats_dict.get('Filename')[:-16])
                 desc.add_item("File type:", "%s" % r1_stats_dict.get('File type'))
                 desc.add_item("Encoding:", "%s" % r1_stats_dict.get('Encoding'))
-            with doc.create(Tabular(NoEscape(r'p{5.5cm}|c|c|c|c'))) as table:
-                table.add_row(('', 'R1', '', 'R2', ''))
-                table.add_hline()
-                table.add_row(('', 'Before trimming', 'After trimming', 'Before trimming', 'After trimming'))
+            with doc.create(Tabular(NoEscape(r'p{5.5cm}|c|c'))) as table:
+                table.add_row(('', 'Before trimming', 'After trimming'))
                 table.add_hline()
                 table.add_row(('Total Sequences',
                                '%s' % r1_stats_dict.get('Total Sequences'),
-                               '%s' % r1_stats_trim_dict.get('Total Sequences'),
-                               '%s' % r2_stats_dict.get('Total Sequences'),
-                               '%s' % r2_stats_trim_dict.get('Total Sequences')))
+                               '%s' % r1_stats_trim_dict.get('Total Sequences')))
                 table.add_row(('Sequences flagged as poor quality',
                                '%s' % r1_stats_dict.get('Sequences flagged as poor quality'),
-                               '%s' % r1_stats_trim_dict.get('Sequences flagged as poor quality'),
-                               '%s' % r2_stats_dict.get('Sequences flagged as poor quality'),
-                               '%s' % r2_stats_trim_dict.get('Sequences flagged as poor quality')))
+                               '%s' % r1_stats_trim_dict.get('Sequences flagged as poor quality')))
                 table.add_row(('Sequence length',
                                '%s' % r1_stats_dict.get('Sequence length'),
-                               '%s' % r1_stats_trim_dict.get('Sequence length'),
-                               '%s' % r2_stats_dict.get('Sequence length'),
-                               '%s' % r2_stats_trim_dict.get('Sequence length')))
+                               '%s' % r1_stats_trim_dict.get('Sequence length')))
                 table.add_row(('%GC',
                                '%s' % r1_stats_dict.get('%GC'),
-                               '%s' % r1_stats_trim_dict.get('%GC'),
-                               '%s' % r2_stats_dict.get('%GC'),
-                               '%s' % r2_stats_trim_dict.get('%GC')))
+                               '%s' % r1_stats_trim_dict.get('%GC')))
 
         with doc.create(Section('FastQC')):
             with doc.create(Figure(position='!htb', placement=NoEscape(r'\centering'))) as fig:
@@ -197,7 +201,7 @@ class CreateFastQCPDF(object):
                     plot.add_caption(NoEscape(r'R2 AFTER trimming \textcolor{%s}{%s}'
                                               % (colour, r2_summary_trim_dict.get('Adapter Content'))))
 
-        doc.append(Command('needspace', '1635em'))
+        doc.append(Command('FloatBarrier'))
         with doc.create(Section('BamStats')):
             with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
                 doc.append(Command('centering'))
@@ -237,40 +241,14 @@ class CreateFastQCPDF(object):
         r2_scores_trim = r2_summary_trim_df['Score'].tolist()  # not currently used, may be needed
         r2_parameters_trim = r2_summary_trim_df['Parameter'].tolist()
         r2_summary_trim_dict = dict(zip(r2_parameters_trim, r2_scores_trim))
-        r2_stats_trim_df = pd.read_table('%sR2_001.qfilter_fastqc/fastqc_data.txt' % self.sample, header=None,
-                                         names=['Property', 'Value'], usecols=[0, 1], skiprows=3, nrows=7)
-        r2_properties_trim = r2_stats_trim_df['Property'].tolist()
-        r2_values_trim = r2_stats_trim_df['Value'].tolist()
-        r2_stats_trim_dict = dict(zip(r2_properties_trim, r2_values_trim))
 
-        return r1_summary_trim_dict, r1_stats_trim_dict, r2_summary_trim_dict, r2_stats_trim_dict
+        return r1_summary_trim_dict, r1_stats_trim_dict, r2_summary_trim_dict
 
     def get_original_data(self):
-        # Get R1
-        r1_summary_df = pd.read_table('%sR1_001_fastqc/summary.txt' % self.sample, header=None,
-                                      names=['Score', 'Parameter'], usecols=[0, 1])
-        r1_scores = r1_summary_df['Score'].tolist()  # not currently used, may be needed
-        r1_parameters = r1_summary_df['Parameter'].tolist()
-        r1_summary_dict = dict(zip(r1_parameters, r1_scores))
         r1_stats_df = pd.read_table('%sR1_001_fastqc/fastqc_data.txt' % self.sample, header=None,
                                     names=['Property', 'Value'], usecols=[0, 1], skiprows=3, nrows=7)
         r1_properties = r1_stats_df['Property'].tolist()
         r1_values = r1_stats_df['Value'].tolist()
         r1_stats_dict = dict(zip(r1_properties, r1_values))
 
-        # Get R2
-        r2_summary_df = pd.read_table('%sR2_001_fastqc/summary.txt' % self.sample, header=None,
-                                      names=['Score', 'Parameter'], usecols=[0, 1])
-        r2_scores = r2_summary_df['Score'].tolist()  # not currently used, may be needed
-        r2_parameters = r2_summary_df['Parameter'].tolist()
-        r2_summary_dict = dict(zip(r2_parameters, r2_scores))
-        r2_stats_df = pd.read_table('%sR2_001_fastqc/fastqc_data.txt' % self.sample, header=None,
-                                    names=['Property', 'Value'], usecols=[0, 1], skiprows=3, nrows=7)
-        r2_properties = r2_stats_df['Property'].tolist()
-        r2_values = r2_stats_df['Value'].tolist()
-        r2_stats_dict = dict(zip(r2_properties, r2_values))
-
-        return r1_summary_dict, r1_stats_dict, r2_summary_dict, r2_stats_dict
-
-pdf = CreateFastQCPDF('04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_')
-pdf.create_pdf()
+        return r1_stats_dict
