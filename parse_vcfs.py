@@ -12,16 +12,17 @@ def get_delly_output(vcf_file):
             info_dict = record.INFO
             if info_dict.get("IMPRECISE") is True:
                 precision = 'IMPRECISE'
+                ad = "%s,%s" % (sample['DR'], sample['DV'])
             else:
                 precision = 'PRECISE'
-            ad = "%s,%s" % (sample['DR'], sample['DV'])
+                ad = "%s,%s" % (sample['RR'], sample['RV'])
             filter_str = ";".join(record.FILTER)
             if filter_str == '':
                 filter = 'PASS'
             else:
                 filter = 'LowQual'
             alt = ",".join(str(a) for a in record.ALT)
-            svlen = len(record.ALT)-len(record.REF)
+            svlen = info_dict.get("END") - record.POS
             variant_key = "%s_%s_%s_%s" % (record.CHROM, record.POS, record.REF, record.ALT[0])
             if variant_key in delly_dict:
                 pass
@@ -80,7 +81,7 @@ def get_pindel_output(vcf_file):
                                             "Precision": ".",
                                             "SVTYPE": info_dict.get("SVTYPE"),
                                             "SVLEN": info_dict.get("SVLEN"),
-                                            "CHR2": ".",
+                                            "CHR2": record.CHROM,
                                             "END": info_dict.get("END"),
                                             "MAPQ": 0,
                                             "PE": 0,
@@ -96,6 +97,7 @@ def get_vs2_output(vcf_file):
     for record in vcf_reader:
         for sample in record:
             alt = ",".join(str(a) for a in record.ALT)
+            ref = ",".join(str(a) for a in record.REF)
             filter_str = ";".join(record.FILTER)
             if filter_str == '':
                 filter = "."
@@ -103,7 +105,7 @@ def get_vs2_output(vcf_file):
                 filter = filter_str
             variant_key = "%s_%s_%s_%s" % (record.CHROM, record.POS, record.REF, record.ALT[0])
             ad = "%s,%s" % (sample['RD'], sample['AD'])
-            svlen = len(record.ALT) - len(record.REF)
+            svlen = len(alt) - len(ref)
             end = record.POS + svlen
             if variant_key in vs2_dict:
                 pass
@@ -118,7 +120,7 @@ def get_vs2_output(vcf_file):
                                          "Precision": ".",
                                          "SVTYPE": ".",
                                          "SVLEN": svlen,
-                                         "CHR2": ".",
+                                         "CHR2": record.CHROM,
                                          "END": end,
                                          "MAPQ": 0,
                                          "PE": 0,

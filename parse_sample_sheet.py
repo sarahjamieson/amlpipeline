@@ -38,8 +38,8 @@ class ParseSampleSheet(object):
             for row_index, row in df_sample_sheet.iterrows():
                 if row[column] == '[Data]':
                     data_index = row_index
-                    df_headings = df_sample_sheet.ix[:data_index - 2, 0:1]  # Put all header info into a separate df
-                    df_headings.columns = ['Property', 'Value']
+                    df_run_data_temp = df_sample_sheet.ix[:data_index - 2, 0:1]  # Put all header info into a separate df
+                    df_run_data_temp.columns = ['Property', 'Value']
                 elif row[column] == '[Header]':
                     header_index = row_index
                 elif row[column] == '[Manifests]':
@@ -94,3 +94,107 @@ class ParseSampleSheet(object):
         sample_dict = df_data_trans.to_dict()
         # ----------------------------------------------------------------------------------------------------------
         return run_dict, sample_dict
+
+    '''
+    Method 2:
+
+    def get_run_info(csv_file):
+    iem = ''
+    investigator = ''
+    experiment = ''
+    run_date = ''
+    workflow = ''
+    app = ''
+    assay = ''
+    description = ''
+    chemistry = ''
+    worksheet = ''
+    manifest = ''
+    reads = ''
+    data_index = 0
+    read_index = 0
+    manifest_index = 0
+    read1 = 0
+    read2 = 0
+    sample_dict = {}
+
+    with open(csv_file, 'r') as c:
+        reader = csv.reader(c, delimiter=',')
+        for i, row in enumerate(reader):
+            if row[0] == 'IEMFileVersion':
+                iem = row[1]
+            elif row[0] == "Investigator Name":
+                investigator = row[1]
+            elif row[0] == 'Experiment Name':
+                experiment = row[1]
+            elif row[0] == 'Date':
+                run_date = row[1]
+            elif row[0] == 'Workflow':
+                workflow = row[1]
+            elif row[0] == 'Application':
+                app = row[1]
+            elif row[0] == 'Assay':
+                assay = row[1]
+            elif row[0] == 'Description':
+                description = row[1]
+            elif row[0] == 'Chemistry':
+                chemistry = row[1]
+            elif row[0] == 'worksheet':
+                worksheet = row[1]
+            elif row[0] == '[Manifests]':
+                manifest_index = i
+            elif row[0] == '[Reads]':
+                read_index = i
+            elif row[0] == '[Data]':
+                data_index = i
+            else:
+                pass
+            if i == (read_index + 1):
+                read1 = row[0]
+            if i == (read_index + 2):
+                read2 = row[0]
+            if i == (manifest_index + 1):
+                manifest = row[1]
+            reads = "(%s,%s)" % (read1, read2)
+
+    run_dict = {
+        "IEM": iem,
+        "Investigator": investigator,
+        "Experiment": experiment,
+        "Date": run_date,
+        "Workflow": workflow,
+        "Application": app,
+        "Assay": assay,
+        "Description": description,
+        "Chemistry": chemistry,
+        "worksheet": worksheet,
+        "Manifest": manifest,
+        "Reads": reads
+    }
+
+    df_sample_sheet = pd.read_csv(csv_file, header=None)
+    df_data = df_sample_sheet.ix[data_index + 1:]
+    for row_index, row in df_data.iterrows():
+        lab_id = str(row[1])[3:12]
+        sample_id = row[0]
+        name = row[1]
+        plate = row[2]
+        well = row[3]
+        index1 = row[5]
+        index2 = row[7]
+        sample_manifest = row[8]
+        project = row[10]
+
+        sample_dict[lab_id] = {
+            "Sample_id": sample_id,
+            "Name": name,
+            "Plate": plate,
+            "Well": well,
+            "Index1": index1,
+            "Index2": index2,
+            "Manifest": sample_manifest,
+            "Project": project
+        }
+
+    print run_dict, sample_dict
+    '''

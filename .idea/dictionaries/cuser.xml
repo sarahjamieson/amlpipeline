@@ -2,6 +2,7 @@
   <dictionary name="cuser">
     <words>
       <w>annovar</w>
+      <w>breakdancer</w>
       <w>ensgene</w>
       <w>exonic</w>
       <w>exonicsplicing</w>
@@ -10,6 +11,9 @@
       <w>multianno</w>
       <w>nastring</w>
       <w>pdflatex</w>
+      <w>pindel</w>
+      <w>qual</w>
+      <w>svtype</w>
       <w>tilemetrics</w>
       <w>trimmomatic</w>
       <w>vcfinput</w>

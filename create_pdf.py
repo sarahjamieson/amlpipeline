@@ -7,7 +7,7 @@ import numpy as np
 
 class CreatePDF(object):
     def __init__(self, tilemetrics, controlmetrics, errormetrics, extractionmetrics, indexmetrics, qualitymetrics,
-                 corintmetrics):
+                 corintmetrics, worksheet):
         self.tile = tilemetrics
         self.control = controlmetrics
         self.error = errormetrics
@@ -15,6 +15,7 @@ class CreatePDF(object):
         self.index = indexmetrics
         self.quality = qualitymetrics
         self.corint = corintmetrics
+        self.worksheet = worksheet
 
     def create_pdf(self):
         """Creates a LaTeX PDF using the Python module PyLatex (https://jeltef.github.io/PyLaTeX/latest/).
@@ -104,7 +105,7 @@ class CreatePDF(object):
                 with doc.create(SubFigure()) as plot:
                     plot.add_plot()
 
-        doc.generate_pdf('output', clean_tex=False, compiler=pdflatex)
+        doc.generate_pdf('%s_InterOp_Results' % self.worksheet, clean_tex=False, compiler=pdflatex)
         # os.system("xdg-open /home/cuser/PycharmProjects/amlpipeline/output.pdf")
 
     def get_avg_qual(self):

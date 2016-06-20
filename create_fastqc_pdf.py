@@ -75,7 +75,7 @@ class CreateFastQCPDF(object):
             with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
                 doc.append(Command('centering'))
                 with doc.create(SubFigure()) as plot:
-                    plot.add_image('%s/Images/per_base_quality.png' % self.fastqc)
+                    plot.add_image('%s_fastqc/Images/per_base_quality.png' % self.sample)
                     plot.add_caption('Per base sequence quality BEFORE trimming')
                 with doc.create(SubFigure()) as plot:
                     if sum_dict_trim.get('Per base sequence quality') == 'PASS':
@@ -86,12 +86,12 @@ class CreateFastQCPDF(object):
                         colour = 'red'
                     else:
                         colour = 'black'
-                    plot.add_image('%s/Images/per_base_quality.png' % self.fastqc_trim)
+                    plot.add_image('%s.qfilter_fastqc/Images/per_base_quality.png' % self.sample)
                     plot.add_caption(NoEscape(r'Per base sequence quality AFTER trimming \textcolor{%s}{%s}'
                                               % (colour, sum_dict_trim.get('Per base sequence quality'))))
                 with doc.create(SubFigure()) as plot:
                     doc.append(Command('vspace', '5 mm'))
-                    plot.add_image('%s/Images/per_sequence_gc_content.png' % self.fastqc)
+                    plot.add_image('%s_fastqc/Images/per_sequence_gc_content.png' % self.sample)
                     plot.add_caption('Per sequence GC content BEFORE trimming')
                 with doc.create(SubFigure()) as plot:
                     doc.append(Command('vspace', '5 mm'))
@@ -103,14 +103,14 @@ class CreateFastQCPDF(object):
                         colour = 'red'
                     else:
                         colour = 'black'
-                    plot.add_image('%s/Images/per_sequence_gc_content.png' % self.fastqc_trim)
+                    plot.add_image('%s.qfilter_fastqc/Images/per_sequence_gc_content.png' % self.sample)
                     plot.add_caption(NoEscape(r'Per sequence GC content AFTER trimming \textcolor{%s}{%s}'
                                               % (colour, sum_dict_trim.get('Per sequence GC content'))))
             with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
                 doc.append(Command('ContinuedFloat'))
                 doc.append(Command('centering'))
                 with doc.create(SubFigure()) as plot:
-                    plot.add_image('%s/Images/sequence_length_distribution.png' % self.fastqc)
+                    plot.add_image('%s_fastqc/Images/sequence_length_distribution.png' % self.sample)
                     plot.add_caption('Sequence Length Distribution BEFORE trimming')
                 with doc.create(SubFigure()) as plot:
                     doc.append(Command('hspace', '10 mm'))
@@ -122,12 +122,12 @@ class CreateFastQCPDF(object):
                         colour = 'red'
                     else:
                         colour = 'black'
-                    plot.add_image('%s/Images/sequence_length_distribution.png' % self.fastqc_trim)
+                    plot.add_image('%s.qfilter_fastqc/Images/sequence_length_distribution.png' % self.sample)
                     plot.add_caption(NoEscape(r'Sequence Length Distribution AFTER trimming \textcolor{%s}{%s}'
                                               % (colour, sum_dict_trim.get('Sequence Length Distribution'))))
                 with doc.create(SubFigure()) as plot:
                     doc.append(Command('vspace', '10 mm'))
-                    plot.add_image('%s/Images/adapter_content.png' % self.fastqc)
+                    plot.add_image('%s_fastqc/Images/adapter_content.png' % self.sample)
                     plot.add_caption('Adapter content BEFORE trimming')
                 with doc.create(SubFigure()) as plot:
                     doc.append(Command('vspace', '10 mm'))
@@ -140,7 +140,7 @@ class CreateFastQCPDF(object):
                         colour = 'red'
                     else:
                         colour = 'black'
-                    plot.add_image('%s/Images/adapter_content.png' % self.fastqc_trim)
+                    plot.add_image('%s.qfilter_fastqc/Images/adapter_content.png' % self.sample)
                     plot.add_caption(NoEscape(r'Adapter content AFTER trimming \textcolor{%s}{%s}'
                                               % (colour, sum_dict_trim.get('Adapter Content'))))
 
@@ -148,22 +148,16 @@ class CreateFastQCPDF(object):
             with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
                 doc.append(Command('centering'))
                 with doc.create(SubFigure()) as plot:
-                    plot.add_image('%s.bwa.drm.sorted.bam.stats-quals-hm.png' % self.name)
+                    plot.add_image('%s.bwa.drm.sorted.bam.stats-quals-hm.png' % self.sample)
                     plot.add_caption('Base quality per cycle')
                 with doc.create(SubFigure()) as plot:
                     doc.append(Command('hspace', '10 mm'))
-                    plot.add_image('%s.bwa.drm.sorted.bam.stats-insert-size.png' % self.name)
+                    plot.add_image('%s.bwa.drm.sorted.bam.stats-insert-size.png' % self.sample)
                     plot.add_caption('Fragment size')
                 with doc.create(SubFigure()) as plot:
                     doc.append(Command('vspace', '10 mm'))
-                    plot.add_image('%s.bwa.drm.sorted.bam.stats-quals2.png' % self.name)
+                    plot.add_image('%s.bwa.drm.sorted.bam.stats-quals2.png' % self.sample)
                     plot.add_caption('Quality per cycle')
 
         pdflatex = '/usr/local/texlive/2015/bin/x86_64-linux/pdflatex'
-        doc.generate_pdf('%s' % self.name, clean_tex=False, compiler=pdflatex)
-        os.system('mv /home/cuser/PycharmProjects/amlpipeline/%s.pdf /media/sf_sarah_share/MiSeq_quality_outputs/'
-                  % self.name)
-
-pdf = CreateFastQCPDF('04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001_fastqc',
-                      '04-D15-22373-HT-Nextera-Myeloid-Val1-Repeat_S4_L001_R1_001.qfilter_fastqc')
-pdf.create_pdf()
+        doc.generate_pdf('%s_Sample_Quality' % self.sample, clean_tex=False, compiler=pdflatex)

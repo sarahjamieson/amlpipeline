@@ -10,11 +10,28 @@ import pandas as pd
 import re
 from pandas import ExcelWriter
 import parse_vcfs
-import fileinput
+import argparse
+from argparse import RawTextHelpFormatter
+
+curr_datetime = datetime.datetime.now().isoformat()
+'''
+parser = argparse.ArgumentParser(description="Runs pipeline for Illumina MiSeq Nextera AML data.",
+                                 formatter_class=RawTextHelpFormatter)
+
+parser.add_argument('-s', '--sheet', action="store", dest='sample_sheet', help='An illumina sample sheet for this run.',
+                    required=True, default='/media/sf_sarah_share/160513_M04103_0019_000000000-ANU1A/SampleSheet.csv')
+parser.add_argument('-d', '--result_dir', action='store', dest='result_dir', required=True,
+                    help='Directory containing Illumina MiSeq InterOp and Data folders.',
+                    default='/media/sf_sarah_share/160513_M04103_0019_000000000-ANU1A/')
+parser.add_argument('-o', '--output_dir', action='store', dest='output_dir', required=True,
+                    help='Directory for output to be stored in',
+                    default='/media/sf_sarah_share/MiSeq_Nextera_Results/')
+args = parser.parse_args()
+'''
 
 Trimmomatic = '/home/cuser/programs/Trimmomatic-0.36/trimmomatic-0.36.jar'
 trim_adapters = '/home/cuser/programs/Trimmomatic-0.36/adapters/NexteraPE-PE.fa'
-InterOp = '/media/sf_sarah_share/InterOp/'
+# InterOp = '/%s/InterOp/' % args.result_dir
 bwa = '/home/cuser/programs/bwa/bwa'
 samblaster = '/home/cuser/programs/samblaster/samblaster'
 samtools = '/home/cuser/programs/samtools/samtools/bin/samtools'
@@ -29,8 +46,17 @@ varscan = '/home/cuser/programs/VarScan2/VarScan.v2.4.0.jar'
 fastqc = '/home/cuser/programs/FastQC/fastqc'
 delly = '/home/cuser/programs/delly_v0.7.3/delly'
 bcftools = '/home/cuser/programs/samtools/bcftools-1.3.1/bcftools'
+# script_dir = os.path.dirname(os.path.abspath(__file__))
+# os.system("cp %s/Data/Intensities/BaseCalls/*.fastq.gz %s/" % (args.result_dir, script_dir))
 
-curr_datetime = datetime.datetime.now().isoformat()
+
+'''
+os.system("mkdir %s%s" % (output_dir, worksheet))
+
+parse_sheet = ParseSampleSheet(args.sample_sheet)
+run_dict, sample_dict = parse_sheet.parse_sample_sheet()
+worksheet = run_dict.get('worksheet')
+'''
 
 
 def assess_quality():
@@ -48,11 +74,11 @@ def assess_quality():
     corintmetrics = InteropCorrectedIntensityMetrics('%sCorrectedIntMetricsOut.bin' % InterOp)
 
     pdf = CreatePDF(tilemetrics, controlmetrics, errormetrics, extractionmetrics, indexmetrics, qualitymetrics,
-                    corintmetrics)
+                    corintmetrics, worksheet)
     pdf.create_pdf()  # creates PDF document using LaTeX of quality data.
 
-    os.system('mv /home/cuser/PycharmProjects/amlpipeline/output.pdf /media/sf_sarah_share/MiSeq_quality_outputs/')
-    # move file to location.
+    os.system('cp %s_InterOp_Results.pdf %s%s/'
+            % (worksheet, args.output_dir, worksheet))
 
     # Could then have something like:
     # if tilemetrics.mean_cluster_density in range(1100, 1300) or tilemetrics.percent_pf_clusters > 90:
@@ -159,7 +185,6 @@ def run_samtools_stats(infile, outfile):
     pdf.create_pdf()
 
 
-'''
 @follows(run_samtools_stats)
 @transform("*.bwa.drm.sorted.bam", suffix(".bwa.drm.sorted.bam"), ".breakdancer_config.txt")
 def create_breakdancer_config(infile, outfile):
@@ -172,10 +197,9 @@ def create_breakdancer_config(infile, outfile):
 @transform(create_breakdancer_config, suffix(".breakdancer_config.txt"), ".breakdancer_output.sv")
 def run_breakdancer(infile, outfile):
     os.system("%s -q 10 %s > %s" % (breakdancer, infile, outfile))
-'''
 
 
-@follows(run_samtools_stats)
+@follows(run_breakdancer)
 @transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".pindel_config")
 def create_pindel_config(infile, outfile):
     config_file = open("%s" % outfile, "w+")  # write into output file
@@ -252,11 +276,11 @@ def run_varscan2_indels(infile, outfile):
               % (samtools, genome, infile, varscan, outfile))
 
 
-@follows(run_varscan2_indels)
+# @follows(run_varscan2_indels)
 @transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), r"\1.bcf")
 def call_delly(infile, outfile):
     sample = infile[:-19]
-    blacklisted_regions = '/media/sf_sarah_share/excluded_regions_and_blacklisted.sorted.bed'
+    blacklisted_regions = 'excluded_regions.excl.bed'
     os.system("%s call -t DEL -x %s -o %s.del.bcf -g %s %s" % (delly, blacklisted_regions, sample, genome, infile))
     os.system("%s call -t TRA -x %s -o %s.tra.bcf -g %s %s" % (delly, blacklisted_regions, sample, genome, infile))
     os.system("%s call -t INV -x %s -o %s.inv.bcf -g %s %s" % (delly, blacklisted_regions, sample, genome, infile))
@@ -280,21 +304,21 @@ def combine_vcfs(infile, outfile):
     delly_tra_data = {}
     pindel_data = {}
     vs2_data = {}
-    for file in infile:
-        if file.endswith(".del.delly.vcf"):
-            delly_del_data = parse_vcfs.get_delly_output(file)
-        if file.endswith(".dup.delly.vcf"):
-            delly_dup_data = parse_vcfs.get_delly_output(file)
-        if file.endswith(".inv.delly.vcf"):
-            delly_inv_data = parse_vcfs.get_delly_output(file)
-        if file.endswith(".ins.delly.vcf"):
-            delly_ins_data = parse_vcfs.get_delly_output(file)
-        if file.endswith(".tra.delly.vcf"):
-            delly_tra_data = parse_vcfs.get_delly_output(file)
-        if file.endswith(".pindel.merged.vcf"):
-            pindel_data = parse_vcfs.get_pindel_output(file)
-        if file.endswith(".indels.vs2.vcf"):
-            vs2_data = parse_vcfs.get_vs2_output(file)
+    for f in infile:
+        if f.endswith(".del.delly.vcf"):
+            delly_del_data = parse_vcfs.get_delly_output(f)
+        if f.endswith(".dup.delly.vcf"):
+            delly_dup_data = parse_vcfs.get_delly_output(f)
+        if f.endswith(".inv.delly.vcf"):
+            delly_inv_data = parse_vcfs.get_delly_output(f)
+        if f.endswith(".ins.delly.vcf"):
+            delly_ins_data = parse_vcfs.get_delly_output(f)
+        if f.endswith(".tra.delly.vcf"):
+            delly_tra_data = parse_vcfs.get_delly_output(f)
+        if f.endswith(".pindel.merged.vcf"):
+            pindel_data = parse_vcfs.get_pindel_output(f)
+        if f.endswith(".indels.vs2.vcf"):
+            vs2_data = parse_vcfs.get_vs2_output(f)
     sample = outfile[:-12]
     header = ['##fileformat=VCFv4.0\n',
               '##fileDate=%s\n' % curr_datetime,
@@ -361,7 +385,7 @@ def annotate_vcf(infile, outfile):
 @transform(["*.annovar.vcf"], suffix(".annovar.vcf"), ".annovar.xlsx")
 def vcf_to_excel(infile, outfile):
     vcf_reader = vcf.Reader(open(infile, 'r'))
-    col_list = ['SAMPLE', 'Caller', 'CHROM', 'POS', 'REF', 'ALT', 'END', 'TYPE', 'SIZE', 'GT', 'GQ', 'DEPTH',
+    col_list = ['SAMPLE', 'Caller', 'CHROM', 'POS', 'REF', 'ALT', 'CHR2', 'END', 'TYPE', 'SIZE', 'GT', 'DEPTH',
                 'Alleles', 'AB', 'GENE', 'FUNC-refGene', 'EXONIC_FUNC-refGene']
     annovar_df = pd.DataFrame(columns=col_list)
     sample_id = infile[:-12]
@@ -373,12 +397,9 @@ def vcf_to_excel(infile, outfile):
             ref = record.REF
             alt = ",".join(str(a) for a in record.ALT)
             gt = sample['GT']
-            if record.QUAL is None:
-                gq = '.'
-            else:
-                gq = record.QUAL
             ad = sample['AD']
             info_dict = record.INFO
+            chr2 = info_dict.get("CHR2")
             end_pos = info_dict.get("END")
             sv_type = info_dict.get("SVTYPE")
             gene = ",".join(str(g) for g in info_dict.get("Gene.refGene"))
@@ -388,7 +409,7 @@ def vcf_to_excel(infile, outfile):
             alt_reads = ad[1]
             total_reads = ref_reads + alt_reads
             if alt_reads != 0 and ref_reads != 0:
-                ab = (float(alt_reads) / float(ref_reads) * 100)
+                ab = (float(alt_reads) / float(total_reads) * 100)
             else:
                 ab = int(0)
             size = info_dict.get("SVLEN")
@@ -399,13 +420,15 @@ def vcf_to_excel(infile, outfile):
             else:
                 exonic_func_mod = exonic_func
             if caller == 'Delly':
-                output_df = pd.DataFrame([[sample_id, caller, chr, pos, ref, alt, end_pos, sv_type, size, gt, gq,
+                caller_prec = "%s_%s" % (caller, info_dict.get("Precision"))
+                output_df = pd.DataFrame([[sample_id, caller_prec, chr, pos, ref, alt, chr2, end_pos, sv_type, size, gt,
                                            total_reads, ad_str, ab, gene, func, exonic_func_mod]], columns=col_list)
                 annovar_df = annovar_df.append(output_df)
             else:
                 if re.match("(.*)exonic(.*)", func) or re.match("(.*)splicing(.*)", func):
-                    output_df = pd.DataFrame([[sample_id, caller, chr, pos, ref, alt, end_pos, sv_type, size, gt, gq,
-                                               total_reads, ad_str, ab, gene, func, exonic_func_mod]], columns=col_list)
+                    output_df = pd.DataFrame([[sample_id, caller, chr, pos, ref, alt, chr2, end_pos, sv_type, size, gt,
+                                               total_reads, ad_str, ab, gene, func, exonic_func_mod]],
+                                             columns=col_list)
                     annovar_df = annovar_df.append(output_df)
                 else:
                     pass
@@ -415,10 +438,15 @@ def vcf_to_excel(infile, outfile):
     writer.save()
     os.system('cp /home/cuser/PycharmProjects/amlpipeline/%s '
               '/media/sf_sarah_share/160513_M04103_0019_000000000-ANU1A/outputs/merged_excels/pindel_only/' % outfile)
+    '''
+    os.system("mkdir %s%s/Data/" % (output_dir, sample_id))
+    os.system("mkdir %s%s/Results/" % (output_dir, sample_id))
+    os.system("mv %s.annovar.xlsx %s%s/Results/" % (sample_id, args.output_dir, worksheet))
+    os.system("mv %s_Sample_Quality.pdf %s%s/Results/" % (sample_id, args.output_dir, worksheet))
+    os.system("mv %s.png %s/quality_figs/" % script_dir")
+    os.system("mv %s* %s%s/Data/" % (sample_id, args.output_dir, worksheet))
+    '''
 
 
 pipeline_run(verbose=4)
 
-# Use these databases:
-# refGene,knownGene,ensgene,esp6500_all,1000g2014oct_all,1000g2014oct_afr,1000g2014oct_amr,1000g2014oct_eas,
-# 1000g2014oct_eur,1000g2014oct_sas,snp137,clinvar_20140929,cosmic70,exac03
