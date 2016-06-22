@@ -16,6 +16,9 @@ import re
 import csv
 import argparse
 from argparse import RawTextHelpFormatter
+from parse_sample_sheet import ParseSampleSheet
+import shelve
+from collections import defaultdict
 
 genome = '/media/genomicdata/ucsc_hg19/ucsc.hg19.fasta'
 delly = '/home/cuser/programs/delly_v0.7.3/delly'
@@ -76,9 +79,9 @@ def run_gasv(infile, outfile):
     os.system("java -Xms512m -Xmx2048m -jar %s %s -OUTPUT_PREFIX %s -MAPPING_QUALITY 35"
               % (bamtogasv, infile, name))
     os.system("java -jar %s --minClusterSize 10 --batch %s.gasv.in" % (gasv, name))
+'''
+'''
 
-
-@follows(run_gasv)
 @transform(["*.gasv.in.clusters"], suffix(".gasv.in.clusters"), ".gasv.vcf")
 def gasv_to_vcf(infile, outfile):
     sample = infile[:-19]
@@ -125,22 +128,24 @@ def gasv_to_vcf(infile, outfile):
     os.system("cp %s /media/sf_sarah_share/" % outfile)
 
 
-pipeline_run(verbose=4, forcedtorun_tasks=[run_gasv, gasv_to_vcf])
+pipeline_run(verbose=4)
 '''
 '''
 listy = ['02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18',
          '19', '20', '21', '22', '23', '24']
 for l in listy:
-    os.system("mv /home/cuser/PycharmProjects/amlpipeline/%s*vs2.vcf /home/cuser/PycharmProjects/amldata/%s_bd/"
-              % (l, l))
+    os.system(
+        "cp /home/cuser/PycharmProjects/amldata/%s_bd/%s*.breakdancer_output.sv "
+        "/media/sf_sarah_share/160513_M04103_0019_000000000-ANU1A/outputs/breakdancer/"
+        % (l, l))
 '''
+'''
+annovar = '/media/sf_sarah_share/ANNOVAR/annovar/table_annovar.pl'
 
-'''
-def breakdancer_to_vcf(bd_file):
-    sample = bd_file[:-22]
-    outfile = '%s.bd.vcf' % sample
-    bed_out = '%s.bd.bed' % sample
-    bed_output = open(bed_out, 'w')
+
+@transform(["*.breakdance_output.sv"], suffix(".breakdancer_output.sv"), ".breakdancer.vcf")
+def breakdancer_to_vcf(infile, outfile):
+    sample = infile[:-22]
     vcf_output = open(outfile, 'w')
     header = ['##fileformat=VCFv4.0\n',
               '##fileDate=%s\n' % curr_datetime,
@@ -150,10 +155,11 @@ def breakdancer_to_vcf(bd_file):
               '##INFO=<ID=BD_SCORE,Number=1,Type=Integer,Description="BreakDancer Score">\n',
               '##INFO=<ID=CHR2,Number=1,Type=String,Description="Chromosome for END coordinate">\n',
               '##INFO=<ID=END,Number=1,Type=Integer,Description="END coordinate">\n',
+              '##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Type of SV">\n',
               '##INFO=<ID=ORIENTATION1,Number=1,Type=String,Description="BD orientation of chr1 in SV">\n',
               '##INFO=<ID=ORIENTATION2,Number=1,Type=String,Description="BD orientation of chr2 in SV">\n',
               '#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t%s\n' % sample]
-    with open(bd_file, 'r') as f:
+    with open(infile, 'r') as f:
         reader = csv.reader(f, delimiter='\t')
         i = 0
         while i < 5:
@@ -178,17 +184,100 @@ def breakdancer_to_vcf(bd_file):
             orientation2 = row[5]
             chr2 = row[3]
             vcf_output.write(
-                "%s\t%s\t%s\t%s\t%s\t%s\t%s\tSVLEN=%s;NUM_READS=%s;CHR2=%s;END=%s;BD_SCORE=%s;ORIENTATION1=%s"
-                "ORIENTATION2=%s\t%s\t%s\n" % (chrom, pos, id, ref, alt, qual, filter, svlen, num_reads, chr2, end,
-                                               score, orientation1, orientation2, " ", " "))
-            bed_output.write("%s\t%s\t%s\t%s\t%s\t%s\n" % (chrom, pos, end, ".", ".", "."))
-    os.system("mv %s /media/sf_sarah_share/" % outfile)
-    os.system("mv %s /media/sf_sarah_share/" % bed_out)
+                "%s\t%s\t%s\t%s\t%s\t%s\t%s\tSVLEN=%s;NUM_READS=%s;CHR2=%s;END=%s;SVTYPE=%s;BD_SCORE=%s;ORIENTATION1=%s"
+                "ORIENTATION2=%s\tGT:AD\t%s:%s\n" % (
+                    chrom, pos, id, ref, alt, qual, filter, svlen, num_reads, chr2, end, type,
+                    score, orientation1, orientation2, "0/0", "0,0"))
 
 
-breakdancer_to_vcf(
-    '/home/cuser/PycharmProjects/amldata/02_bd/02-D15-18331-AR-Nextera-Myeloid-Val1-Repeat_S2_L001_.'
-    'breakdancer_output.sv')
+@follows(breakdancer_to_vcf)
+@transform(["*.breakdancer.vcf"], suffix(".breakdancer.vcf"), ".bd.annovar.vcf")
+def annotate_vcf(infile, outfile):
+    os.system("%s "  # table_annovar.pl
+              "%s "  # infile
+              "/media/sf_sarah_share/ANNOVAR/annovar/humandb/ "  # directory database files are stored in
+              "-buildver hg19 "  # genome build
+              "-out %s "  # outfile
+              "-remove "  # removes all temporary files
+              "-protocol refGene,knownGene,ensgene,esp6500siv2_all,snp138, "  # databases
+              "-arg '--exonicsplicing --hgvs --splicing 30',,,, "  # optional arguments, splicing threshold 30bp
+              "-operation g,g,g,f,f "  # gene-based or filter-based for protocols
+              "-nastring . "  # if variant doesn't have a score from tools (e.g. intronic variant & SIFT), position="."
+              "-vcfinput"  # required if input is vcf file
+              % (annovar, infile, outfile))
+
+    # rename to match expected output
+    os.rename("%s.hg19_multianno.vcf" % outfile, "%s" % outfile)
+    # os.system("cp %s /media/sf_sarah_share/160513_M04103_0019_000000000-ANU1A/outputs/annovar/" % outfile)
+
+
+@follows(annotate_vcf)
+@transform(["*.bd.annovar.vcf"], suffix(".bd.annovar.vcf"), ".bd.annovar.xlsx")
+def vcf_to_excel(infile, outfile):
+    vcf_reader = vcf.Reader(open(infile, 'r'))
+    col_list = ['SAMPLE', 'Caller', 'CHROM', 'POS', 'REF', 'ALT', 'CHR2', 'END', 'TYPE', 'SIZE', 'GT', 'DEPTH',
+                'Alleles', 'AB', 'GENE', 'FUNC-refGene', 'EXONIC_FUNC-refGene']
+    annovar_df = pd.DataFrame(columns=col_list)
+    gasv_df = pd.DataFrame(columns=col_list)
+    sample_id = infile[:-12]
+    for record in vcf_reader:
+        for sample in record:
+            # PyVCF reader
+            chr = record.CHROM
+            pos = record.POS
+            ref = record.REF
+            alt = ",".join(str(a) for a in record.ALT)
+            gt = sample['GT']
+            ad = sample['AD']
+            info_dict = record.INFO
+            chr2 = info_dict.get("CHR2")
+            end_pos = info_dict.get("END")
+            sv_type = info_dict.get("SVTYPE")
+            gene = ",".join(str(g) for g in info_dict.get("Gene.refGene"))
+            if re.match("NONE(.*)", gene.upper()):
+                gene_corr = "."
+            else:
+                gene_corr = gene
+            func = ",".join(str(f) for f in info_dict.get("Func.refGene"))
+            exonic_func = ",".join(str(f) for f in info_dict.get("ExonicFunc.refGene"))
+            ref_reads = ad[0]
+            alt_reads = ad[1]
+            total_reads = ref_reads + alt_reads
+            if alt_reads != 0 and ref_reads != 0:
+                ab = (float(alt_reads) / float(total_reads) * 100)
+            else:
+                ab = int(0)
+            size = info_dict.get("SVLEN")
+            ad_str = '%s,%s' % (str(ref_reads), str(alt_reads))
+            caller = info_dict.get("Caller")
+            if re.match("None", exonic_func):
+                exonic_func_mod = "."
+            else:
+                exonic_func_mod = exonic_func
+            if caller == 'Delly':
+                caller_prec = "%s_%s" % (caller, info_dict.get("Precision"))
+                output_df = pd.DataFrame([[sample_id, caller_prec, chr, pos, ref, alt, chr2, end_pos, sv_type, size, gt,
+                                           total_reads, ad_str, ab, gene_corr, func, exonic_func_mod]], columns=col_list)
+                annovar_df = annovar_df.append(output_df)
+            elif caller == 'GASV':
+                output_df = pd.DataFrame([[sample_id, caller, chr, pos, ref, alt, chr2, end_pos, sv_type, size, ".",
+                                           total_reads, ".", ".", gene_corr, func, exonic_func_mod]], columns=col_list)
+                gasv_df = gasv_df.append(output_df)
+            else:
+                if re.match("(.*)exonic(.*)", func) or re.match("(.*)splicing(.*)", func):
+                    output_df = pd.DataFrame([[sample_id, caller, chr, pos, ref, alt, chr2, end_pos, sv_type, size, gt,
+                                               total_reads, ad_str, ab, gene_corr, func, exonic_func_mod]],
+                                             columns=col_list)
+                    annovar_df = annovar_df.append(output_df)
+                else:
+                    pass
+
+    writer = ExcelWriter('%s' % outfile)
+    annovar_df.to_excel(writer, sheet_name="Variants-Pindel-VS2-Delly", index=False)
+    gasv_df.to_excel(writer, sheet_name="GASV", index=False)
+    writer.save()
+
+    os.system("cp %s /media/sf_sarah_share/160513_M04103_0019_000000000-ANU1A/outputs/merged_excels/w.gasv/" % outfile)
 
 
 parser = argparse.ArgumentParser(description="Runs pipeline for Illumina MiSeq Nextera AML data.",
@@ -201,9 +290,9 @@ parser.add_argument('-f', '--fastq_dir', action='store', dest='fastqc_dir',
 parser.add_argument('-o', '--output_dir', action='store', dest='output_name',
                     help='Name to be given to directory for storing output files e.g. Run name.')
 args = parser.parse_args()
-'''
 
-'''
+
+
 def get_delly_output(vcf_file):
     vcf_reader = vcf.Reader(open(vcf_file, 'r'))
     delly_dict = {}
@@ -264,7 +353,7 @@ def get_delly_output(vcf_file):
     print delly_dict
 
 get_delly_output('/media/sf_sarah_share/05_tra.vcf')
-'''
+
 
 
 def get_run_info(csv_file):
@@ -366,41 +455,12 @@ def get_run_info(csv_file):
         }
 
     print run_dict, sample_dict
+'''
+freq = "35|22|5|3.1"
 
-get_run_info("ExampleSampleSheet.csv")
+hello = freq.split('|')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+if int(hello[2]) > 10:
+    "print to sheet2"
+else:
+    pass
