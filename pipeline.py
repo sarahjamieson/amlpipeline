@@ -34,6 +34,7 @@ args = parser.parse_args()
 Trimmomatic = '/home/cuser/programs/Trimmomatic-0.36/trimmomatic-0.36.jar'
 trim_adapters = '/home/cuser/programs/Trimmomatic-0.36/adapters/NexteraPE-PE.fa'
 # InterOp = '/%s/InterOp/' % args.result_dir
+InterOp = '/media/sf_sarah_share/160620_M01622_0286_000000000-AR4UH/InterOp/'
 bwa = '/home/cuser/programs/bwa/bwa'
 samblaster = '/home/cuser/programs/samblaster/samblaster'
 samtools = '/home/cuser/programs/samtools/samtools/bin/samtools'
@@ -50,8 +51,9 @@ delly = '/home/cuser/programs/delly_v0.7.3/delly'
 bcftools = '/home/cuser/programs/samtools/bcftools-1.3.1/bcftools'
 bamtogasv = '/home/cuser/programs/gasv/bin/BAMToGASV.jar'
 gasv = '/home/cuser/programs/gasv/bin/GASV.jar'
-# script_dir = os.path.dirname(os.path.abspath(__file__))
+script_dir = os.path.dirname(os.path.abspath(__file__))
 # os.system("cp %s/Data/Intensities/BaseCalls/*.fastq.gz %s/" % (args.result_dir, script_dir))
+# os.system("cp /media/sf_sarah_share/160620_M01622_0286_000000000-AR4UH/Data/*.fastq.gz %s/" % script_dir)
 
 
 '''
@@ -60,8 +62,9 @@ parse_sheet = ParseSampleSheet(args.sample_sheet)
 run_dict, sample_dict = parse_sheet.parse_sample_sheet()
 worksheet = run_dict.get('worksheet')
 '''
+worksheet = 'run2'
 
-'''
+
 def assess_quality():
     """Obtains quality statistics from MiSeq InterOp files and produces PDF summary report.
     Notes:
@@ -80,7 +83,8 @@ def assess_quality():
                     corintmetrics, worksheet)
     pdf.create_pdf()  # creates PDF document using LaTeX of quality data.
 
-    os.system('cp %s_InterOp_Results.pdf %s%s/' % (worksheet, args.output_dir, worksheet))
+    os.system('mv %s_InterOp_Results.pdf /media/sf_sarah_share/160620_M01622_0286_000000000-AR4UH/QC/' % "194766")
+    # os.system('cp %s_InterOp_Results.pdf %s%s/' % (worksheet args.output_dir, worksheet))
 
     # Could then have something like:
     # if tilemetrics.mean_cluster_density in range(1100, 1300) or tilemetrics.percent_pf_clusters > 90:
@@ -88,7 +92,7 @@ def assess_quality():
     # else:
     #       stop pipeline and return error message
 
-
+assess_quality()
 
 
 @collate("*.fastq.gz", formatter("([^/]+)R[12]_001.fastq.gz$"), "{path[0]}/{1[0]}.fastq.gz")
@@ -130,12 +134,16 @@ def quality_trim(infile, outfile):
 
 
 @follows(quality_trim)
-@collate("*qfilter.fastq.gz", formatter("([^/]+)R[12]_001.qfilter.fastq.gz$"), "{path[0]}/{1[0]}.fastq.gz")
+@collate("*.qfilter.fastq.gz", formatter("([^/]+)R[12]_001.qfilter.fastq.gz$"), "{path[0]}/{1[0]}.fastq.gz")
 def run_fastqc_trimmed(infile, outfile):
     fastq1 = infile[0]
     fastq2 = infile[1]
     os.system("%s --extract %s" % (fastqc, fastq1))
     os.system("%s --extract %s" % (fastqc, fastq2))
+    joint_sample_name = fastq1[:-23]
+    from fastqc import CreateFastQCPDF
+    pdf = CreateFastQCPDF(joint_sample_name)
+    pdf.create_pdf()
 
 
 @follows(run_fastqc_trimmed)
@@ -189,8 +197,7 @@ def run_samtools_stats(infile, outfile):
     pdf.create_pdf()
 
 
-
-# @follows(run_samtools_stats)
+@follows(run_samtools_stats)
 @transform("*.bwa.drm.sorted.bam", suffix(".bwa.drm.sorted.bam"), ".breakdancer_config.txt")
 def create_breakdancer_config(infile, outfile):
     config_file = open("%s" % outfile, "w")  # write into output file
@@ -205,56 +212,6 @@ def run_breakdancer(infile, outfile):
 
 
 @follows(run_breakdancer)
-@transform(["*.breakdancer_output.sv"], suffix(".breakdancer_output.sv"), ".breakdancer.sv.vcf")
-def breakdancer_to_vcf(infile, outfile):
-    sample = infile[:-22]
-    vcf_output = open(outfile, 'w')
-    header = ['##fileformat=VCFv4.0\n',
-              '##fileDate=%s\n' % curr_datetime,
-              '##source=BreakDancer\n',
-              '##INFO=<ID=SVLEN,Number=1,Type=Integer,Description="Difference in length between REF and ALT alleles">\n',
-              '##INFO=<ID=NUM_READS,Number=1,Type=Integer,Description="Number of supporting read pairs">\n',
-              '##INFO=<ID=BD_SCORE,Number=1,Type=Integer,Description="BreakDancer Score">\n',
-              '##INFO=<ID=CHR2,Number=1,Type=String,Description="Chromosome for END coordinate">\n',
-              '##INFO=<ID=END,Number=1,Type=Integer,Description="END coordinate">\n',
-              '##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Type of SV">\n',
-              '##INFO=<ID=ORIENTATION1,Number=1,Type=String,Description="BD orientation of chr1 in SV">\n',
-              '##INFO=<ID=ORIENTATION2,Number=1,Type=String,Description="BD orientation of chr2 in SV">\n',
-              '##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">\n',
-              '##FORMAT=<ID=AD,Number=2,Type=Integer,Description="Allele depth">\n',
-              '#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t%s\n' % sample]
-    with open(infile, 'r') as f:
-        reader = csv.reader(f, delimiter='\t')
-        i = 0
-        while i < 5:
-            reader.next()
-            i += 1
-        for line in header:
-            vcf_output.write(line)
-        for row in reader:
-            chrom = row[0]
-            pos = row[1]
-            id = "."
-            ref = "N"
-            type = row[6]
-            alt = "<%s>" % type
-            qual = "."
-            filter = "."
-            end = row[4]
-            svlen = row[7]
-            num_reads = row[9]
-            score = row[8]
-            orientation1 = row[2]
-            orientation2 = row[5]
-            chr2 = row[3]
-            vcf_output.write(
-                "%s\t%s\t%s\t%s\t%s\t%s\t%s\tSVLEN=%s;NUM_READS=%s;CHR2=%s;END=%s;SVTYPE=%s;BD_SCORE=%s;ORIENTATION1=%s"
-                "ORIENTATION2=%s\tGT:AD\t0/0:%s,0\n" % (
-                    chrom, pos, id, ref, alt, qual, filter, svlen, num_reads, chr2, end, type,
-                    score, orientation1, orientation2, num_reads))
-
-
-@follows(breakdancer_to_vcf)
 @transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".pindel_config")
 def create_pindel_config(infile, outfile):
     config_file = open("%s" % outfile, "w+")  # write into output file
@@ -271,6 +228,8 @@ def create_pindel_config(infile, outfile):
                                             "{path[0]}/{basename[0]}._SI",
                                             "{path[0]}/{basename[0]}._TD"], "{path[0]}/{basename[0]}.")
 def run_pindel(infile, outfile, pindel_prefix):
+    start = datetime.datetime.now().isoformat()
+    print start
     bd_file = infile[:-14]
     os.system("%s "  # pindel program
               "-f %s "  # reference genome
@@ -290,6 +249,8 @@ def run_pindel(infile, outfile, pindel_prefix):
               "-b %s.breakdancer_output.sv "  # file name with BreakDancer results     or -Q???
               "-Q %s.breakdancer_with_pindel.sv"
               % (pindel, genome, infile, pindel_prefix, pindel_prefix, bd_file, bd_file))
+    end = datetime.datetime.now().isoformat()
+    print end
 
 
 # https://github.com/ELIXIR-ITA-training/VarCall2015/blob/master/Tutorials/T5.2_variantcalling_stucturalvariants_tutorial.md
@@ -314,24 +275,6 @@ def pindel_to_vcf(infile, outfile, pindel_prefix):
 
 
 @follows(pindel_to_vcf)
-@transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".indels.vs2.vcf")
-def run_varscan2_indels(infile, outfile):
-    os.system("%s mpileup "
-              "-B "  # disables probabilistic realignment, reduces false SNPs caused by misalignments
-              "-f %s "  # reference fasta
-              "%s "
-              "| "  # run output through VarScan
-              "java -jar %s mpileup2indel "
-              "--min-coverage 8 "
-              "--min-reads2 2 "
-              "--min-avg-qual 10 "
-              "--p-value 99e-02 "
-              "--output-vcf 1 "
-              "--strand-filter 0 > %s"
-              % (samtools, genome, infile, varscan, outfile))
-
-
-# @follows(run_varscan2_indels)
 @transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), r"\1.bcf")
 def call_delly(infile, outfile):
     sample = infile[:-19]
@@ -349,66 +292,7 @@ def delly_to_vcf(infile, outfile):
     os.system("%s view %s > %s" % (bcftools, infile, outfile))
 
 
-
 @follows(delly_to_vcf)
-@transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".gasv.in.clusters")
-def run_gasv(infile, outfile):
-    name = infile[:-19]
-    os.system("java -Xms512m -Xmx2048m -jar %s %s -OUTPUT_PREFIX %s -MAPPING_QUALITY 35"
-              % (bamtogasv, infile, name))
-    os.system("java -jar %s --minClusterSize 10 --batch %s.gasv.in" % (gasv, name))
-
-
-@follows(run_gasv)
-@transform(["*.gasv.in.clusters"], suffix(".gasv.in.clusters"), ".gasv.merged.vcf")
-def gasv_to_vcf(infile, outfile):
-    sample = infile[:-19]
-    header = ['##fileformat=VCFv4.0\n',
-              '##fileDate=%s\n' % curr_datetime,
-              '##source=GASVRelease_Oct1_2013\n',
-              '##INFO=<ID=SVLEN,Number=1,Type=Integer,Description="Difference in length between REF and ALT alleles">\n',
-              '##INFO=<ID=NUM_READS,Number=1,Type=Integer,Description="Number of supporting read pairs">\n',
-              '##INFO=<ID=LOCAL,Number=1,Type=Float,Description="Breakpoint localization">\n',
-              '##INFO=<ID=CHR2,Number=1,Type=String,Description="Chromosome for END coordinate">\n',
-              '##INFO=<ID=END,Number=1,Type=Integer,Description="END coordinate">\n',
-              '##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Type of SV">\n',
-              '##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">\n',
-              '##FORMAT=<ID=AD,Number=2,Type=Integer,Description="Allele depth">\n',
-              '#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t%s\n' % sample]
-    vcf_output = open(outfile, 'w')
-    with open(infile, 'r') as gasv_file:
-        reader = csv.reader(gasv_file, delimiter='\t')
-        reader.next()
-        for line in header:
-            vcf_output.write(line)
-        for attribute in reader:
-            chrom = "chr%s" % attribute[1]
-            pos = attribute[2].split(',')[0]
-            id = '.'
-            ref = 'N'
-            type = attribute[7]
-            if type == 'D':
-                alt = '<DEL>'
-            elif re.match("I(.*)", type):
-                alt = '<INV>'
-            elif type == 'V':
-                alt = '<DIV>'
-            elif re.match("T(.*)", type):
-                alt = '<TRA>'
-            else:
-                alt = '.'
-            qual = "."
-            filter = "."
-            end = attribute[4].split(',')[0]
-            svlen = int(end) - int(pos)
-            num_reads = attribute[5]
-            local = attribute[6]
-            chr2 = "chr%s" % attribute[3]
-            vcf_output.write("%s\t%s\t%s\t%s\t%s\t%s\t%s\tSVLEN=%s;NUM_READS=%s;LOCAL=%s;SVTYPE=%s;CHR2=%s;END=%s\tGT:AD\t0/0:%s,0\n"
-                             % (chrom, pos, id, ref, alt, qual, filter, svlen, num_reads, local, type, chr2, end, num_reads))
-
-
-@follows(breakdancer_to_vcf)
 @collate(["*.vcf"], regex(r"(.+)\.(.+)\.(.+)\.vcf"), r"\1.unified.vcf")
 def combine_vcfs(infile, outfile):
     delly_del_data = {}
@@ -417,9 +301,6 @@ def combine_vcfs(infile, outfile):
     delly_ins_data = {}
     delly_tra_data = {}
     pindel_data = {}
-    vs2_data = {}
-    gasv_data = {}
-    bd_data = {}
     for f in infile:
         if f.endswith(".del.delly.vcf"):
             delly_del_data = parse_vcfs.get_delly_output(f)
@@ -433,12 +314,6 @@ def combine_vcfs(infile, outfile):
             delly_tra_data = parse_vcfs.get_delly_output(f)
         if f.endswith(".pindel.merged.vcf"):
             pindel_data = parse_vcfs.get_pindel_output(f)
-        if f.endswith(".indels.vs2.vcf"):
-            vs2_data = parse_vcfs.get_vs2_output(f)
-        if f.endswith(".gasv.merged.vcf"):
-            gasv_data = parse_vcfs.get_gasv_output(f)
-        if f.endswith("breakdancer.sv.vcf"):
-            bd_data = parse_vcfs.get_breakdancer_output(f)
     sample = outfile[:-12]
     header = ['##fileformat=VCFv4.0\n',
               '##fileDate=%s\n' % curr_datetime,
@@ -475,12 +350,6 @@ def combine_vcfs(infile, outfile):
                 output_file.write(parse_vcfs.print_vcf(delly_tra_data, var))
         for var in pindel_data.keys():
             output_file.write(parse_vcfs.print_vcf(pindel_data, var))
-        for var in vs2_data.keys():
-            output_file.write(parse_vcfs.print_vcf(vs2_data, var))
-        for var in gasv_data.keys():
-            output_file.write(parse_vcfs.print_vcf(gasv_data, var))
-        for var in bd_data.keys():
-            output_file.write(parse_vcfs.print_vcf(bd_data, var))
 
 
 # the number of arguments for "-protocol", "-arg" and "-operation" should all be equal and match in order.
@@ -505,8 +374,7 @@ def annotate_vcf(infile, outfile):
     # os.system("cp %s /media/sf_sarah_share/160513_M04103_0019_000000000-ANU1A/outputs/annovar/" % outfile)
 
 
-
-# @follows(annotate_vcf)
+@follows(annotate_vcf)
 @transform(["*.annovar.vcf"], suffix(".annovar.vcf"), ".variant_id.db")
 def compress_variants(infile, outfile):
     # shelve object containing variant dictionary for each sample, contained within a database file.
@@ -531,7 +399,6 @@ def compress_variants(infile, outfile):
 def combine_variants(infile, outfile):
     # produces dictionary where each variant is the key and the value is a list containing the worksheet and sample id.
     variant_dict_for_run = defaultdict(list)
-    worksheet = 'run2'
     for inputfile in infile:
         sample_variants = shelve.open(inputfile)
         for k, v in sample_variants.items():
@@ -608,10 +475,8 @@ def add_freq_to_vcf(infile, outfile):
                     output_vcf.write("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s;FREQ=%s\t%s\t%s\n"
                                      % (chrom, pos, id, ref, alt, qual, filter, info, freq, format, format_val))
 
-'''
 
-
-# @follows(add_freq_to_vcf)
+@follows(add_freq_to_vcf)
 @transform(["*.annovar.final.vcf"], suffix(".annovar.final.vcf"), ".annovar.xlsx")
 def vcf_to_excel(infile, outfile):
     vcf_reader = vcf.Reader(open(infile, 'r'))
@@ -669,16 +534,6 @@ def vcf_to_excel(infile, outfile):
                                            total_reads, ad_str, ab, gene_mod, func_mod, exonic_func_mod, freq, allele_freq]],
                                          columns=col_list)
                 annovar_df = annovar_df.append(output_df)
-            elif caller == 'GASV':
-                output_df = pd.DataFrame([[sample_id, caller, chr, pos, ref, alt, chr2, end_pos, sv_type, size, ".",
-                                           total_reads, ".", ".", gene_mod, func_mod, exonic_func_mod, freq, allele_freq]],
-                                         columns=col_list)
-                gasv_df = gasv_df.append(output_df)
-            elif caller == 'BreakDancer':
-                output_df = pd.DataFrame([[sample_id, caller, chr, pos, ref, alt, chr2, end_pos, sv_type, size, ".",
-                                           total_reads, ".", ".", gene_mod, func_mod, exonic_func_mod, freq, allele_freq]],
-                                         columns=col_list)
-                bd_df = bd_df.append(output_df)
             else:
                 if re.match("(.*)exonic(.*)", func) or re.match("(.*)splicing(.*)", func):
                     output_df = pd.DataFrame([[sample_id, caller, chr, pos, ref, alt, chr2, end_pos, sv_type, size, gt,
@@ -693,6 +548,7 @@ def vcf_to_excel(infile, outfile):
     gasv_df.to_excel(writer, sheet_name="GASV", index=False)
     bd_df.to_excel(writer, sheet_name="BreakDancer", index=False)
     writer.save()
+
     '''
     os.system("mkdir %s%s/%s/" % (args.output_dir, worksheet, sample_id))
     os.system("mkdir %s%s/%s/Data/" % (args.output_dir, worksheet, sample_id))
@@ -704,4 +560,4 @@ def vcf_to_excel(infile, outfile):
     '''
 
 
-pipeline_run(verbose=4, forcedtorun_tasks=vcf_to_excel)
+pipeline_run(verbose=4)

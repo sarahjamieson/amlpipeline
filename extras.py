@@ -4,27 +4,15 @@ import os
 from ruffus.proxy_logger import *
 from ruffus import *
 from pybedtools import BedTool
+import csv
+import datetime
+import re
+curr_datetime = datetime.datetime.now().isoformat()
 
 bamToBed = '/home/cuser/programs/bedtools2/bin/bamToBed'
 pairDiscordants = '/home/cuser/programs/hydra/pairDiscordants.py'
 dedupDiscordants = '/home/cuser/programs/hydra/dedupDiscordants.py'
 hydra = '/home/cuser/programs/hydra/hydra'
-
-# use of parser to create arguments for script to run from command line
-parser = argparse.ArgumentParser(description="Runs pipeline for AML data.",
-                                 formatter_class=RawTextHelpFormatter)
-
-parser.add_argument('-s', '--sheet', action="store", dest='samplesheet', help='An illumina sample sheet for this run.',
-                    required=True)
-parser.add_argument('-d', '--directory', action='store', dest='directory', help='')
-args = parser.parse_args()
-
-
-def perform_calculation(number):
-    print number * 2
-
-
-perform_calculation(args.number)
 
 
 # work in progress for TIGRA-ext - can't "make" tool
@@ -102,7 +90,6 @@ varscan = '/home/cuser/programs/VarScan2/VarScan.v2.4.0.jar'
 genome = '/media/genomicdata/ucsc_hg19/ucsc.hg19.fasta'
 
 
-@transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".platypus_output.unsorted.vcf")
 def run_platypus(infile, outfile):
     os.system("python %s callVariants "
               "--bamFiles=%s "
@@ -125,7 +112,6 @@ def run_platypus(infile, outfile):
 # need to run samtools mpileup to create pileup file. VarScan requires pileup file as input (run mpileup2snp for
 # multiple samples).
 # @follows(run_platypus)
-@transform(["*.bwa.drm.sorted.bam"], suffix(".bwa.drm.sorted.bam"), ".snps.vs2.vcf")
 def run_varscan2_snps(infile, outfile):
     os.system("%s mpileup "
               "-B "  # disables probabilistic realignment, reduces false SNPs caused by misalignments
@@ -140,4 +126,132 @@ def run_varscan2_snps(infile, outfile):
               "--output-vcf 1 "
               "--strand-filter 0 > %s"
               % (samtools, genome, infile, varscan, outfile))
+
+
+def run_varscan2_indels(infile, outfile):
+    os.system("%s mpileup "
+              "-B "  # disables probabilistic realignment, reduces false SNPs caused by misalignments
+              "-f %s "  # reference fasta
+              "%s "
+              "| "  # run output through VarScan
+              "java -jar %s mpileup2indel "
+              "--min-coverage 8 "
+              "--min-reads2 2 "
+              "--min-avg-qual 10 "
+              "--p-value 99e-02 "
+              "--output-vcf 1 "
+              "--strand-filter 0 > %s"
+              % (samtools, genome, infile, varscan, outfile))
+
+
 # ----------------------------------------------------------------------------------------------------------
+# BreakDancer to VCF format
+def breakdancer_to_vcf(infile, outfile):
+    sample = infile[:-22]
+    vcf_output = open(outfile, 'w')
+    header = ['##fileformat=VCFv4.0\n',
+              '##fileDate=%s\n' % curr_datetime,
+              '##source=BreakDancer\n',
+              '##INFO=<ID=SVLEN,Number=1,Type=Integer,Description="Difference in length between REF and ALT alleles">\n',
+              '##INFO=<ID=NUM_READS,Number=1,Type=Integer,Description="Number of supporting read pairs">\n',
+              '##INFO=<ID=BD_SCORE,Number=1,Type=Integer,Description="BreakDancer Score">\n',
+              '##INFO=<ID=CHR2,Number=1,Type=String,Description="Chromosome for END coordinate">\n',
+              '##INFO=<ID=END,Number=1,Type=Integer,Description="END coordinate">\n',
+              '##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Type of SV">\n',
+              '##INFO=<ID=ORIENTATION1,Number=1,Type=String,Description="BD orientation of chr1 in SV">\n',
+              '##INFO=<ID=ORIENTATION2,Number=1,Type=String,Description="BD orientation of chr2 in SV">\n',
+              '##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">\n',
+              '##FORMAT=<ID=AD,Number=2,Type=Integer,Description="Allele depth">\n',
+              '#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t%s\n' % sample]
+    with open(infile, 'r') as f:
+        reader = csv.reader(f, delimiter='\t')
+        i = 0
+        while i < 5:
+            reader.next()
+            i += 1
+        for line in header:
+            vcf_output.write(line)
+        for row in reader:
+            chrom = row[0]
+            pos = row[1]
+            id = "."
+            ref = "N"
+            type = row[6]
+            alt = "<%s>" % type
+            qual = "."
+            filter = "."
+            end = row[4]
+            svlen = row[7]
+            num_reads = row[9]
+            score = row[8]
+            orientation1 = row[2]
+            orientation2 = row[5]
+            chr2 = row[3]
+            vcf_output.write(
+                "%s\t%s\t%s\t%s\t%s\t%s\t%s\tSVLEN=%s;NUM_READS=%s;CHR2=%s;END=%s;SVTYPE=%s;BD_SCORE=%s;ORIENTATION1=%s"
+                "ORIENTATION2=%s\tGT:AD\t0/0:%s,0\n" % (
+                    chrom, pos, id, ref, alt, qual, filter, svlen, num_reads, chr2, end, type,
+                    score, orientation1, orientation2, num_reads))
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Run GASV variant caller and convert to VCF format.
+
+bamtogasv = '/home/cuser/programs/gasv/bin/BAMToGASV.jar'
+gasv = '/home/cuser/programs/gasv/bin/GASV.jar'
+
+
+def run_gasv(infile, outfile):
+    name = infile[:-19]
+    os.system("java -Xms512m -Xmx2048m -jar %s %s -OUTPUT_PREFIX %s -MAPPING_QUALITY 35"
+              % (bamtogasv, infile, name))
+    os.system("java -jar %s --minClusterSize 10 --batch %s.gasv.in" % (gasv, name))
+
+
+def gasv_to_vcf(infile, outfile):
+    sample = infile[:-19]
+    header = ['##fileformat=VCFv4.0\n',
+              '##fileDate=%s\n' % curr_datetime,
+              '##source=GASVRelease_Oct1_2013\n',
+              '##INFO=<ID=SVLEN,Number=1,Type=Integer,Description="Difference in length between REF and ALT alleles">\n',
+              '##INFO=<ID=NUM_READS,Number=1,Type=Integer,Description="Number of supporting read pairs">\n',
+              '##INFO=<ID=LOCAL,Number=1,Type=Float,Description="Breakpoint localization">\n',
+              '##INFO=<ID=CHR2,Number=1,Type=String,Description="Chromosome for END coordinate">\n',
+              '##INFO=<ID=END,Number=1,Type=Integer,Description="END coordinate">\n',
+              '##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Type of SV">\n',
+              '##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">\n',
+              '##FORMAT=<ID=AD,Number=2,Type=Integer,Description="Allele depth">\n',
+              '#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t%s\n' % sample]
+    vcf_output = open(outfile, 'w')
+    with open(infile, 'r') as gasv_file:
+        reader = csv.reader(gasv_file, delimiter='\t')
+        reader.next()
+        for line in header:
+            vcf_output.write(line)
+        for attribute in reader:
+            chrom = "chr%s" % attribute[1]
+            pos = attribute[2].split(',')[0]
+            id = '.'
+            ref = 'N'
+            type = attribute[7]
+            if type == 'D':
+                alt = '<DEL>'
+            elif re.match("I(.*)", type):
+                alt = '<INV>'
+            elif type == 'V':
+                alt = '<DIV>'
+            elif re.match("T(.*)", type):
+                alt = '<TRA>'
+            else:
+                alt = '.'
+            qual = "."
+            filter = "."
+            end = attribute[4].split(',')[0]
+            svlen = int(end) - int(pos)
+            num_reads = attribute[5]
+            local = attribute[6]
+            chr2 = "chr%s" % attribute[3]
+            vcf_output.write("%s\t%s\t%s\t%s\t%s\t%s\t%s\tSVLEN=%s;NUM_READS=%s;LOCAL=%s;SVTYPE=%s;CHR2=%s;END=%s\t"
+                             "GT:AD\t0/0:%s,0\n" % (chrom, pos, id, ref, alt, qual, filter, svlen, num_reads, local,
+                                                    type, chr2, end, num_reads))
+# ----------------------------------------------------------------------------------------------------------------------

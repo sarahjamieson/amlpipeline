@@ -456,11 +456,50 @@ def get_run_info(csv_file):
 
     print run_dict, sample_dict
 '''
-freq = "35|22|5|3.1"
 
-hello = freq.split('|')
 
-if int(hello[2]) > 10:
-    "print to sheet2"
-else:
-    pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

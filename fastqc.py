@@ -200,7 +200,7 @@ class CreateFastQCPDF(object):
                     plot.add_image('%sR2_001.qfilter_fastqc/Images/adapter_content.png' % self.sample)
                     plot.add_caption(NoEscape(r'R2 AFTER trimming \textcolor{%s}{%s}'
                                               % (colour, r2_summary_trim_dict.get('Adapter Content'))))
-
+        '''
         doc.append(Command('FloatBarrier'))
         with doc.create(Section('BamStats')):
             with doc.create(Figure(position='htbp', placement=NoEscape(r'\centering'))):
@@ -216,10 +216,11 @@ class CreateFastQCPDF(object):
                     doc.append(Command('vspace', '10 mm'))
                     plot.add_image('%s.bwa.drm.sorted.bam.stats-quals2.png' % self.sample)
                     plot.add_caption('Quality per cycle')
+        '''
 
         pdflatex = '/usr/local/texlive/2015/bin/x86_64-linux/pdflatex'
         doc.generate_pdf('%s' % self.sample, clean_tex=False, compiler=pdflatex)
-        os.system('mv /home/cuser/PycharmProjects/amlpipeline/%s.pdf /media/sf_sarah_share/MiSeq_quality_outputs/'
+        os.system('mv /home/cuser/PycharmProjects/amlpipeline/%s.pdf /media/sf_sarah_share/160620_M01622_0286_000000000-AR4UH/QC/'
                   % self.sample)
 
     def get_trimmed_data(self):
@@ -238,7 +239,7 @@ class CreateFastQCPDF(object):
         # Get R2 trimmed
         r2_summary_trim_df = pd.read_table('%sR2_001.qfilter_fastqc/summary.txt' % self.sample, header=None,
                                            names=['Score', 'Parameter'], usecols=[0, 1])
-        r2_scores_trim = r2_summary_trim_df['Score'].tolist()  # not currently used, may be needed
+        r2_scores_trim = r2_summary_trim_df['Score'].tolist()
         r2_parameters_trim = r2_summary_trim_df['Parameter'].tolist()
         r2_summary_trim_dict = dict(zip(r2_parameters_trim, r2_scores_trim))
 
